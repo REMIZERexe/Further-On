@@ -1,0 +1,16 @@
+// 1.21.1	2026-04-08T16:14:10.529132	Registrate Provider for further_on [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (blocks), Tags (enchantments), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
+de4fa655bd6e4419924046cea3548a57779ca7a6 assets/further_on/blockstates/blast_furnace_hearth.json
+156a41816f2ca4195da3fb5c1ee245eebe7dd864 assets/further_on/blockstates/fire_clay_bricks.json
+a7bf2864fce7209e22e301dc59b9216731affa07 assets/further_on/blockstates/fire_clay_bricks_wall.json
+84a7fced8aa3537f2bbd88896cd9f6276464a426 assets/further_on/lang/en_ud.json
+37768ef33278363174922a46883f969fd1c058d9 assets/further_on/lang/en_us.json
+5dbae274328ec9d8ecf99571ef91e4996b619376 assets/further_on/models/block/blast_furnace_hearth.json
+669555cebcc536d14901b3f144879288c34fed05 assets/further_on/models/block/fire_clay_bricks.json
+5dbae274328ec9d8ecf99571ef91e4996b619376 assets/further_on/models/block/fire_clay_bricks_wall.json
+8dcfb3523a56651be07bd35c161ab798209a9017 assets/further_on/models/item/blast_furnace_hearth.json
+e502f58edfb8a47c8d5c9163c6aa06204931078e assets/further_on/models/item/fire_clay.json
+160ff866044b42a7027a1f77ce29158d2e5687cd assets/further_on/models/item/fire_clay_bricks.json
+ebaeae8ee504819e140e7b029a9f4f4d845d85dc assets/further_on/models/item/fire_clay_bricks_wall.json
+150e4880297cdfeccdfe5e68d5adfdba6435b187 data/further_on/loot_table/blocks/blast_furnace_hearth.json
+f8de44dafb6c4d5f87a56e7e1a7e1bd1bf281f10 data/further_on/loot_table/blocks/fire_clay_bricks.json
+a6c998fafbc3e580d7ef295b072014bb32173b52 data/further_on/loot_table/blocks/fire_clay_bricks_wall.json
