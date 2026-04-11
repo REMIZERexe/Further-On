@@ -12,11 +12,19 @@ public class FOItems {
         REGISTRATE.setCreativeTab(FOTabs.FURTHER_ON_TAB);
     }
 
-
     public static final ItemEntry<Item> FIRE_CLAY = REGISTRATE.item("fire_clay", Item::new)
             .lang("Fire Clay")
             .properties((p) -> p.fireResistant())
             .model((ctx, prov) -> prov.withExistingParent(ctx.getName(), ResourceLocation.parse("clay_ball")))
+            .register();
+    public static final ItemEntry<Item> CARBON_STEEL = REGISTRATE.item("carbon_steel", Item::new)
+            .lang("Carbon Steel Ingot")
+            .register();
+    public static final ItemEntry<Item> STRUCTURAL_STEEL = REGISTRATE.item("structural_steel", Item::new)
+            .lang("Structural Steel Ingot")
+            .register();
+    public static final ItemEntry<Item> STAINLESS_STEEL = REGISTRATE.item("stainless_steel", Item::new)
+            .lang("Stainless Steel Ingot")
             .register();
 
 

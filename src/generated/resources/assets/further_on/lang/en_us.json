@@ -1,8 +1,14 @@
 {
   "block.further_on.blast_furnace_hearth": "Blast Furnace Hearth",
+  "block.further_on.carbon_steel_block": "Block of Carbon Steel",
   "block.further_on.fire_clay_bricks": "Fire Clay Bricks",
   "block.further_on.fire_clay_bricks_wall": "Fire Clay Bricks Wall",
+  "block.further_on.stainless_steel_block": "Block of Stainless Steel",
+  "block.further_on.structural_steel_block": "Block of Structural Steel",
+  "item.further_on.carbon_steel": "Carbon Steel Ingot",
   "item.further_on.fire_clay": "Fire Clay",
+  "item.further_on.stainless_steel": "Stainless Steel Ingot",
+  "item.further_on.structural_steel": "Structural Steel Ingot",
   "itemGroup.further_on": "Further On!",
   "itemGroup.further_on_building": "Further On's Building Blocks"
 }

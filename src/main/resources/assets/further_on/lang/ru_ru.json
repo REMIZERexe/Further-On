@@ -1,8 +1,17 @@
 {
   "itemGroup.further_on": "Further On!",
-  "itemGroup.further_on_building": "Further On Стройтельные Блоки",
-  "block.further_on.fire_clay_bricks": "Огнеупорные Кирпичи",
-  "item.further_on.fire_clay": "Огнеупорная Глина",
-  "block.further_on.blast_furnace_hearth": "Blast Furnace Hearth",
-  "block.further_on.fire_clay_bricks_wall": "Fire Clay Bricks Wall"
+  "itemGroup.further_on_building": "Further On: Стройтельные блоки",
+
+  "item.further_on.fire_clay": "Огнеупорная глина",
+  "item.further_on.carbon_steel": "Слиток углеродной стали",
+  "item.further_on.structural_steel": "Слиток конструкционной стали",
+  "item.further_on.stainless_steel": "Слиток нержавеющей стали",
+
+  "block.further_on.blast_furnace_hearth": "Очаг доменной печи",
+  "block.further_on.fire_clay_bricks": "Огнеупорные кирпичи",
+  "block.further_on.fire_clay_bricks_wall": "Стена из огнеупорных кирпичей",
+
+  "block.further_on.carbon_steel_block": "Блок из углеродной стали",
+  "block.further_on.structural_steel_block": "Блок из конструкционной стали",
+  "block.further_on.stainless_steel_block": "Блок из нержавеющей стали"
 }
