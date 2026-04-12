@@ -60,7 +60,7 @@ public class FOBlocks {
 
     /* Blocks of materials */
     public static final BlockEntry<Block> CARBON_STEEL_BLOCK = REGISTRATE.block("carbon_steel_block", Block::new)
-            .lang("Block of Carbon Steel")
+            .lang("Carbon Steel Block")
             .blockstate((ctx, prov) -> {
                 ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(MODID, "block/carbon_steel_block");
                 ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
@@ -72,7 +72,7 @@ public class FOBlocks {
             .register();
 
     public static final BlockEntry<Block> STRUCTURAL_STEEL_BLOCK = REGISTRATE.block("structural_steel_block", Block::new)
-            .lang("Block of Structural Steel")
+            .lang("Structural Steel Block")
             .blockstate((ctx, prov) -> {
                 ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(MODID, "block/structural_steel_block");
                 ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
@@ -83,7 +83,7 @@ public class FOBlocks {
             .simpleItem()
             .register();
     public static final BlockEntry<Block> STAINLESS_STEEL_BLOCK = REGISTRATE.block("stainless_steel_block", Block::new)
-            .lang("Block of Stainless Steel")
+            .lang("Stainless Steel Block")
             .blockstate((ctx, prov) -> {
                 ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(MODID, "block/stainless_steel_block");
                 ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
@@ -91,6 +91,30 @@ public class FOBlocks {
                 prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
             })
             .properties(c -> c.sound(SoundType.NETHERITE_BLOCK))
+            .simpleItem()
+            .register();
+    public static final BlockEntry<Block> MAGNESIUM_BLOCK = REGISTRATE.block("magnesium_block", Block::new)
+            .lang("Magnesium Block")
+            .blockstate((ctx, prov) -> {
+                ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(MODID, "block/magnesium_block");
+                ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
+
+                prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
+            })
+            .properties(c -> c.sound(SoundType.METAL))
+            .simpleItem()
+            .register();
+
+    /* Resources and ores */
+    public static final BlockEntry<Block> BAUXITE = REGISTRATE.block("bauxite", Block::new)
+            .lang("Bauxite")
+            .blockstate((ctx, prov) -> {
+                ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(MODID, "block/bauxite");
+                ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
+
+                prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
+            })
+            .properties(c -> c.sound(SoundType.DEEPSLATE))
             .simpleItem()
             .register();
 

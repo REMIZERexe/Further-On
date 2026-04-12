@@ -17,6 +17,8 @@ public class FOItems {
             .properties((p) -> p.fireResistant())
             .model((ctx, prov) -> prov.withExistingParent(ctx.getName(), ResourceLocation.parse("clay_ball")))
             .register();
+
+    /* Materials */
     public static final ItemEntry<Item> CARBON_STEEL = REGISTRATE.item("carbon_steel", Item::new)
             .lang("Carbon Steel Ingot")
             .register();
@@ -25,6 +27,13 @@ public class FOItems {
             .register();
     public static final ItemEntry<Item> STAINLESS_STEEL = REGISTRATE.item("stainless_steel", Item::new)
             .lang("Stainless Steel Ingot")
+            .register();
+    public static final ItemEntry<Item> MAGNESIUM = REGISTRATE.item("magnesium", Item::new)
+            .lang("Magnesium Ingot")
+            .register();
+
+    public static final ItemEntry<Item> BAUXITE_DUST = REGISTRATE.item("bauxite_dust", Item::new)
+            .lang("Bauxite Dust")
             .register();
 
 
