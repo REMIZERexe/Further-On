@@ -104,6 +104,17 @@ public class FOBlocks {
             .properties(c -> c.sound(SoundType.METAL))
             .simpleItem()
             .register();
+    public static final BlockEntry<Block> ALUMINIUM_BLOCK = REGISTRATE.block("aluminium_block", Block::new)
+            .lang("Aluminium Block")
+            .blockstate((ctx, prov) -> {
+                ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(MODID, "block/aluminium_block");
+                ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
+
+                prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
+            })
+            .properties(c -> c.sound(SoundType.METAL))
+            .simpleItem()
+            .register();
 
     /* Resources and ores */
     public static final BlockEntry<Block> BAUXITE = REGISTRATE.block("bauxite", Block::new)

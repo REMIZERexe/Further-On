@@ -1,4 +1,5 @@
 {
+  "block.further_on.aluminium_block": "Aluminium Block",
   "block.further_on.bauxite": "Bauxite",
   "block.further_on.blast_furnace_hearth": "Blast Furnace Hearth",
   "block.further_on.carbon_steel_block": "Carbon Steel Block",
@@ -7,9 +8,11 @@
   "block.further_on.magnesium_block": "Magnesium Block",
   "block.further_on.stainless_steel_block": "Stainless Steel Block",
   "block.further_on.structural_steel_block": "Structural Steel Block",
+  "item.further_on.aluminium": "Aluminium Ingot",
   "item.further_on.bauxite_dust": "Bauxite Dust",
   "item.further_on.carbon_steel": "Carbon Steel Ingot",
   "item.further_on.fire_clay": "Fire Clay",
+  "item.further_on.graphite": "Graphite",
   "item.further_on.magnesium": "Magnesium Ingot",
   "item.further_on.stainless_steel": "Stainless Steel Ingot",
   "item.further_on.structural_steel": "Structural Steel Ingot",

@@ -8,6 +8,8 @@
   "item.further_on.stainless_steel": "Слиток нержавеющей стали",
   "item.further_on.magnesium": "Магниевый слиток",
   "item.further_on.bauxite_dust": "Бокситовая пыль",
+  "item.further_on.aluminium": "Алюминиевый слиток",
+  "item.further_on.graphite": "Графит",
 
   "block.further_on.blast_furnace_hearth": "Очаг доменной печи",
   "block.further_on.fire_clay_bricks": "Огнеупорные кирпичи",
@@ -17,6 +19,7 @@
   "block.further_on.structural_steel_block": "Блок из конструкционной стали",
   "block.further_on.stainless_steel_block": "Блок из нержавеющей стали",
   "block.further_on.magnesium_block": "Магниевый блок",
+  "block.further_on.aluminium_block": "Алюминиевый блок",
 
   "block.further_on.bauxite": "Боксит"
 }

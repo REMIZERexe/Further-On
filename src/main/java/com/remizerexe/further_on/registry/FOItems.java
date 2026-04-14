@@ -31,9 +31,15 @@ public class FOItems {
     public static final ItemEntry<Item> MAGNESIUM = REGISTRATE.item("magnesium", Item::new)
             .lang("Magnesium Ingot")
             .register();
+    public static final ItemEntry<Item> ALUMINIUM = REGISTRATE.item("aluminium", Item::new)
+            .lang("Aluminium Ingot")
+            .register();
 
     public static final ItemEntry<Item> BAUXITE_DUST = REGISTRATE.item("bauxite_dust", Item::new)
             .lang("Bauxite Dust")
+            .register();
+    public static final ItemEntry<Item> GRAPHITE = REGISTRATE.item("graphite", Item::new)
+            .lang("Graphite")
             .register();
 
 
