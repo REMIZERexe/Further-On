@@ -6,6 +6,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.neoforged.neoforge.registries.datamaps.builtin.NeoForgeDataMaps;
 
 import static com.remizerexe.further_on.FurtherOn.MODID;
 import static com.remizerexe.further_on.FurtherOn.REGISTRATE;
@@ -70,7 +71,6 @@ public class FOBlocks {
             .properties(c -> c.sound(SoundType.NETHERITE_BLOCK))
             .simpleItem()
             .register();
-
     public static final BlockEntry<Block> STRUCTURAL_STEEL_BLOCK = REGISTRATE.block("structural_steel_block", Block::new)
             .lang("Structural Steel Block")
             .blockstate((ctx, prov) -> {
@@ -113,6 +113,28 @@ public class FOBlocks {
                 prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
             })
             .properties(c -> c.sound(SoundType.METAL))
+            .simpleItem()
+            .register();
+    public static final BlockEntry<Block> COKE_BLOCK = REGISTRATE.block("coke_block", Block::new)
+            .lang("Coke Block")
+            .blockstate((ctx, prov) -> {
+                ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(MODID, "block/coke_block");
+                ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
+
+                prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
+            })
+            .properties(c -> c.sound(SoundType.DEEPSLATE))
+            .simpleItem()
+            .register();
+    public static final BlockEntry<Block> ZIRCONIUM_BLOCK = REGISTRATE.block("zirconium_block", Block::new)
+            .lang("Zirconium Block")
+            .blockstate((ctx, prov) -> {
+                ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(MODID, "block/zirconium_block");
+                ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
+
+                prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
+            })
+            .properties(c -> c.sound(SoundType.NETHERITE_BLOCK))
             .simpleItem()
             .register();
 

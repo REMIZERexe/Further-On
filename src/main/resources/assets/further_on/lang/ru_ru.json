@@ -10,16 +10,20 @@
   "item.further_on.bauxite_dust": "Бокситовая пыль",
   "item.further_on.aluminium": "Алюминиевый слиток",
   "item.further_on.graphite": "Графит",
+  "item.further_on.coke": "Кокс",
+  "item.further_on.zirconium": "Циркониевый слиток",
 
   "block.further_on.blast_furnace_hearth": "Очаг доменной печи",
   "block.further_on.fire_clay_bricks": "Огнеупорные кирпичи",
   "block.further_on.fire_clay_bricks_wall": "Стена из огнеупорных кирпичей",
 
-  "block.further_on.carbon_steel_block": "Блок из углеродной стали",
+  "block.further_on.carbon_steel_block": "Блок из углеродистая стали",
   "block.further_on.structural_steel_block": "Блок из конструкционной стали",
   "block.further_on.stainless_steel_block": "Блок из нержавеющей стали",
   "block.further_on.magnesium_block": "Магниевый блок",
   "block.further_on.aluminium_block": "Алюминиевый блок",
+  "block.further_on.coke_block": "Коксовый блок",
+  "block.further_on.zirconium_block": "Циркониевый блок",
 
   "block.further_on.bauxite": "Боксит"
 }
