@@ -1,4 +1,4 @@
-// 1.21.1	2026-04-15T13:41:17.0544355	Registrate Provider for further_on [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (blocks), Tags (enchantments), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
+// 1.21.1	2026-04-15T14:20:03.1329434	Registrate Provider for further_on [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (blocks), Tags (enchantments), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
 7d0246ca2d0a40b262bf967e0228c15ade9d0479 assets/further_on/blockstates/aluminium_block.json
 bd396c217101e4aecf37566490912666a4a5024e assets/further_on/blockstates/bauxite.json
 de4fa655bd6e4419924046cea3548a57779ca7a6 assets/further_on/blockstates/blast_furnace_hearth.json
@@ -55,3 +55,4 @@ a6c998fafbc3e580d7ef295b072014bb32173b52 data/further_on/loot_table/blocks/fire_
 07e55b9ed5342b5f7be3bf200d74d5f1cb90bd96 data/further_on/loot_table/blocks/stainless_steel_block.json
 a9e25ead573938f507c6f9379f0c7f784e88537b data/further_on/loot_table/blocks/structural_steel_block.json
 2a1f262b30fd4859ca54c9ba7a017f6fed421090 data/further_on/loot_table/blocks/zirconium_block.json
+be19123bfcef4ca65baa0243e4d60c647f107b0f data/neoforge/data_maps/item/furnace_fuels.json

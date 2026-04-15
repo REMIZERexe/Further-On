@@ -46,6 +46,7 @@ public class FOItems {
             .register();
     public static final ItemEntry<Item> COKE = REGISTRATE.item("coke", Item::new)
             .lang("Coke")
+            .burnTime(3200)
             .register();
 
 
