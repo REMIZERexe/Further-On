@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "further_on:block/cast_beam",
+      "y": 90
+    },
+    "axis=y": {
+      "model": "further_on:block/cast_beam",
+      "x": 90
+    },
+    "axis=z": {
+      "model": "further_on:block/cast_beam"
+    }
+  }
+}

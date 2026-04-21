@@ -1,5 +1,6 @@
 package com.remizerexe.further_on.registry;
 
+import com.remizerexe.further_on.content.cast_beam.CastBeamBlock;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
@@ -156,6 +157,12 @@ public class FOBlocks {
     static {
         REGISTRATE.setCreativeTab(null);
     }
+
+    public static final BlockEntry<CastBeamBlock> CAST_BEAM = REGISTRATE.block("cast_beam", CastBeamBlock::new)
+            .lang("Cast Beam")
+            .blockstate(CastBeamBlock::blockstate)
+            .properties(c -> c)
+            .register();
 
 
     public static void register() { }

@@ -1,8 +1,9 @@
-// 1.21.1	2026-04-15T14:20:03.1329434	Registrate Provider for further_on [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (blocks), Tags (enchantments), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
+// 1.21.1	2026-04-21T12:18:06.9626585	Registrate Provider for further_on [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (blocks), Tags (enchantments), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
 7d0246ca2d0a40b262bf967e0228c15ade9d0479 assets/further_on/blockstates/aluminium_block.json
 bd396c217101e4aecf37566490912666a4a5024e assets/further_on/blockstates/bauxite.json
 de4fa655bd6e4419924046cea3548a57779ca7a6 assets/further_on/blockstates/blast_furnace_hearth.json
 ffdb24a60b1859cd511637edfdb9bc7c46053df7 assets/further_on/blockstates/carbon_steel_block.json
+1d2799e69765f2048324781b8dca17254c5b3514 assets/further_on/blockstates/cast_beam.json
 e3c6f28f1edef2b96b25a0c5b215fada9e7e4179 assets/further_on/blockstates/coke_block.json
 156a41816f2ca4195da3fb5c1ee245eebe7dd864 assets/further_on/blockstates/fire_clay_bricks.json
 a7bf2864fce7209e22e301dc59b9216731affa07 assets/further_on/blockstates/fire_clay_bricks_wall.json
@@ -10,8 +11,8 @@ a7bf2864fce7209e22e301dc59b9216731affa07 assets/further_on/blockstates/fire_clay
 f6cdbed05feaf20eb2ea54376bf6468bba119030 assets/further_on/blockstates/stainless_steel_block.json
 e161175c94c93e7c1dbb891b6412efe7c0f8f9fa assets/further_on/blockstates/structural_steel_block.json
 d1a0733a09bf7a60a252113e7ff549295715e36f assets/further_on/blockstates/zirconium_block.json
-daacbf4c0bec800264cc7c1c6428840f6e5ec52b assets/further_on/lang/en_ud.json
-f4edbf022bd86ca279e6bba8ffd482cc028bd5f6 assets/further_on/lang/en_us.json
+1c552d55322c2e98a25aba0758cc92575423945f assets/further_on/lang/en_ud.json
+e74c929b1d8aa3fd3d98acae7da27352b07ea4f1 assets/further_on/lang/en_us.json
 4b9eb40b9895ccf67a1ac25bf02e64450c88b572 assets/further_on/models/block/aluminium_block.json
 be2b829663bdf10329f4d8b08a4fbce64e7cda17 assets/further_on/models/block/bauxite.json
 5dbae274328ec9d8ecf99571ef91e4996b619376 assets/further_on/models/block/blast_furnace_hearth.json
@@ -48,6 +49,7 @@ c8ad95b969191611353c402ed6baab50e040f8f1 assets/further_on/models/item/zirconium
 95663c12880b0b4a9573e985eea7fbd3e717807f data/further_on/loot_table/blocks/bauxite.json
 150e4880297cdfeccdfe5e68d5adfdba6435b187 data/further_on/loot_table/blocks/blast_furnace_hearth.json
 6d4b462100187264968191753d8b589a029b3712 data/further_on/loot_table/blocks/carbon_steel_block.json
+24d302650691f2262b3289e2f37fc3f9e7959432 data/further_on/loot_table/blocks/cast_beam.json
 4b885123a86d2ffa8acdb9daf45dc09fdc150951 data/further_on/loot_table/blocks/coke_block.json
 f8de44dafb6c4d5f87a56e7e1a7e1bd1bf281f10 data/further_on/loot_table/blocks/fire_clay_bricks.json
 a6c998fafbc3e580d7ef295b072014bb32173b52 data/further_on/loot_table/blocks/fire_clay_bricks_wall.json
