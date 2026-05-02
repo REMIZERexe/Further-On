@@ -29,9 +29,9 @@
     ]
   },
   "legend": {
-    "B": { "block": "minecraft:bricks" },
-    "W": { "block": "minecraft:brick_wall" },
-    "S": { "block": "minecraft:brick_stairs" },
+    "B": { "block": "further_on:fire_clay_bricks" },
+    "W": { "block": "further_on:fire_clay_brick_wall" },
+    "S": { "block": "further_on:fire_clay_brick_stairs" },
     "F": {
       "block": "create:encased_fan",
       "state": { "facing": "south" }

@@ -5,6 +5,7 @@ import com.remizerexe.further_on.multiblock.JsonMultiblockDefinition;
 import com.remizerexe.further_on.multiblock.MultiblockControllerBE;
 import com.remizerexe.further_on.multiblock.MultiblockJsonLoader;
 import com.remizerexe.further_on.multiblock.MultiblockStructure;
+import com.remizerexe.further_on.registry.FOBlocks;
 import com.simibubi.create.api.equipment.goggles.IHaveGoggleInformation;
 import com.simibubi.create.content.kinetics.base.KineticBlockEntity;
 import net.minecraft.ChatFormatting;
@@ -337,10 +338,10 @@ public class BlastFurnaceHearthBlockEntity extends MultiblockControllerBE
         BlockPos actualCenter = centerPos.relative(facing, 1);
 
         return level.getBlockState(actualCenter).is(Blocks.AIR)
-                && level.getBlockState(actualCenter.relative(facing.getClockWise())).is(Blocks.BRICKS)
-                && level.getBlockState(actualCenter.relative(facing.getCounterClockWise())).is(Blocks.BRICKS)
-                && level.getBlockState(actualCenter.relative(facing)).is(Blocks.BRICKS)
-                && level.getBlockState(actualCenter.relative(facing.getOpposite())).is(Blocks.BRICKS);
+                && level.getBlockState(actualCenter.relative(facing.getClockWise())).is(FOBlocks.FIRE_CLAY_BRICKS)
+                && level.getBlockState(actualCenter.relative(facing.getCounterClockWise())).is(FOBlocks.FIRE_CLAY_BRICKS)
+                && level.getBlockState(actualCenter.relative(facing)).is(FOBlocks.FIRE_CLAY_BRICKS)
+                && level.getBlockState(actualCenter.relative(facing.getOpposite())).is(FOBlocks.FIRE_CLAY_BRICKS);
     }
 
     @Override protected int minCapacityLayers() { return DEFINITION.getMinCapacityLayers(); }

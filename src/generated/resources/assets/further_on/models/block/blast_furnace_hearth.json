@@ -1,6 +1,8 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/orientable",
   "textures": {
-    "all": "minecraft:block/bricks"
+    "front": "further_on:block/blast_furnace_hearth",
+    "side": "further_on:block/fire_clay_bricks",
+    "top": "further_on:block/fire_clay_bricks"
   }
 }
