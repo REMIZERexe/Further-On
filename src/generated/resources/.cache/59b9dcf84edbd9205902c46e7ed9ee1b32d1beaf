@@ -1,4 +1,4 @@
-// 1.21.1	2026-04-21T12:18:06.9626585	Registrate Provider for further_on [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (blocks), Tags (enchantments), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
+// 1.21.1	2026-05-02T18:42:26.0723805	Registrate Provider for further_on [Registries, Data Maps, Recipes, Advancements, Loot Tables, Tags (blocks), Tags (enchantments), Tags (items), Tags (fluids), Tags (entity_types), generic_server_provider, Blockstates, Item models, Lang (en_us/en_ud), generic_client_provider]
 7d0246ca2d0a40b262bf967e0228c15ade9d0479 assets/further_on/blockstates/aluminium_block.json
 bd396c217101e4aecf37566490912666a4a5024e assets/further_on/blockstates/bauxite.json
 de4fa655bd6e4419924046cea3548a57779ca7a6 assets/further_on/blockstates/blast_furnace_hearth.json
@@ -6,20 +6,26 @@ ffdb24a60b1859cd511637edfdb9bc7c46053df7 assets/further_on/blockstates/carbon_st
 1d2799e69765f2048324781b8dca17254c5b3514 assets/further_on/blockstates/cast_beam.json
 e3c6f28f1edef2b96b25a0c5b215fada9e7e4179 assets/further_on/blockstates/coke_block.json
 156a41816f2ca4195da3fb5c1ee245eebe7dd864 assets/further_on/blockstates/fire_clay_bricks.json
-a7bf2864fce7209e22e301dc59b9216731affa07 assets/further_on/blockstates/fire_clay_bricks_wall.json
+fc9ca0e78cec669d46db0d4275d7169898aceb38 assets/further_on/blockstates/fire_clay_brick_stairs.json
+97d7e07281fa6c4c0fcdaeaf1407603713d103aa assets/further_on/blockstates/fire_clay_brick_wall.json
 6db130bbc6ac0b1826d954a8b5c43f921bbbb600 assets/further_on/blockstates/magnesium_block.json
 f6cdbed05feaf20eb2ea54376bf6468bba119030 assets/further_on/blockstates/stainless_steel_block.json
 e161175c94c93e7c1dbb891b6412efe7c0f8f9fa assets/further_on/blockstates/structural_steel_block.json
 d1a0733a09bf7a60a252113e7ff549295715e36f assets/further_on/blockstates/zirconium_block.json
-1c552d55322c2e98a25aba0758cc92575423945f assets/further_on/lang/en_ud.json
-e74c929b1d8aa3fd3d98acae7da27352b07ea4f1 assets/further_on/lang/en_us.json
+a2e36699ec7e341f05c2190a419368dd6a0c995d assets/further_on/lang/en_ud.json
+e14d88dbd4b34a9ed2694eea26eac233f087a0ba assets/further_on/lang/en_us.json
 4b9eb40b9895ccf67a1ac25bf02e64450c88b572 assets/further_on/models/block/aluminium_block.json
 be2b829663bdf10329f4d8b08a4fbce64e7cda17 assets/further_on/models/block/bauxite.json
-5dbae274328ec9d8ecf99571ef91e4996b619376 assets/further_on/models/block/blast_furnace_hearth.json
+996baab357d26238716e87cd53dd93b058784f7f assets/further_on/models/block/blast_furnace_hearth.json
 9a1b21f1d880f8b913c2fd64587028a4ffdee8d5 assets/further_on/models/block/carbon_steel_block.json
 ec0d0c3c26610385d5c060b632b12e4566a2d93c assets/further_on/models/block/coke_block.json
-669555cebcc536d14901b3f144879288c34fed05 assets/further_on/models/block/fire_clay_bricks.json
-5dbae274328ec9d8ecf99571ef91e4996b619376 assets/further_on/models/block/fire_clay_bricks_wall.json
+b6ebb1fcd2821dcf9ffc5e5cb3bc34288bd81ae4 assets/further_on/models/block/fire_clay_bricks.json
+579a5dc54756ac474a806d9c3bd643f569ea318d assets/further_on/models/block/fire_clay_brick_stairs.json
+bf75bbf9c766b3f0822ae308f9b41be53aae51bf assets/further_on/models/block/fire_clay_brick_stairs_inner.json
+bbec766111de1e409eca77634de02ad3c703d072 assets/further_on/models/block/fire_clay_brick_stairs_outer.json
+f8d81f96704cd82bb251869c1b35beaa4ada29bc assets/further_on/models/block/fire_clay_brick_wall_post.json
+42f39d575cc68ab0c700095f7e32836e22f86180 assets/further_on/models/block/fire_clay_brick_wall_side.json
+4b74b08d5736fd547ae73024d9f60cce9a558950 assets/further_on/models/block/fire_clay_brick_wall_side_tall.json
 eb2894c29b050e4c03775f95ca84e14ec3a78987 assets/further_on/models/block/magnesium_block.json
 b887ed838f12579d9b50e76856617c646f5e6445 assets/further_on/models/block/stainless_steel_block.json
 cb47a5be9b13384fbc8c55dc02160c86960757bb assets/further_on/models/block/structural_steel_block.json
@@ -33,9 +39,11 @@ c36fc9420d6a36b7bc07db4ccc2f50a4e16719d6 assets/further_on/models/item/bauxite_d
 3094c8784602acb37338f1ff0bcf94338b46c6e5 assets/further_on/models/item/carbon_steel_block.json
 ea0a571ceaa60474a836f9567dbfd4f0b99f271a assets/further_on/models/item/coke.json
 c1e58d2e0999df056d27f9eb321b4dfab4a36410 assets/further_on/models/item/coke_block.json
-e502f58edfb8a47c8d5c9163c6aa06204931078e assets/further_on/models/item/fire_clay.json
+6fb567c6346a0be51feb4174deea1b09d933c3c4 assets/further_on/models/item/fire_clay.json
+f9f49fb600f6163f4b5461203d44d9d4977270bd assets/further_on/models/item/fire_clay_brick.json
 160ff866044b42a7027a1f77ce29158d2e5687cd assets/further_on/models/item/fire_clay_bricks.json
-ebaeae8ee504819e140e7b029a9f4f4d845d85dc assets/further_on/models/item/fire_clay_bricks_wall.json
+1b74ebc819965626020e9cf3c406631c16547e88 assets/further_on/models/item/fire_clay_brick_stairs.json
+44e2b0adc7891c2960ab2ca657e53ebbc6d7f06e assets/further_on/models/item/fire_clay_brick_wall.json
 2bd03d6f88b1c8de2c6ebe05861a8033ad7584fa assets/further_on/models/item/graphite.json
 95527fae07646bff99d0d45db69ff144e43babc9 assets/further_on/models/item/magnesium.json
 cc3f0a2b7383f81dfc7bf3fd0a38cfef108c5409 assets/further_on/models/item/magnesium_block.json
@@ -52,9 +60,12 @@ c8ad95b969191611353c402ed6baab50e040f8f1 assets/further_on/models/item/zirconium
 24d302650691f2262b3289e2f37fc3f9e7959432 data/further_on/loot_table/blocks/cast_beam.json
 4b885123a86d2ffa8acdb9daf45dc09fdc150951 data/further_on/loot_table/blocks/coke_block.json
 f8de44dafb6c4d5f87a56e7e1a7e1bd1bf281f10 data/further_on/loot_table/blocks/fire_clay_bricks.json
-a6c998fafbc3e580d7ef295b072014bb32173b52 data/further_on/loot_table/blocks/fire_clay_bricks_wall.json
+81cc4160f24a719d0fff93a7aafd6f762cb15e35 data/further_on/loot_table/blocks/fire_clay_brick_stairs.json
+6ca4c92a6c39ce22a3dab605e76874a78b7c587e data/further_on/loot_table/blocks/fire_clay_brick_wall.json
 3bd0c00ab0f53df0fa79adcc102f4d12989d33a8 data/further_on/loot_table/blocks/magnesium_block.json
 07e55b9ed5342b5f7be3bf200d74d5f1cb90bd96 data/further_on/loot_table/blocks/stainless_steel_block.json
 a9e25ead573938f507c6f9379f0c7f784e88537b data/further_on/loot_table/blocks/structural_steel_block.json
 2a1f262b30fd4859ca54c9ba7a017f6fed421090 data/further_on/loot_table/blocks/zirconium_block.json
+5fc727682c32678e4bda294c50e02014be8c8a11 data/minecraft/tags/block/stairs.json
+111389b99bd1dfd54e4ff211395b53876ad5116a data/minecraft/tags/block/walls.json
 be19123bfcef4ca65baa0243e4d60c647f107b0f data/neoforge/data_maps/item/furnace_fuels.json

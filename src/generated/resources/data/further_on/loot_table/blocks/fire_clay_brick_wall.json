@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "further_on:fire_clay_bricks_wall"
+          "name": "further_on:fire_clay_brick_wall"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "further_on:blocks/fire_clay_bricks_wall"
+  "random_sequence": "further_on:blocks/fire_clay_brick_wall"
 }

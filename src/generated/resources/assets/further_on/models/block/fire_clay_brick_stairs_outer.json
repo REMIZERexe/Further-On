@@ -1,7 +1,7 @@
 {
-  "parent": "minecraft:block/orientable",
+  "parent": "minecraft:block/outer_stairs",
   "textures": {
-    "front": "further_on:block/blast_furnace_hearth",
+    "bottom": "further_on:block/fire_clay_bricks",
     "side": "further_on:block/fire_clay_bricks",
     "top": "further_on:block/fire_clay_bricks"
   }
