@@ -1,12 +1,12 @@
 package com.remizerexe.further_on.registry;
 
+import com.remizerexe.further_on.content.blast_furnace.BlastFurnaceHatchBlock;
 import com.remizerexe.further_on.content.cast_beam.CastBeamBlock;
+import com.remizerexe.further_on.content.blast_furnace.BlastFurnaceHearthBlock;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
-import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.WallBlock;
 
 import static com.remizerexe.further_on.FurtherOn.MODID;
@@ -19,18 +19,34 @@ public class FOBlocks {
     }
 
 
-    public static final BlockEntry<Block> BLAST_FURNACE_HEARTH = REGISTRATE.block("blast_furnace_hearth", Block::new)
-            .lang("Blast Furnace Hearth")
-            .blockstate((ctx, prov) -> {
-                ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(MODID, "block/blast_furnace_hearth");
-                ResourceLocation textureLoc1 = ResourceLocation.fromNamespaceAndPath(MODID, "block/fire_clay_bricks");
-                ResourceLocation orientable = ResourceLocation.withDefaultNamespace("block/orientable");
+    public static final BlockEntry<BlastFurnaceHearthBlock> BLAST_FURNACE_HEARTH =
+            REGISTRATE.block("blast_furnace_hearth", BlastFurnaceHearthBlock::new)
+                    .lang("Blast Furnace Hearth")
+                    .blockstate((ctx, prov) -> {
+                        prov.horizontalBlock(ctx.get(), prov.models()
+                                .singleTexture(
+                                        ctx.getName(),
+                                        ResourceLocation.withDefaultNamespace("block/cube_all"),
+                                        "all",
+                                        ResourceLocation.parse("block/bricks")
+                                ));
+                    })
+                    .simpleItem()
+                    .register();
 
-                prov.simpleBlock(ctx.get(), prov.models().orientable(ctx.getName(), textureLoc1, textureLoc, textureLoc1));
-            })
-            .simpleItem()
-            .register();
-
+    public static final BlockEntry<BlastFurnaceHatchBlock> BLAST_FURNACE_HATCH =
+            REGISTRATE.block("blast_furnace_hatch", BlastFurnaceHatchBlock::new)
+                    .lang("Blast Furnace Hatch")
+                    .blockstate((ctx, prov) -> {
+                        prov.simpleBlock(ctx.get(), prov.models().singleTexture(
+                                ctx.getName(),
+                                ResourceLocation.withDefaultNamespace("block/cube_all"),
+                                "all",
+                                ResourceLocation.parse("block/bricks")
+                        ));
+                    })
+                    .simpleItem()
+                    .register();
 
     /*----- BLOCKS REGISTERED HERE WILL SHOW UP IN THE BUILDING TAB -----*/
     static {
@@ -41,38 +57,22 @@ public class FOBlocks {
     public static final BlockEntry<Block> FIRE_CLAY_BRICKS = REGISTRATE.block("fire_clay_bricks", Block::new)
             .lang("Fire Clay Bricks")
             .blockstate((ctx, prov) -> {
-                ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(MODID, "block/fire_clay_bricks");
+                ResourceLocation textureLoc = ResourceLocation.parse("block/clay");
                 ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
 
                 prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
             })
-            .properties(c -> c.sound(SoundType.STONE))
             .simpleItem()
             .register();
-    public static final BlockEntry<WallBlock> FIRE_CLAY_BRICK_WALL = REGISTRATE.block("fire_clay_brick_wall", WallBlock::new)
-            .lang("Fire Clay Brick Wall")
-            .blockstate((ctx, prov) -> {
-                ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(MODID, "block/fire_clay_bricks");
 
-                prov.wallBlock(ctx.get(), prov.models().wallPost("fire_clay_brick_wall_post", textureLoc),
-                        prov.models().wallSide("fire_clay_brick_wall_side", textureLoc),
-                        prov.models().wallSideTall("fire_clay_brick_wall_side_tall", textureLoc));
-            })
-            .properties(c -> c.sound(SoundType.STONE))
-            .tag(BlockTags.WALLS)
-            .simpleItem()
-            .register();
-    public static final BlockEntry<StairBlock> FIRE_CLAY_BRICK_STAIRS = REGISTRATE.block("fire_clay_brick_stairs", p -> new StairBlock(  FIRE_CLAY_BRICKS.getDefaultState(), p  ))
-            .lang("Fire Clay Brick Stairs")
+    public static final BlockEntry<WallBlock> FIRE_CLAY_BRICKS_WALL = REGISTRATE.block("fire_clay_bricks_wall", WallBlock::new)
+            .lang("Fire Clay Bricks Wall")
             .blockstate((ctx, prov) -> {
-                ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(MODID, "block/fire_clay_bricks");
+                ResourceLocation textureLoc = ResourceLocation.parse("block/bricks");
+                ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
 
-                prov.stairsBlock((StairBlock) ctx.get(), prov.models().stairs("fire_clay_brick_stairs", textureLoc, textureLoc, textureLoc),
-                        prov.models().stairsInner("fire_clay_brick_stairs_inner", textureLoc, textureLoc, textureLoc),
-                        prov.models().stairsOuter("fire_clay_brick_stairs_outer", textureLoc, textureLoc, textureLoc));
+                prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
             })
-            .properties(c -> c.sound(SoundType.STONE))
-            .tag(BlockTags.STAIRS)
             .simpleItem()
             .register();
 

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "further_on:block/fire_clay_bricks"
+    "all": "minecraft:block/clay"
   }
 }
