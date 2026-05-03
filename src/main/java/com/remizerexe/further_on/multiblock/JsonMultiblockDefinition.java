@@ -59,10 +59,6 @@ public class JsonMultiblockDefinition {
                 }
             }
         }
-        com.remizerexe.further_on.FurtherOn.LOGGER.warn("Pattern entries:");
-        for (Map.Entry<BlockPos, MultiblockPredicate> e : pattern.entrySet()) {
-            com.remizerexe.further_on.FurtherOn.LOGGER.warn("  {} -> {}", e.getKey(), e.getValue());
-        }
         // Layer -1: base
         MultiblockJsonLoader.addLayerToPattern(
                 baseLayer, -1, legend, pattern, originRow, originCol

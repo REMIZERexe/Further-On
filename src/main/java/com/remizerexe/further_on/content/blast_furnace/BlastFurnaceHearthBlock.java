@@ -4,11 +4,8 @@ import com.remizerexe.further_on.multiblock.MultiblockControllerBlock;
 import com.remizerexe.further_on.registry.FOBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -94,35 +91,34 @@ public class BlastFurnaceHearthBlock extends MultiblockControllerBlock {
     @Override
     public InteractionResult useWithoutItem(BlockState state, Level level,
                                             BlockPos pos, Player player, BlockHitResult hit) {
+
         if (level.isClientSide()) return InteractionResult.SUCCESS;
 
         BlockEntity be = level.getBlockEntity(pos);
         if (be instanceof BlastFurnaceHearthBlockEntity hearth) {
-            if (!hearth.isFormed()) {
+            if (hearth.isFormed()) {
+                player.displayClientMessage(
+                        net.minecraft.network.chat.Component.literal(
+                                "Formed | Layers: " + hearth.getAccumulatedLayers()
+                                        + " | Coal buffer: " + hearth.bufferedCoal
+                                        + " | Iron buffer: " + hearth.bufferedIron
+                                        + " | Progress: " + String.format("%.2f", hearth.getProcessingProgress())
+                                        + " | RPM: " + hearth.getCurrentRPM()
+                                        + " | Capacity: " + hearth.getCapacityLayers()
+                        ), true
+                );
+            } else {
                 hearth.revalidate();
-                if (!hearth.isFormed()) {
+                if (hearth.isFormed()) {
                     player.displayClientMessage(
-                            Component.literal("Structure incomplete."), true);
-                    return InteractionResult.CONSUME;
+                            net.minecraft.network.chat.Component.literal("Structure formed!"), true
+                    );
+                } else {
+                    player.displayClientMessage(
+                            net.minecraft.network.chat.Component.literal("Structure incomplete."), true
+                    );
                 }
             }
-            // Ouvre le GUI
-            net.minecraft.server.level.ServerPlayer serverPlayer =
-                    (net.minecraft.server.level.ServerPlayer) player;
-            player.openMenu(
-                    new net.minecraft.world.MenuProvider() {
-                        @Override
-                        public Component getDisplayName() {
-                            return Component.literal("Blast Furnace Hearth");
-                        }
-                        @Override
-                        public net.minecraft.world.inventory.AbstractContainerMenu createMenu(
-                                int id, Inventory inv, Player p) {
-                            return new BlastFurnaceHearthMenu(id, inv, hearth);
-                        }
-                    },
-                    buf -> buf.writeBlockPos(pos)
-            );
         }
         return InteractionResult.CONSUME;
     }

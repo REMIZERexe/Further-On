@@ -1,6 +1,5 @@
 package com.remizerexe.further_on.multiblock;
 
-import com.remizerexe.further_on.FurtherOn;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -101,12 +100,8 @@ public abstract class MultiblockControllerBE extends BlockEntity {
         boolean wasFormed = multiblockState.isFormed();
         int count = countCapacityLayers();
 
-        FurtherOn.LOGGER.warn("=== REVALIDATE === controller={} facing={} capacityLayers={}",
-                worldPosition, getFacing(), count);
-
+        // Reject if layer count is out of bounds
         if (count < minCapacityLayers() || count > maxCapacityLayers()) {
-            FurtherOn.LOGGER.warn("  FAIL: capacity layers out of bounds ({} not in [{},{}])",
-                    count, minCapacityLayers(), maxCapacityLayers());
             multiblockState.setFormed(false);
             formedPositions = new ArrayList<>();
             if (wasFormed) onUnformed();
@@ -146,18 +141,14 @@ public abstract class MultiblockControllerBE extends BlockEntity {
     private int countCapacityLayers() {
         int count = 0;
         for (int i = 0; i < maxCapacityLayers(); i++) {
+            // +2 skips controller (y=0) and collar (y=1)
             BlockPos layerCenter = worldPosition.above(2 + i);
-            boolean isLayer = isCapacityLayer(layerCenter);
-            com.remizerexe.further_on.FurtherOn.LOGGER.warn(
-                    "  capacityLayer check y+{} pos={} result={}", 2+i, layerCenter, isLayer
-            );
-            if (isLayer) {
+            if (isCapacityLayer(layerCenter)) {
                 count++;
             } else {
                 break;
             }
         }
-        com.remizerexe.further_on.FurtherOn.LOGGER.warn("  total capacity layers: {}", count);
         return count;
     }
 

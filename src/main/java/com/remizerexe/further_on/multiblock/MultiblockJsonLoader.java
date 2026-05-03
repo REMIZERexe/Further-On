@@ -83,9 +83,6 @@ public class MultiblockJsonLoader {
 
             String blockId = blockDef.get("block").getAsString();
             Block block = BuiltInRegistries.BLOCK.get(ResourceLocation.parse(blockId));
-            com.remizerexe.further_on.FurtherOn.LOGGER.warn(
-                    "Legend: '{}' -> {}", key, blockId
-            );
             if (block == null || block == Blocks.AIR && !blockId.equals("minecraft:air")) {
                 throw new IllegalStateException("Unknown block in multiblock legend: " + blockId);
             }
@@ -99,7 +96,6 @@ public class MultiblockJsonLoader {
             }
 
             legend.put(key, MultiblockPredicate.ofWithState(block, stateProps));
-            com.remizerexe.further_on.FurtherOn.LOGGER.warn("Legend '{}' -> {}", key, blockId);
         }
         return legend;
     }
@@ -119,10 +115,12 @@ public class MultiblockJsonLoader {
      * Rows run along Z, columns along X.
      */
     static void addLayerToPattern(
-            String[] rows, int y,
+            String[] rows,
+            int y,
             Map<Character, MultiblockPredicate> legend,
             Map<BlockPos, MultiblockPredicate> pattern,
-            int originRow, int originCol
+            int originRow,
+            int originCol
     ) {
         for (int row = 0; row < rows.length; row++) {
             String line = rows[row];
@@ -132,8 +130,8 @@ public class MultiblockJsonLoader {
                 MultiblockPredicate predicate = legend.get(c);
                 if (predicate == null) continue;
 
-                int right   = col - originCol;
-                int forward = row - originRow;
+                int right   = col - originCol; // X: columns relative to C
+                int forward = row - originRow; // Z: rows relative to C
                 pattern.put(new BlockPos(right, y, forward), predicate);
             }
         }

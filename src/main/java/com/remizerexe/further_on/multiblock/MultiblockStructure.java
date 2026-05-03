@@ -1,6 +1,5 @@
 package com.remizerexe.further_on.multiblock;
 
-import com.remizerexe.further_on.registry.FOBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.Level;
@@ -45,20 +44,6 @@ public class MultiblockStructure {
             BlockPos worldPos = toWorldPos(controllerPos, entry.getKey(), facing);
             BlockState state  = level.getBlockState(worldPos);
             if (!entry.getValue().test(level, worldPos, state)) {
-                // Test la predicate contre des blocs connus pour identifier ce qu'elle attend
-                boolean isBricks = entry.getValue().test(level, worldPos,
-                        FOBlocks.FIRE_CLAY_BRICKS.get().defaultBlockState());
-                boolean isWall = entry.getValue().test(level, worldPos,
-                        FOBlocks.FIRE_CLAY_BRICK_WALL.get().defaultBlockState());
-                boolean isAir = entry.getValue().test(level, worldPos,
-                        net.minecraft.world.level.block.Blocks.AIR.defaultBlockState());
-
-                com.remizerexe.further_on.FurtherOn.LOGGER.warn(
-                        "FAIL offset={} worldPos={} got={} | predicate accepts: bricks={} wall={} air={}",
-                        entry.getKey(), worldPos,
-                        net.minecraft.core.registries.BuiltInRegistries.BLOCK.getKey(state.getBlock()),
-                        isBricks, isWall, isAir
-                );
                 return false;
             }
         }
@@ -84,11 +69,11 @@ public class MultiblockStructure {
         int forward = offset.getZ();
 
         return switch (facing) {
-            case NORTH -> origin.offset(-right, up, forward);
-            case SOUTH -> origin.offset( right, up, -forward);
-            case EAST  -> origin.offset(-forward, up, -right);
-            case WEST  -> origin.offset( forward, up,  right);
-            default    -> origin.offset( right, up, forward);
+            case SOUTH -> origin.offset( right,  up,  forward);
+            case NORTH -> origin.offset(-right,  up, -forward);
+            case EAST  -> origin.offset( forward, up, -right);
+            case WEST  -> origin.offset(-forward, up,  right);
+            default    -> origin.offset( right,  up,  forward);
         };
     }
 

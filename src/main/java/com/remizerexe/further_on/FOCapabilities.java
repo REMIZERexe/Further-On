@@ -15,7 +15,7 @@ public class FOCapabilities {
 
     @SubscribeEvent
     public static void registerCapabilities(RegisterCapabilitiesEvent event) {
-        // Hearth — item handler (slag vers le bas)
+        // Hearth — steel output on front face
         event.registerBlockEntity(
                 Capabilities.ItemHandler.BLOCK,
                 FOBlockEntities.BLAST_FURNACE_HEARTH.get(),
@@ -25,24 +25,14 @@ public class FOCapabilities {
                 }
         );
 
-        // Hearth — fluid handler (steel sur la face facing)
-        event.registerBlockEntity(
-                Capabilities.FluidHandler.BLOCK,
-                FOBlockEntities.BLAST_FURNACE_HEARTH.get(),
-                (be, face) -> {
-                    if (face == null) return null;
-                    return be.getFluidTankForFace(face);
-                }
-        );
-
         event.registerBlockEntity(
                 Capabilities.ItemHandler.BLOCK,
                 FOBlockEntities.BLAST_FURNACE_HATCH.get(),
                 (be, face) -> {
                     if (face != net.minecraft.core.Direction.DOWN) return null;
-                    return be.getSlagInventory();
+                    ItemStackHandler slag = be.getSlagInventory();
+                    return slag;
                 }
         );
     }
-
 }

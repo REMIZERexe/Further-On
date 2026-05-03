@@ -49,8 +49,8 @@ public class BlastFurnaceHearthRenderer
 
         // The center of the chimney interior is 1 block in front of the controller
         // We render relative to the BE position, so forward offset = facing vector
-        float centerX = 0.5f + facing.getOpposite().getStepX();
-        float centerZ = 0.5f + facing.getOpposite().getStepZ();
+        float centerX = 0.5f + facing.getStepX();
+        float centerZ = 0.5f + facing.getStepZ();
 
         // Bottom of the chimney interior starts at Y=1 (one above controller)
         float baseY = 1.0f;
