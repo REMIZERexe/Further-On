@@ -46,8 +46,8 @@ public class BlastFurnaceHearthMenu extends AbstractContainerMenu {
                     return switch (index) {
                         case IDX_ACCUMULATED  -> be.getAccumulatedLayers();
                         case IDX_MAX_LAYERS   -> (be.getCapacityLayers()+2) * 8;
-                        case IDX_STEEL_AMOUNT -> be.steelTank.getFluidAmount();
-                        case IDX_STEEL_CAP    -> be.steelTank.getCapacity();
+                        case IDX_STEEL_AMOUNT -> be.outputInventory.getStackInSlot(0).getCount();
+                        case IDX_STEEL_CAP    -> be.outputInventory.getSlotLimit(0);
                         case IDX_RPM          -> be.getCurrentRPM();
                         case IDX_PROGRESS     -> (int)(be.getProcessingProgress() * 100);
                         default -> 0;

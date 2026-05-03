@@ -3,6 +3,7 @@ package com.remizerexe.further_on.registry;
 import com.remizerexe.further_on.content.blast_furnace.BlastFurnaceHatchBlock;
 import com.remizerexe.further_on.content.cast_beam.CastBeamBlock;
 import com.remizerexe.further_on.content.blast_furnace.BlastFurnaceHearthBlock;
+import com.remizerexe.further_on.content.oil.OilNodeBlock;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
