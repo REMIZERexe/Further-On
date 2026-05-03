@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#further_on:has_placed_feature/oil_cluster_hot",
+  "features": ["further_on:oil_cluster_hot"],
+  "step": "lakes"
+}

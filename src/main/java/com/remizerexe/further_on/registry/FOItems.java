@@ -15,10 +15,7 @@ public class FOItems {
     public static final ItemEntry<Item> FIRE_CLAY = REGISTRATE.item("fire_clay", Item::new)
             .lang("Fire Clay")
             .properties((p) -> p.fireResistant())
-            .register();
-    public static final ItemEntry<Item> FIRE_CLAY_BRICK = REGISTRATE.item("fire_clay_brick", Item::new)
-            .lang("Fire Clay Brick")
-            .properties((p) -> p.fireResistant())
+            .model((ctx, prov) -> prov.withExistingParent(ctx.getName(), ResourceLocation.parse("clay_ball")))
             .register();
 
     /* Materials */
@@ -51,7 +48,6 @@ public class FOItems {
             .lang("Coke")
             .burnTime(3200)
             .register();
-
 
     /*----- ITEMS REGISTERED HERE WILL SHOW UP IN THE BUILDING TAB -----*/
     static {

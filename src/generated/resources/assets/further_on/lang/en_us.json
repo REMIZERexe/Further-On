@@ -1,6 +1,7 @@
 {
   "block.further_on.aluminium_block": "Aluminium Block",
   "block.further_on.bauxite": "Bauxite",
+  "block.further_on.blast_furnace_hatch": "Blast Furnace Hatch",
   "block.further_on.blast_furnace_hearth": "Blast Furnace Hearth",
   "block.further_on.carbon_steel_block": "Carbon Steel Block",
   "block.further_on.cast_beam": "Cast Beam",
@@ -17,7 +18,6 @@
   "item.further_on.carbon_steel": "Carbon Steel Ingot",
   "item.further_on.coke": "Coke",
   "item.further_on.fire_clay": "Fire Clay",
-  "item.further_on.fire_clay_brick": "Fire Clay Brick",
   "item.further_on.graphite": "Graphite",
   "item.further_on.magnesium": "Magnesium Ingot",
   "item.further_on.stainless_steel": "Stainless Steel Ingot",

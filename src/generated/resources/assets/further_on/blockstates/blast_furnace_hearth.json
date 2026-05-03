@@ -1,7 +1,19 @@
 {
   "variants": {
-    "": {
+    "facing=east": {
+      "model": "further_on:block/blast_furnace_hearth",
+      "y": 90
+    },
+    "facing=north": {
       "model": "further_on:block/blast_furnace_hearth"
+    },
+    "facing=south": {
+      "model": "further_on:block/blast_furnace_hearth",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "further_on:block/blast_furnace_hearth",
+      "y": 270
     }
   }
 }

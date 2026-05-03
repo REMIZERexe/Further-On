@@ -41,6 +41,9 @@ public class FurtherOn {
         FOItems.register();
         FOBlockEntities.register();
         FOTabs.register();
+        FOFluids.register(modEventBus);
+        FOWorldgen.register(modEventBus);
+        FOMenuTypes.register(modEventBus);
 
         FORegistries.register(modEventBus);
 

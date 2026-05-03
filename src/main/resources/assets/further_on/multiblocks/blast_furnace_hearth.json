@@ -1,0 +1,42 @@
+{
+  "min_capacity_layers": 1,
+  "max_capacity_layers": 20,
+  "layers": {
+    "base": [
+      "BBB",
+      "BXB",
+      "BBB"
+    ],
+    "controller": [
+      "WCW",
+      "B B",
+      "WFW"
+    ],
+    "collar": [
+      "WBW",
+      "B B",
+      "WBW"
+    ],
+    "capacity": [
+      " B ",
+      "B B",
+      " B "
+    ],
+    "top": [
+      " S ",
+      "S S",
+      " S "
+    ]
+  },
+  "legend": {
+    "B": { "block": "further_on:fire_clay_bricks" },
+    "W": { "block": "further_on:fire_clay_brick_wall" },
+    "S": { "block": "further_on:fire_clay_brick_stairs" },
+    "F": {
+      "block": "create:encased_fan"
+    },
+    "C": { "block": "further_on:blast_furnace_hearth" },
+    " ": { "block": "minecraft:air" },
+    "X": { "block": "further_on:blast_furnace_hatch" }
+  }
+}
