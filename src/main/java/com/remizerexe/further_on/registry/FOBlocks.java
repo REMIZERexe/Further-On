@@ -198,6 +198,32 @@ public class FOBlocks {
             .properties(c -> c)
             .register();
 
+    public static final BlockEntry<OilNodeBlock> OIL_NODE_POOR =
+            REGISTRATE.block("oil_node_poor", p -> new OilNodeBlock(OilNodeBlock.Richness.POOR, p))
+                    .lang("Poor Oil Node")
+                    .blockstate((ctx, prov) -> prov.simpleBlock(ctx.get(), prov.models()
+                            .singleTexture(ctx.getName(),
+                                    ResourceLocation.withDefaultNamespace("block/cube_all"),
+                                    "all", ResourceLocation.fromNamespaceAndPath(MODID, "block/oil_node_poor"))))
+                    .register();
+
+    public static final BlockEntry<OilNodeBlock> OIL_NODE_NORMAL =
+            REGISTRATE.block("oil_node_normal", p -> new OilNodeBlock(OilNodeBlock.Richness.NORMAL, p))
+                    .lang("Oil Node")
+                    .blockstate((ctx, prov) -> prov.simpleBlock(ctx.get(), prov.models()
+                            .singleTexture(ctx.getName(),
+                                    ResourceLocation.withDefaultNamespace("block/cube_all"),
+                                    "all", ResourceLocation.fromNamespaceAndPath(MODID, "block/oil_node_normal"))))
+                    .register();
+
+    public static final BlockEntry<OilNodeBlock> OIL_NODE_RICH =
+            REGISTRATE.block("oil_node_rich", p -> new OilNodeBlock(OilNodeBlock.Richness.RICH, p))
+                    .lang("Rich Oil Node")
+                    .blockstate((ctx, prov) -> prov.simpleBlock(ctx.get(), prov.models()
+                            .singleTexture(ctx.getName(),
+                                    ResourceLocation.withDefaultNamespace("block/cube_all"),
+                                    "all", ResourceLocation.fromNamespaceAndPath(MODID, "block/oil_node_rich"))))
+                    .register();
 
     public static void register() { }
 }

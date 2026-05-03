@@ -49,7 +49,6 @@ public class FOItems {
             .burnTime(3200)
             .register();
 
-
     /*----- ITEMS REGISTERED HERE WILL SHOW UP IN THE BUILDING TAB -----*/
     static {
         REGISTRATE.setCreativeTab(FOTabs.FURTHER_ON_BUILDING_TAB);

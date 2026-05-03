@@ -1,0 +1,34 @@
+{
+  "sources": [
+    {
+      "type": "minecraft:single",
+      "resource": "further_on:block/oil_still",
+      "sprite": "further_on:block/oil_still"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "further_on:block/oil_flowing",
+      "sprite": "further_on:block/oil_flowing"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "further_on:block/oil_overlay",
+      "sprite": "further_on:block/oil_overlay"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "further_on:block/molten_steel_still",
+      "sprite": "further_on:block/molten_steel_still"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "further_on:block/molten_steel_flowing",
+      "sprite": "further_on:block/molten_steel_flowing"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "further_on:block/molten_steel_overlay",
+      "sprite": "further_on:block/molten_steel_overlay"
+    }
+  ]
+}
