@@ -3,7 +3,9 @@ package com.remizerexe.further_on.registry;
 import com.remizerexe.further_on.content.blast_furnace.BlastFurnaceHatchBlock;
 import com.remizerexe.further_on.content.cast_beam.CastBeamBlock;
 import com.remizerexe.further_on.content.blast_furnace.BlastFurnaceHearthBlock;
+import com.remizerexe.further_on.content.oil.OilNodeBlock;
 import com.tterrag.registrate.util.entry.BlockEntry;
+import com.remizerexe.further_on.content.pipes.IndustrialPipeBlock;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
@@ -47,6 +49,17 @@ public class FOBlocks {
                         ));
                     })
                     .simpleItem()
+                    .register();
+
+    public static final BlockEntry<com.remizerexe.further_on.content.pipes.IndustrialPipeBlock> INDUSTRIAL_PIPE =
+            REGISTRATE.block("industrial_pipe", com.remizerexe.further_on.content.pipes.IndustrialPipeBlock::new)
+                    .lang("Industrial Pipe")
+                    .blockstate((ctx, prov) -> {})
+                    .properties(c -> c.sound(SoundType.METAL).noOcclusion())
+                    .item()
+                    .model((ctx, prov) -> prov.withExistingParent(ctx.getName(),
+                            ResourceLocation.fromNamespaceAndPath(MODID, "block/industrialpipe_core")))
+                    .build()
                     .register();
 
     /*----- BLOCKS REGISTERED HERE WILL SHOW UP IN THE BUILDING TAB -----*/

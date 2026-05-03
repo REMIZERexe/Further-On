@@ -1,0 +1,12 @@
+{
+  "multipart": [
+    { "apply": { "model": "further_on:block/industrialpipe_core" } },
+
+    { "when": { "north": "true" }, "apply": { "model": "further_on:block/industrialpipe_connection" } },
+    { "when": { "south": "true" }, "apply": { "model": "further_on:block/industrialpipe_connection", "y": 180 } },
+    { "when": { "east": "true" },  "apply": { "model": "further_on:block/industrialpipe_connection", "y": 90 } },
+    { "when": { "west": "true" },  "apply": { "model": "further_on:block/industrialpipe_connection", "y": 270 } },
+    { "when": { "up": "true" },    "apply": { "model": "further_on:block/industrialpipe_connection", "x": 270 } },
+    { "when": { "down": "true" },  "apply": { "model": "further_on:block/industrialpipe_connection", "x": 90 } }
+  ]
+}

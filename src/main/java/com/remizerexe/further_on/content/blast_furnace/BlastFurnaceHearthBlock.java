@@ -96,29 +96,28 @@ public class BlastFurnaceHearthBlock extends MultiblockControllerBlock {
 
         BlockEntity be = level.getBlockEntity(pos);
         if (be instanceof BlastFurnaceHearthBlockEntity hearth) {
-            if (hearth.isFormed()) {
-                player.displayClientMessage(
-                        net.minecraft.network.chat.Component.literal(
-                                "Formed | Layers: " + hearth.getAccumulatedLayers()
-                                        + " | Coal buffer: " + hearth.bufferedCoal
-                                        + " | Iron buffer: " + hearth.bufferedIron
-                                        + " | Progress: " + String.format("%.2f", hearth.getProcessingProgress())
-                                        + " | RPM: " + hearth.getCurrentRPM()
-                                        + " | Capacity: " + hearth.getCapacityLayers()
-                        ), true
-                );
-            } else {
+            if (!hearth.isFormed()) {
                 hearth.revalidate();
-                if (hearth.isFormed()) {
+                if (!hearth.isFormed()) {
                     player.displayClientMessage(
-                            net.minecraft.network.chat.Component.literal("Structure formed!"), true
-                    );
-                } else {
-                    player.displayClientMessage(
-                            net.minecraft.network.chat.Component.literal("Structure incomplete."), true
-                    );
+                            net.minecraft.network.chat.Component.literal("Structure incomplete."), true);
+                    return InteractionResult.CONSUME;
                 }
             }
+            player.openMenu(
+                    new net.minecraft.world.MenuProvider() {
+                        @Override
+                        public net.minecraft.network.chat.Component getDisplayName() {
+                            return net.minecraft.network.chat.Component.literal("Blast Furnace Hearth");
+                        }
+                        @Override
+                        public net.minecraft.world.inventory.AbstractContainerMenu createMenu(
+                                int id, net.minecraft.world.entity.player.Inventory inv, Player p) {
+                            return new BlastFurnaceHearthMenu(id, inv, hearth);
+                        }
+                    },
+                    buf -> buf.writeBlockPos(pos)
+            );
         }
         return InteractionResult.CONSUME;
     }
