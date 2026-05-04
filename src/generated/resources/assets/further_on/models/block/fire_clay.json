@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "further_on:block/fire_clay_top",
+    "side": "further_on:block/fire_clay"
+  }
+}

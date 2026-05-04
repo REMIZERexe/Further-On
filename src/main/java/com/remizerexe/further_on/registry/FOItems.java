@@ -12,10 +12,9 @@ public class FOItems {
         REGISTRATE.setCreativeTab(FOTabs.FURTHER_ON_TAB);
     }
 
-    public static final ItemEntry<Item> FIRE_CLAY = REGISTRATE.item("fire_clay", Item::new)
-            .lang("Fire Clay")
+    public static final ItemEntry<Item> FIRE_CLAY_BALL = REGISTRATE.item("fire_clay_ball", Item::new)
+            .lang("Fire Clay Ball")
             .properties((p) -> p.fireResistant())
-            .model((ctx, prov) -> prov.withExistingParent(ctx.getName(), ResourceLocation.parse("clay_ball")))
             .register();
 
     /* Materials */

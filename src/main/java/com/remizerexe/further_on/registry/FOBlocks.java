@@ -199,6 +199,43 @@ public class FOBlocks {
             .simpleItem()
             .register();
 
+    public static final BlockEntry<Block> FIRE_CLAY = REGISTRATE.block("fire_clay", Block::new)
+            .lang("Fire Clay")
+            .blockstate((ctx, prov) -> {
+                ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(MODID, "block/fire_clay");
+                ResourceLocation textureLocTop = ResourceLocation.fromNamespaceAndPath(MODID, "block/fire_clay_top");
+                ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_column");
+
+                prov.simpleBlock(ctx.get(), prov.models().cubeColumn("fire_clay", textureLoc, textureLocTop));
+            })
+            .properties(c -> c.sound(SoundType.GRAVEL))
+            .simpleItem()
+            .register();
+
+
+    public static final BlockEntry<Block> GRAPHITE_ORE = REGISTRATE.block("graphite_ore", Block::new)
+            .lang("Graphite Ore")
+            .blockstate((ctx, prov) -> {
+                ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(MODID, "block/graphite_ore");
+                ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
+
+                prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
+            })
+            .properties(c -> c.sound(SoundType.GRAVEL))
+            .simpleItem()
+            .register();
+    public static final BlockEntry<Block> DEEPSLATE_GRAPHITE_ORE = REGISTRATE.block("deepslate_graphite_ore", Block::new)
+            .lang("Deepslate Graphite Ore")
+            .blockstate((ctx, prov) -> {
+                ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(MODID, "block/deepslate_graphite_ore");
+                ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
+
+                prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
+            })
+            .properties(c -> c.sound(SoundType.GRAVEL))
+            .simpleItem()
+            .register();
+
 
     /*----- BLOCKS REGISTERED HERE WILL NOT SHOW UP IN ANY TAB -----*/
     static {
@@ -217,7 +254,7 @@ public class FOBlocks {
                     .blockstate((ctx, prov) -> prov.simpleBlock(ctx.get(), prov.models()
                             .singleTexture(ctx.getName(),
                                     ResourceLocation.withDefaultNamespace("block/cube_all"),
-                                    "all", ResourceLocation.fromNamespaceAndPath(MODID, "block/oil_node_poor"))))
+                                    "all", ResourceLocation.fromNamespaceAndPath(MODID, "block/fire_clay"))))
                     .register();
 
     public static final BlockEntry<OilNodeBlock> OIL_NODE_NORMAL =
@@ -226,7 +263,7 @@ public class FOBlocks {
                     .blockstate((ctx, prov) -> prov.simpleBlock(ctx.get(), prov.models()
                             .singleTexture(ctx.getName(),
                                     ResourceLocation.withDefaultNamespace("block/cube_all"),
-                                    "all", ResourceLocation.fromNamespaceAndPath(MODID, "block/oil_node_normal"))))
+                                    "all", ResourceLocation.fromNamespaceAndPath(MODID, "block/fire_clay"))))
                     .register();
 
     public static final BlockEntry<OilNodeBlock> OIL_NODE_RICH =
@@ -235,7 +272,7 @@ public class FOBlocks {
                     .blockstate((ctx, prov) -> prov.simpleBlock(ctx.get(), prov.models()
                             .singleTexture(ctx.getName(),
                                     ResourceLocation.withDefaultNamespace("block/cube_all"),
-                                    "all", ResourceLocation.fromNamespaceAndPath(MODID, "block/oil_node_rich"))))
+                                    "all", ResourceLocation.fromNamespaceAndPath(MODID, "block/fire_clay"))))
                     .register();
 
     public static void register() { }

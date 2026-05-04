@@ -13,14 +13,14 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 
 import static com.remizerexe.further_on.FurtherOn.REGISTRATE;
 import static com.remizerexe.further_on.registry.FOBlocks.FIRE_CLAY_BRICKS;
+import static com.remizerexe.further_on.registry.FOItems.FIRE_CLAY_BALL;
 import static com.remizerexe.further_on.registry.FORegistries.CREATIVE_MODE_TABS;
-import static com.remizerexe.further_on.registry.FOItems.FIRE_CLAY;
 
 public class FOTabs {
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> FURTHER_ON_TAB = CREATIVE_MODE_TABS.register("further_on_tab", () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.further_on"))
             .withTabsBefore(AllCreativeModeTabs.PALETTES_CREATIVE_TAB.getKey())
-            .icon(FIRE_CLAY::asStack)
+            .icon(FIRE_CLAY_BALL::asStack)
             .displayItems((parameters, output) -> {
                 for (RegistryEntry<Block, Block> entry : REGISTRATE.getAll(Registries.BLOCK)) {
                     if (!CreateRegistrate.isInCreativeTab(entry, FOTabs.FURTHER_ON_TAB))
