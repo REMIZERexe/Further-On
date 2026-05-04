@@ -44,6 +44,7 @@ public class FurtherOn {
         FOFluids.register(modEventBus);
         FOWorldgen.register(modEventBus);
         FOMenuTypes.register(modEventBus);
+        FOPartialModels.init();
 
         FORegistries.register(modEventBus);
 

@@ -4,14 +4,18 @@ import com.remizerexe.further_on.content.blast_furnace.BlastFurnaceHatchBlock;
 import com.remizerexe.further_on.content.cast_beam.CastBeamBlock;
 import com.remizerexe.further_on.content.blast_furnace.BlastFurnaceHearthBlock;
 import com.remizerexe.further_on.content.oil.OilNodeBlock;
+import com.remizerexe.further_on.content.pumpjack.PumpjackBaseBlock;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.remizerexe.further_on.content.pipes.IndustrialPipeBlock;
+import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.WallBlock;
+import net.minecraft.world.level.block.state.properties.Half;
+import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.common.Tags;
 
 import static com.remizerexe.further_on.FurtherOn.MODID;
@@ -23,6 +27,34 @@ public class FOBlocks {
         REGISTRATE.setCreativeTab(FOTabs.FURTHER_ON_TAB);
     }
 
+    public static final BlockEntry<PumpjackBaseBlock> PUMPJACK_BASE =
+            REGISTRATE.block("pumpjack_base", PumpjackBaseBlock::new)
+                    .lang("Pumpjack Base")
+                    .blockstate((ctx, prov) -> {
+                        prov.getVariantBuilder(ctx.get())
+                                .forAllStates(state -> {
+                                    Half half = state.getValue(PumpjackBaseBlock.HALF);
+                                    Direction facing = state.getValue(PumpjackBaseBlock.FACING);
+                                    int yRot = (int) facing.toYRot();
+
+                                    if (half == Half.BOTTOM) {
+                                        return ConfiguredModel.builder()
+                                                .modelFile(prov.models().cubeAll(ctx.getName() + "_bottom",
+                                                        ResourceLocation.fromNamespaceAndPath(MODID, "block/pumpjack_base")))
+                                                .rotationY(yRot)
+                                                .build();
+                                    } else {
+                                        return ConfiguredModel.builder()
+                                                .modelFile(prov.models().cubeAll(ctx.getName() + "_top",
+                                                        ResourceLocation.fromNamespaceAndPath(MODID, "block/pumpjack_base")))
+                                                .rotationY(yRot)
+                                                .build();
+                                    }
+                                });
+                    })
+                    .properties(c -> c.sound(SoundType.METAL).noOcclusion())
+                    .simpleItem()
+                    .register();
 
     public static final BlockEntry<BlastFurnaceHearthBlock> BLAST_FURNACE_HEARTH =
             REGISTRATE.block("blast_furnace_hearth", BlastFurnaceHearthBlock::new)
