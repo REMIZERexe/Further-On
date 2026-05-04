@@ -5,6 +5,7 @@ import com.remizerexe.further_on.content.blast_furnace.BlastFurnaceHearthBlock;
 import com.remizerexe.further_on.content.blast_furnace.BlastFurnaceHearthBlockEntity;
 import com.remizerexe.further_on.content.pipes.IndustrialPipeBlockEntity;
 import com.remizerexe.further_on.content.pumpjack.PumpjackBaseBlockEntity;
+import com.remizerexe.further_on.content.pumpjack.PumpjackRotationJointBlockEntity;
 import com.tterrag.registrate.util.entry.BlockEntityEntry;
 
 import static com.remizerexe.further_on.FurtherOn.REGISTRATE;
@@ -31,6 +32,12 @@ public class FOBlockEntities {
             REGISTRATE.<PumpjackBaseBlockEntity>blockEntity("pumpjack_base",
                             (type, pos, state) -> new PumpjackBaseBlockEntity(type, pos, state))
                     .validBlock(FOBlocks.PUMPJACK_BASE)
+                    .register();
+
+    public static final BlockEntityEntry<PumpjackRotationJointBlockEntity> PUMPJACK_ROTATION_JOINT =
+            REGISTRATE.<PumpjackRotationJointBlockEntity>blockEntity("pumpjack_rotation_joint",
+                            (type, pos, state) -> new PumpjackRotationJointBlockEntity(type, pos, state))
+                    .validBlock(FOBlocks.PUMPJACK_ROTATION_JOINT)
                     .register();
 
     public static void register() { }

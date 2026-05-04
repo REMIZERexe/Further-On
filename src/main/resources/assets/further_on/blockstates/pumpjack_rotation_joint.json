@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "facing=north": { "model": "further_on:block/pumpjackrotationjoint" },
+    "facing=south": { "model": "further_on:block/pumpjackrotationjoint", "y": 180 },
+    "facing=east":  { "model": "further_on:block/pumpjackrotationjoint", "y": 90 },
+    "facing=west":  { "model": "further_on:block/pumpjackrotationjoint", "y": 270 },
+    "facing=up":    { "model": "further_on:block/pumpjackrotationjoint", "x": 270 },
+    "facing=down":  { "model": "further_on:block/pumpjackrotationjoint", "x": 90 }
+  }
+}

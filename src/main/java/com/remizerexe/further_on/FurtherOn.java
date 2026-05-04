@@ -16,6 +16,7 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.registries.RegisterEvent;
 import org.slf4j.Logger;
 
 @Mod(FurtherOn.MODID)
@@ -31,6 +32,7 @@ public class FurtherOn {
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public FurtherOn(IEventBus modEventBus, ModContainer modContainer) {
+        modEventBus.addListener(FurtherOn::onRegister);
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(EventPriority.HIGHEST, FODatagen::gatherDataHighPriority);
         modEventBus.addListener(EventPriority.LOWEST, FODatagen::gatherData);
@@ -58,5 +60,9 @@ public class FurtherOn {
 
     public static ResourceLocation asResource(String path) {
         return ResourceLocation.fromNamespaceAndPath(MODID, path);
+    }
+
+    public static void onRegister(final RegisterEvent event) {
+        FOContraptionTypes.prepare();
     }
 }
