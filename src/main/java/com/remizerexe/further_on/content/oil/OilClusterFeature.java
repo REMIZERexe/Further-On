@@ -66,12 +66,28 @@ public class OilClusterFeature extends Feature<NoneFeatureConfiguration> {
 
     private void placePuddle(WorldGenLevel level, BlockPos surface, RandomSource random) {
         surface = surface.below(1);
-        int radius = 2 + random.nextInt(3);
+        int radius = 2 + random.nextInt(2);
         float squish = 0.6f + random.nextFloat() * 0.8f;
         float skewX = (random.nextFloat() - 0.5f) * 0.4f;
 
         BlockState oil = FOFluids.OIL_FLUID_BLOCK.get().defaultBlockState();
-        BlockState mud = Blocks.MUD.defaultBlockState();
+
+        // Vérifie que la puddle n'est pas sur un terrain trop accidenté
+        int minY = Integer.MAX_VALUE;
+        int maxY = Integer.MIN_VALUE;
+        for (int x = -radius; x <= radius; x++) {
+            for (int z = -radius; z <= radius; z++) {
+                double dx = x + skewX * z;
+                double dz = z * squish;
+                if (Math.sqrt(dx * dx + dz * dz) > radius) continue;
+                int y = level.getHeight(
+                        net.minecraft.world.level.levelgen.Heightmap.Types.WORLD_SURFACE_WG,
+                        surface.getX() + x, surface.getZ() + z);
+                if (y < minY) minY = y;
+                if (y > maxY) maxY = y;
+            }
+        }
+        if (maxY - minY > 3) return;
 
         for (int x = -radius - 1; x <= radius + 1; x++) {
             for (int z = -radius - 1; z <= radius + 1; z++) {
@@ -80,52 +96,66 @@ public class OilClusterFeature extends Feature<NoneFeatureConfiguration> {
                 double dist = Math.sqrt(dx * dx + dz * dz);
                 if (dist > radius) continue;
 
-                BlockPos surfaceCheck = surface.offset(x, 1, z);
+                // Trouve le vrai sol à cette position XZ
+                int colSurfaceY = level.getHeight(
+                        net.minecraft.world.level.levelgen.Heightmap.Types.WORLD_SURFACE_WG,
+                        surface.getX() + x, surface.getZ() + z) - 1;
+
+                BlockPos surfaceCheck = new BlockPos(surface.getX() + x, colSurfaceY + 1, surface.getZ() + z);
                 BlockState above = level.getBlockState(surfaceCheck);
                 if (above.is(net.minecraft.tags.BlockTags.LOGS)
                         || above.is(net.minecraft.tags.BlockTags.LEAVES)) continue;
 
                 int colSeed = x * 341 + z * 773;
                 float depthNoise = (((colSeed ^ (colSeed >> 7)) & 0xFF) / 255f);
-                int depth = (int) (1 + (radius - dist) * (0.5f + depthNoise * 0.8f));
+                int depth = (int) (1 + (radius - dist) * (0.2f + depthNoise * 0.3f));
 
                 for (int y = -depth; y <= 0; y++) {
-                    BlockPos pos = surface.offset(x, y, z);
+                    BlockPos pos = new BlockPos(surface.getX() + x, colSurfaceY + y, surface.getZ() + z);
                     if (!level.ensureCanWrite(pos)) continue;
                     BlockState current = level.getBlockState(pos);
                     if (canReplace(current)) {
                         level.setBlock(pos, oil, 3);
                     }
                 }
+
+                // Air au-dessus de la puddle
+                BlockPos airPos = new BlockPos(surface.getX() + x, colSurfaceY + 1, surface.getZ() + z);
+                if (level.ensureCanWrite(airPos)) {
+                    level.setBlock(airPos, Blocks.AIR.defaultBlockState(), 3);
+                }
             }
         }
 
-        // ── Boue sur les bords ───────────────────────────────────────────────────
+        // ── Boue autour de la puddle ─────────────────────────────────────────────
         int mudRadius = radius + 2;
+        BlockState mud = Blocks.MUD.defaultBlockState();
+        BlockState coarseDirt = Blocks.COARSE_DIRT.defaultBlockState();
+
         for (int x = -mudRadius; x <= mudRadius; x++) {
             for (int z = -mudRadius; z <= mudRadius; z++) {
                 double dx = x + skewX * z;
                 double dz = z * squish;
                 double dist = Math.sqrt(dx * dx + dz * dz);
 
-                // Seulement dans l'anneau entre radius et mudRadius
-                if (dist <= radius || dist > mudRadius) continue;
+                if (dist > mudRadius) continue;
 
-                // Sparse — environ 1 bloc sur 3
-                if (random.nextInt(3) != 0) continue;
+                boolean isBorder = dist > radius && dist <= radius + 1;
+                boolean isScatter = dist > radius + 1 && dist <= mudRadius;
 
-                // Dans la passe boue, remplace le bloc pos par :
-                BlockPos mudPos = surface.offset(x, 0, z);
-
-                // Descend jusqu'au premier bloc solide
-                for (int drop = 0; drop < 4; drop++) {
-                    BlockState below = level.getBlockState(mudPos.below());
-                    if (below.isAir() || below.liquid() || below.is(net.minecraft.tags.BlockTags.REPLACEABLE)) {
-                        mudPos = mudPos.below();
-                    } else {
-                        break;
-                    }
+                if (isBorder) {
+                    // toujours placé
+                } else if (isScatter) {
+                    if (random.nextFloat() > 0.15f) continue;
+                } else {
+                    continue;
                 }
+
+                // Trouve le vrai sol à cette position XZ via heightmap
+                int surfaceY = level.getHeight(
+                        net.minecraft.world.level.levelgen.Heightmap.Types.WORLD_SURFACE_WG,
+                        surface.getX() + x, surface.getZ() + z);
+                BlockPos mudPos = new BlockPos(surface.getX() + x, surfaceY - 1, surface.getZ() + z);
 
                 if (!level.ensureCanWrite(mudPos)) continue;
                 BlockState current = level.getBlockState(mudPos);
@@ -134,7 +164,9 @@ public class OilClusterFeature extends Feature<NoneFeatureConfiguration> {
                 if (current.is(net.minecraft.tags.BlockTags.FLOWERS)) continue;
                 if (current.is(Blocks.SNOW) || current.is(Blocks.SNOW_BLOCK)) continue;
                 if (!canReplace(current)) continue;
-                level.setBlock(mudPos, mud, 3);
+
+                BlockState toPlace = random.nextFloat() < 0.2f ? coarseDirt : mud;
+                level.setBlock(mudPos, toPlace, 3);
             }
         }
     }
@@ -182,11 +214,12 @@ public class OilClusterFeature extends Feature<NoneFeatureConfiguration> {
         }
 
         // Node cluster — taille et position variables
-        int nodeRadius = 1 + random.nextInt(3); // 1-3
+        int nodeRadius = 1 + random.nextInt(2); // 1-3
         int nodeOffsetX = random.nextInt(radiusH / 2) - radiusH / 4;
         int nodeOffsetZ = random.nextInt(radiusH / 2) - radiusH / 4;
         BlockPos nodeCenter = center
                 .offset(nodeOffsetX, -radiusV / 2, nodeOffsetZ);
+        BlockState nodeType = pickNode(random);
 
         for (int x = -nodeRadius; x <= nodeRadius; x++) {
             for (int y = -nodeRadius; y <= nodeRadius; y++) {
@@ -199,7 +232,7 @@ public class OilClusterFeature extends Feature<NoneFeatureConfiguration> {
 
                     if (level.getBlockState(pos).getFluidState()
                             .is(FOFluids.OIL_STILL.get())) {
-                        level.setBlock(pos, pickNode(random), 3);
+                        level.setBlock(pos, nodeType, 3);
                     }
                 }
             }
