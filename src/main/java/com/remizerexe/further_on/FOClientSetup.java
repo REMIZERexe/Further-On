@@ -1,6 +1,8 @@
 package com.remizerexe.further_on;
 
 import com.remizerexe.further_on.content.blast_furnace.BlastFurnaceHearthScreen;
+import com.remizerexe.further_on.content.pumpjack.PumpjackBaseRenderer;
+import com.remizerexe.further_on.registry.FOBlockEntities;
 import com.remizerexe.further_on.registry.FOMenuTypes;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -14,5 +16,18 @@ public class FOClientSetup {
     public static void registerScreens(RegisterMenuScreensEvent event) {
         event.register(FOMenuTypes.BLAST_FURNACE_HEARTH.get(),
                 BlastFurnaceHearthScreen::new);
+    }
+
+    @SubscribeEvent
+    public static void registerRenderers(RegisterMenuScreensEvent event) {
+        // déjà existant
+    }
+
+    @SubscribeEvent
+    public static void onRegisterRenderers(
+            net.neoforged.neoforge.client.event.EntityRenderersEvent.RegisterRenderers event) {
+        event.registerBlockEntityRenderer(
+                FOBlockEntities.PUMPJACK_BASE.get(),
+                PumpjackBaseRenderer::new);
     }
 }
