@@ -32,6 +32,7 @@ public class FurtherOn {
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public FurtherOn(IEventBus modEventBus, ModContainer modContainer) {
+        modEventBus.addListener(FurtherOn::onRegister);
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(EventPriority.HIGHEST, FODatagen::gatherDataHighPriority);
         modEventBus.addListener(EventPriority.LOWEST, FODatagen::gatherData);
