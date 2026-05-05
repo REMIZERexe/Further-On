@@ -4,8 +4,7 @@ import com.remizerexe.further_on.content.blast_furnace.BlastFurnaceHatchBlock;
 import com.remizerexe.further_on.content.cast_beam.CastBeamBlock;
 import com.remizerexe.further_on.content.blast_furnace.BlastFurnaceHearthBlock;
 import com.remizerexe.further_on.content.oil.OilNodeBlock;
-import com.remizerexe.further_on.content.pumpjack.PumpjackBaseBlock;
-import com.remizerexe.further_on.content.pumpjack.PumpjackRotationJointBlock;
+import com.remizerexe.further_on.content.pumpjack.*;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.remizerexe.further_on.content.pipes.IndustrialPipeBlock;
 import net.minecraft.core.Direction;
@@ -28,6 +27,36 @@ public class FOBlocks {
     static {
         REGISTRATE.setCreativeTab(FOTabs.FURTHER_ON_TAB);
     }
+
+    public static final BlockEntry<PumpjackRotationAxleBlock> PUMPJACK_ROTATION_AXLE =
+            REGISTRATE.block("pumpjack_rotation_axle", PumpjackRotationAxleBlock::new)
+                    .lang("Pumpjack Rotation Axle")
+                    .blockstate((ctx, prov) -> {})
+                    .properties(c -> c.sound(SoundType.METAL))
+                    .simpleItem()
+                    .register();
+
+    public static final BlockEntry<PumpjackHeadBlock> PUMPJACK_HEAD =
+            REGISTRATE.block("pumpjack_head", PumpjackHeadBlock::new)
+                    .lang("Pumpjack Head")
+                    .blockstate((ctx, prov) -> prov.simpleBlock(ctx.get(), prov.models()
+                            .cubeAll(ctx.getName(),
+                                    ResourceLocation.fromNamespaceAndPath(MODID, "block/pumpjack_base"))))
+                    .properties(c -> c.sound(SoundType.METAL))
+                    .simpleItem()
+                    .register();
+
+    public static final BlockEntry<PumpjackRotationLinkBlock> PUMPJACK_ROTATION_LINK =
+            REGISTRATE.block("pumpjack_rotation_link", PumpjackRotationLinkBlock::new)
+                    .lang("Pumpjack Rotation Link")
+                    .blockstate((ctx, prov) -> {
+                        prov.horizontalBlock(ctx.get(), prov.models()
+                                .withExistingParent(ctx.getName(),
+                                        ResourceLocation.fromNamespaceAndPath(MODID, "block/pumpjack_rotation_axle")));
+                    })
+                    .properties(c -> c.sound(SoundType.METAL))
+                    .simpleItem()
+                    .register();
 
     public static final BlockEntry<PumpjackRotationJointBlock> PUMPJACK_ROTATION_JOINT =
             REGISTRATE.block("pumpjack_rotation_joint", PumpjackRotationJointBlock::new)
