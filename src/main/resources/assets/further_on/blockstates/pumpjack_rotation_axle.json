@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "further_on:block/pumpjack_rotation_axle" },
+    "facing=south": { "model": "further_on:block/pumpjack_rotation_axle", "y": 180 },
+    "facing=east":  { "model": "further_on:block/pumpjack_rotation_axle", "y": 90 },
+    "facing=west":  { "model": "further_on:block/pumpjack_rotation_axle", "y": 270 }
+  }
+}
