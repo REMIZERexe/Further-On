@@ -16,6 +16,7 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.registries.RegisterEvent;
 import org.slf4j.Logger;
 
 @Mod(FurtherOn.MODID)
@@ -44,6 +45,7 @@ public class FurtherOn {
         FOFluids.register(modEventBus);
         FOWorldgen.register(modEventBus);
         FOMenuTypes.register(modEventBus);
+        modEventBus.addListener(FurtherOn::onRegister);
         FOPartialModels.init();
 
         FORegistries.register(modEventBus);
@@ -58,5 +60,9 @@ public class FurtherOn {
 
     public static ResourceLocation asResource(String path) {
         return ResourceLocation.fromNamespaceAndPath(MODID, path);
+    }
+
+    public static void onRegister(final RegisterEvent event) {
+        FOContraptionTypes.prepare();
     }
 }

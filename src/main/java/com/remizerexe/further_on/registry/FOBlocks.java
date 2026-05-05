@@ -5,6 +5,7 @@ import com.remizerexe.further_on.content.cast_beam.CastBeamBlock;
 import com.remizerexe.further_on.content.blast_furnace.BlastFurnaceHearthBlock;
 import com.remizerexe.further_on.content.oil.OilNodeBlock;
 import com.remizerexe.further_on.content.pumpjack.PumpjackBaseBlock;
+import com.remizerexe.further_on.content.pumpjack.PumpjackRotationJointBlock;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import com.remizerexe.further_on.content.pipes.IndustrialPipeBlock;
 import net.minecraft.core.Direction;
@@ -26,6 +27,14 @@ public class FOBlocks {
     static {
         REGISTRATE.setCreativeTab(FOTabs.FURTHER_ON_TAB);
     }
+
+    public static final BlockEntry<PumpjackRotationJointBlock> PUMPJACK_ROTATION_JOINT =
+            REGISTRATE.block("pumpjack_rotation_joint", PumpjackRotationJointBlock::new)
+                    .lang("Pumpjack Rotation Joint")
+                    .blockstate((ctx, prov) -> {})
+                    .properties(c -> c.sound(SoundType.METAL))
+                    .simpleItem()
+                    .register();
 
     public static final BlockEntry<PumpjackBaseBlock> PUMPJACK_BASE =
             REGISTRATE.block("pumpjack_base", PumpjackBaseBlock::new)
