@@ -43,9 +43,20 @@ public class MultiblockStructure {
         for (Map.Entry<BlockPos, MultiblockPredicate> entry : pattern.entrySet()) {
             BlockPos worldPos = toWorldPos(controllerPos, entry.getKey(), facing);
             BlockState state  = level.getBlockState(worldPos);
-            if (!entry.getValue().test(level, worldPos, state)) {
-                return false;
-            }
+
+            // Rotate facing-dependent predicates
+            MultiblockPredicate predicate = entry.getValue().withFacing(facing);
+            boolean pass = predicate.test(level, worldPos, state);
+
+            com.remizerexe.further_on.FurtherOn.LOGGER.warn(
+                    "SCAN | offset={} worldPos={} expected={} got={} pass={}",
+                    entry.getKey(), worldPos,
+                    predicate.describe(),
+                    net.minecraft.core.registries.BuiltInRegistries.BLOCK.getKey(state.getBlock()),
+                    pass
+            );
+
+            if (!pass) return false;
         }
         return true;
     }
@@ -69,11 +80,11 @@ public class MultiblockStructure {
         int forward = offset.getZ();
 
         return switch (facing) {
-            case SOUTH -> origin.offset( right,  up,  forward);
-            case NORTH -> origin.offset(-right,  up, -forward);
-            case EAST  -> origin.offset( forward, up, -right);
-            case WEST  -> origin.offset(-forward, up,  right);
-            default    -> origin.offset( right,  up,  forward);
+            case NORTH -> origin.offset( right, up,  forward);
+            case SOUTH -> origin.offset( right, up, -forward);
+            case EAST  -> origin.offset( -forward, up, right);
+            case WEST  -> origin.offset( forward, up,  right);
+            default    -> origin.offset( right, up,  forward);
         };
     }
 
