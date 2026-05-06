@@ -1,6 +1,5 @@
 package com.remizerexe.further_on.registry;
 
-import com.remizerexe.further_on.content.blast_furnace.BlastFurnaceHearthMenu;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
