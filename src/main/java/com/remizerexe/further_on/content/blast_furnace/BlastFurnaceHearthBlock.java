@@ -6,6 +6,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -91,33 +92,31 @@ public class BlastFurnaceHearthBlock extends MultiblockControllerBlock {
     @Override
     public InteractionResult useWithoutItem(BlockState state, Level level,
                                             BlockPos pos, Player player, BlockHitResult hit) {
-
         if (level.isClientSide()) return InteractionResult.SUCCESS;
 
         BlockEntity be = level.getBlockEntity(pos);
         if (be instanceof BlastFurnaceHearthBlockEntity hearth) {
             if (!hearth.isFormed()) {
                 hearth.revalidate();
-                if (!hearth.isFormed()) {
-                    player.displayClientMessage(
-                            net.minecraft.network.chat.Component.literal("Structure incomplete."), true);
-                    return InteractionResult.CONSUME;
-                }
+                player.displayClientMessage(
+                        hearth.isFormed()
+                                ? net.minecraft.network.chat.Component.literal("Structure formed!")
+                                : net.minecraft.network.chat.Component.literal("Structure incomplete."),
+                        true);
+                return InteractionResult.CONSUME;
             }
-            player.openMenu(
-                    new net.minecraft.world.MenuProvider() {
-                        @Override
-                        public net.minecraft.network.chat.Component getDisplayName() {
-                            return net.minecraft.network.chat.Component.literal("Blast Furnace Hearth");
-                        }
-                        @Override
-                        public net.minecraft.world.inventory.AbstractContainerMenu createMenu(
-                                int id, net.minecraft.world.entity.player.Inventory inv, Player p) {
-                            return new BlastFurnaceHearthMenu(id, inv, hearth);
-                        }
-                    },
-                    buf -> buf.writeBlockPos(pos)
-            );
+
+            // Collecte le slag
+            ItemStack slag = hearth.slagInventory.getStackInSlot(0);
+            if (!slag.isEmpty()) {
+                ItemStack toGive = slag.copy();
+                hearth.slagInventory.setStackInSlot(0, ItemStack.EMPTY);
+                if (!player.getInventory().add(toGive)) {
+                    // Inventaire plein — drop au sol
+                    player.drop(toGive, false);
+                }
+                hearth.setChanged();
+            }
         }
         return InteractionResult.CONSUME;
     }
