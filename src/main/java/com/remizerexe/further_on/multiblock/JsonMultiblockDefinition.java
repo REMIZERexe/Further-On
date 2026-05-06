@@ -48,7 +48,8 @@ public class JsonMultiblockDefinition {
         Map<BlockPos, MultiblockPredicate> pattern = new HashMap<>();
 
         // Find C in controller layer
-        int originRow = 0, originCol = 0;
+        int originRow = controllerLayer.length / 2;
+        int originCol = controllerLayer[0].length() / 2;
         outer:
         for (int row = 0; row < controllerLayer.length; row++) {
             for (int col = 0; col < controllerLayer[row].length(); col++) {
