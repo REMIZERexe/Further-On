@@ -13,12 +13,6 @@ import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 public class FOClientSetup {
 
     @SubscribeEvent
-    public static void registerScreens(RegisterMenuScreensEvent event) {
-        event.register(FOMenuTypes.BLAST_FURNACE_HEARTH.get(),
-                BlastFurnaceHearthScreen::new);
-    }
-
-    @SubscribeEvent
     public static void registerRenderers(RegisterMenuScreensEvent event) {
         // déjà existant
     }
