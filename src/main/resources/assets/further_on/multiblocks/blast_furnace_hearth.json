@@ -34,7 +34,7 @@
     "S": { "block": "further_on:fire_clay_brick_stairs" },
     "F": {
       "block": "create:encased_fan",
-      "state": { "facing": "south" }
+      "state": { "facing": "north" }
     },
     "C": { "block": "further_on:blast_furnace_hearth" },
     " ": { "block": "minecraft:air" },
