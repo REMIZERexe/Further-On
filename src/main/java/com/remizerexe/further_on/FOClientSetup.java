@@ -1,6 +1,5 @@
 package com.remizerexe.further_on;
 
-import com.remizerexe.further_on.content.blast_furnace.BlastFurnaceHearthScreen;
 import com.remizerexe.further_on.content.pumpjack.PumpjackBaseRenderer;
 import com.remizerexe.further_on.registry.FOBlockEntities;
 import com.remizerexe.further_on.registry.FOMenuTypes;
