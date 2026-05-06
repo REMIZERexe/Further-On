@@ -33,26 +33,17 @@ import java.util.List;
 public class BlastFurnaceHearthBlockEntity extends MultiblockControllerBE
         implements IHaveGoggleInformation {
 
-    // -------------------------------------------------------------------------
-    // Constants
-    // -------------------------------------------------------------------------
-
     private static final JsonMultiblockDefinition DEFINITION =
             MultiblockJsonLoader.load("further_on", "blast_furnace_hearth");
 
     private static final int BASE_TICKS = 600;
-
     private static final int COAL_PER_LAYER  = 2;
     private static final int IRON_PER_LAYER  = 1;
     private static final int STEEL_MB_PER_BATCH = 144;
     private static final int SLAG_PER_LAYER  = 1;
 
-    // -------------------------------------------------------------------------
-    // Inventories & tanks
-    // -------------------------------------------------------------------------
-
     public final ItemStackHandler inputInventory = new ItemStackHandler(2) {
-        @Override public int getSlotLimit(int slot) { return 64 * maxCapacityLayers(); }
+        @Override public int getSlotLimit(int slot) { return 64 * (maxCapacityLayers()+2); }
     };
 
     public final ItemStackHandler slagInventory = new ItemStackHandler(1) {
@@ -63,28 +54,15 @@ public class BlastFurnaceHearthBlockEntity extends MultiblockControllerBE
         @Override protected void onContentsChanged() { setChanged(); }
     };
 
-    // -------------------------------------------------------------------------
-    // State
-    // -------------------------------------------------------------------------
-
     private int accumulatedLayers = 0;
     private float processingProgress = 0f;
     private int currentRPM = 0;
-
     int bufferedCoal = 0;
     int bufferedIron = 0;
-
-    // -------------------------------------------------------------------------
-    // Constructor
-    // -------------------------------------------------------------------------
 
     public BlastFurnaceHearthBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }
-
-    // -------------------------------------------------------------------------
-    // Tick
-    // -------------------------------------------------------------------------
 
     public void tick() {
         if (level == null || level.isClientSide()) return;
@@ -94,10 +72,9 @@ public class BlastFurnaceHearthBlockEntity extends MultiblockControllerBE
 
         scanForDroppedItems();
 
-        currentRPM = readFanRPM();
         if (currentRPM > 0 && accumulatedLayers > 0 && hasEnoughInputs()) {
-            float tickProgress = 1.0f / (BASE_TICKS * 2) * ((float) currentRPM / 64f);
-            processingProgress += tickProgress;
+            float ticksDuration = 69419f / currentRPM + 929f;
+            processingProgress += 1.0f / ticksDuration;
 
             if (processingProgress >= 1.0f) {
                 processingProgress = 0f;
@@ -112,10 +89,6 @@ public class BlastFurnaceHearthBlockEntity extends MultiblockControllerBE
         setChanged();
     }
 
-    // -------------------------------------------------------------------------
-    // Processing
-    // -------------------------------------------------------------------------
-
     private boolean hasEnoughInputs() {
         ItemStack coal = inputInventory.getStackInSlot(0);
         ItemStack iron = inputInventory.getStackInSlot(1);
@@ -127,12 +100,10 @@ public class BlastFurnaceHearthBlockEntity extends MultiblockControllerBE
         inputInventory.getStackInSlot(0).shrink(COAL_PER_LAYER);
         inputInventory.getStackInSlot(1).shrink(IRON_PER_LAYER);
 
-        // Produce molten steel fluid
         FluidStack steelFluid = new FluidStack(
                 FOFluids.MOLTEN_STEEL_STILL.get(), STEEL_MB_PER_BATCH);
         steelTank.fill(steelFluid, IFluidHandler.FluidAction.EXECUTE);
 
-        // Produce slag
         ItemStack slag = slagInventory.getStackInSlot(0);
         if (slag.isEmpty()) {
             slagInventory.setStackInSlot(0, new ItemStack(Items.GRAVEL, SLAG_PER_LAYER));
@@ -144,10 +115,6 @@ public class BlastFurnaceHearthBlockEntity extends MultiblockControllerBE
         setChanged();
     }
 
-    // -------------------------------------------------------------------------
-    // Fan RPM
-    // -------------------------------------------------------------------------
-
     private int readFanRPM() {
         Direction facing = getFacing();
         BlockPos fanPos = worldPosition.relative(facing.getOpposite(), 2);
@@ -157,10 +124,6 @@ public class BlastFurnaceHearthBlockEntity extends MultiblockControllerBE
         }
         return 0;
     }
-
-    // -------------------------------------------------------------------------
-    // Item drop detection
-    // -------------------------------------------------------------------------
 
     public void scanForDroppedItems() {
         if (level == null || level.isClientSide()) return;
@@ -198,7 +161,7 @@ public class BlastFurnaceHearthBlockEntity extends MultiblockControllerBE
     private void flushBuffer() {
         while (bufferedCoal >= COAL_PER_LAYER
                 && bufferedIron >= IRON_PER_LAYER
-                && accumulatedLayers < capacityLayers * BATCHES_PER_LAYER) {
+                && accumulatedLayers < (capacityLayers + 2) * BATCHES_PER_LAYER) {
 
             bufferedCoal -= COAL_PER_LAYER;
             bufferedIron -= IRON_PER_LAYER;
@@ -237,10 +200,6 @@ public class BlastFurnaceHearthBlockEntity extends MultiblockControllerBE
         level.addFreshEntity(ejected);
     }
 
-    // -------------------------------------------------------------------------
-    // Capabilities
-    // -------------------------------------------------------------------------
-
     public ItemStackHandler getInventoryForFace(Direction face) {
         if (face == Direction.DOWN) return slagInventory;
         return null;
@@ -252,10 +211,6 @@ public class BlastFurnaceHearthBlockEntity extends MultiblockControllerBE
         return null;
     }
 
-    // -------------------------------------------------------------------------
-    // Multiblock
-    // -------------------------------------------------------------------------
-
     @Override
     protected MultiblockStructure buildStructure(int capacityLayers) {
         return DEFINITION.buildStructure(capacityLayers);
@@ -265,13 +220,13 @@ public class BlastFurnaceHearthBlockEntity extends MultiblockControllerBE
     protected boolean isCapacityLayer(BlockPos centerPos) {
         if (level == null) return false;
         Direction facing = getFacing();
-        BlockPos chamberCenter = centerPos.relative(facing.getOpposite());
+        BlockPos actualCenter = centerPos.relative(facing.getOpposite(), 1);
 
-        return level.getBlockState(chamberCenter).isAir()
-                && level.getBlockState(chamberCenter.north()).is(FOBlocks.FIRE_CLAY_BRICKS)
-                && level.getBlockState(chamberCenter.south()).is(FOBlocks.FIRE_CLAY_BRICKS)
-                && level.getBlockState(chamberCenter.east()).is(FOBlocks.FIRE_CLAY_BRICKS)
-                && level.getBlockState(chamberCenter.west()).is(FOBlocks.FIRE_CLAY_BRICKS);
+        return level.getBlockState(actualCenter).is(Blocks.AIR)
+                && level.getBlockState(actualCenter.north()).is(FOBlocks.FIRE_CLAY_BRICKS)
+                && level.getBlockState(actualCenter.south()).is(FOBlocks.FIRE_CLAY_BRICKS)
+                && level.getBlockState(actualCenter.east()).is(FOBlocks.FIRE_CLAY_BRICKS)
+                && level.getBlockState(actualCenter.west()).is(FOBlocks.FIRE_CLAY_BRICKS);
     }
 
     @Override protected int minCapacityLayers() { return DEFINITION.getMinCapacityLayers(); }
@@ -297,17 +252,9 @@ public class BlastFurnaceHearthBlockEntity extends MultiblockControllerBE
         processingProgress = 0f;
     }
 
-    // -------------------------------------------------------------------------
-    // Accessors
-    // -------------------------------------------------------------------------
-
     public int   getAccumulatedLayers()  { return accumulatedLayers; }
     public int   getCurrentRPM()         { return currentRPM; }
     public float getProcessingProgress() { return processingProgress; }
-
-    // -------------------------------------------------------------------------
-    // NBT
-    // -------------------------------------------------------------------------
 
     @Override
     public void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
@@ -389,12 +336,13 @@ public class BlastFurnaceHearthBlockEntity extends MultiblockControllerBE
             return true;
         }
 
+        tooltip.add(Component.literal(""));
         tooltip.add(Component.literal("Blast Furnace Hearth")
                 .withStyle(ChatFormatting.WHITE));
 
-        tooltip.add(Component.literal(" Layers: ")
+        tooltip.add(Component.literal(" Queued Crafts: ")
                 .withStyle(ChatFormatting.GRAY)
-                .append(Component.literal(accumulatedLayers + " / " + (capacityLayers * 8))
+                .append(Component.literal(accumulatedLayers + " / " + ((capacityLayers + 2) * 8))
                         .withStyle(ChatFormatting.AQUA)));
 
         tooltip.add(Component.literal(" Fan RPM: ")
@@ -412,6 +360,12 @@ public class BlastFurnaceHearthBlockEntity extends MultiblockControllerBE
                 .withStyle(ChatFormatting.GRAY)
                 .append(Component.literal(steelTank.getFluidAmount() + " / " + steelTank.getCapacity() + " mb")
                         .withStyle(ChatFormatting.GOLD)));
+
+        int slagCount = slagInventory.getStackInSlot(0).getCount();
+        tooltip.add(Component.literal(" Slag: ")
+                .withStyle(ChatFormatting.GRAY)
+                .append(Component.literal(String.valueOf(slagCount))
+                        .withStyle(ChatFormatting.DARK_GRAY)));
 
         return true;
     }

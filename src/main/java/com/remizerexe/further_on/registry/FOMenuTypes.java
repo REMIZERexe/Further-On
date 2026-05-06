@@ -1,6 +1,5 @@
 package com.remizerexe.further_on.registry;
 
-import com.remizerexe.further_on.content.blast_furnace.BlastFurnaceHearthMenu;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
@@ -15,10 +14,6 @@ public class FOMenuTypes {
 
     public static final DeferredRegister<MenuType<?>> MENU_TYPES =
             DeferredRegister.create(Registries.MENU, MODID);
-
-    public static final DeferredHolder<MenuType<?>, MenuType<BlastFurnaceHearthMenu>> BLAST_FURNACE_HEARTH =
-            MENU_TYPES.register("blast_furnace_hearth",
-                    () -> IMenuTypeExtension.create(BlastFurnaceHearthMenu::new));
 
     public static void register(IEventBus modEventBus) {
         MENU_TYPES.register(modEventBus);
