@@ -188,6 +188,7 @@ public class FOBlocks {
                 prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
             })
             .properties(c -> c.sound(SoundType.NETHERITE_BLOCK))
+            .tag(net.minecraft.tags.BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/carbon_steel")), net.minecraft.tags.BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/steel")))
             .simpleItem()
             .register();
     public static final BlockEntry<Block> STRUCTURAL_STEEL_BLOCK = REGISTRATE.block("structural_steel_block", Block::new)
@@ -199,6 +200,7 @@ public class FOBlocks {
                 prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
             })
             .properties(c -> c.sound(SoundType.NETHERITE_BLOCK))
+            .tag(net.minecraft.tags.BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/structural_steel")), net.minecraft.tags.BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/steel")))
             .simpleItem()
             .register();
     public static final BlockEntry<Block> STAINLESS_STEEL_BLOCK = REGISTRATE.block("stainless_steel_block", Block::new)
@@ -210,6 +212,7 @@ public class FOBlocks {
                 prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
             })
             .properties(c -> c.sound(SoundType.NETHERITE_BLOCK))
+            .tag(net.minecraft.tags.BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/stainless_steel")), net.minecraft.tags.BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/steel")))
             .simpleItem()
             .register();
     public static final BlockEntry<Block> MAGNESIUM_BLOCK = REGISTRATE.block("magnesium_block", Block::new)
@@ -221,6 +224,7 @@ public class FOBlocks {
                 prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
             })
             .properties(c -> c.sound(SoundType.METAL))
+            .tag(net.minecraft.tags.BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/magnesium")))
             .simpleItem()
             .register();
     public static final BlockEntry<Block> ALUMINIUM_BLOCK = REGISTRATE.block("aluminium_block", Block::new)
@@ -232,6 +236,7 @@ public class FOBlocks {
                 prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
             })
             .properties(c -> c.sound(SoundType.METAL))
+            .tag(net.minecraft.tags.BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/aluminum")))
             .simpleItem()
             .register();
     public static final BlockEntry<Block> COKE_BLOCK = REGISTRATE.block("coke_block", Block::new)
@@ -243,6 +248,7 @@ public class FOBlocks {
                 prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
             })
             .properties(c -> c.sound(SoundType.DEEPSLATE))
+            .tag(net.minecraft.tags.BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/coal_coke")))
             .simpleItem()
             .register();
     public static final BlockEntry<Block> ZIRCONIUM_BLOCK = REGISTRATE.block("zirconium_block", Block::new)
@@ -254,10 +260,188 @@ public class FOBlocks {
                 prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
             })
             .properties(c -> c.sound(SoundType.NETHERITE_BLOCK))
+            .tag(net.minecraft.tags.BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/zirconium")))
+            .simpleItem()
+            .register();
+
+    public static final BlockEntry<Block> welding_machine = REGISTRATE.block("welding_machine", Block::new)
+            .lang("Welding Machine")
+            .blockstate((ctx, prov) -> {
+                ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(MODID, "block/bauxite");
+                ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
+                prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
+            })
+            .properties(c -> c.sound(SoundType.ANVIL))
+            .simpleItem()
+            .register();
+
+    public static final BlockEntry<Block> sketchy_live_wire = REGISTRATE.block("live_wire", Block::new)
+            .lang("Live Wire")
+            .blockstate((ctx, prov) -> {
+                ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(MODID, "block/structural_steel_block");
+                ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
+                prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
+            })
+            .properties(c -> c.sound(SoundType.WOOL))
+            // FIXME: how do i make this actually damage you if u step on it? 
+            .simpleItem()
+            .register();
+
+    public static final BlockEntry<Block> radiator = REGISTRATE.block("radiator", Block::new)
+            .lang("Radiator")
+            .blockstate((ctx, prov) -> {
+                ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(MODID, "block/aluminium_block");
+                ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
+                prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
+            })
+            .properties(c -> c.sound(SoundType.METAL))
+            .simpleItem()
+            .register();
+
+    public static final BlockEntry<Block> small_pylon = REGISTRATE.block("small_pylon", Block::new)
+            .lang("Small Pylon")
+            .blockstate((ctx, prov) -> {
+                ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(MODID, "block/structural_steel_block");
+                ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
+                prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
+            })
+            .properties(c -> c.sound(SoundType.METAL))
+            .simpleItem()
+            .register();
+
+    public static final BlockEntry<Block> gas_chamber = REGISTRATE.block("gas_chamber", Block::new)
+            .lang("Gas Chamber")
+            .blockstate((ctx, prov) -> {
+                ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(MODID, "block/stainless_steel_block");
+                ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
+                prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
+            })
+            .properties(c -> c.sound(SoundType.METAL))
+            .simpleItem()
+            .register();
+
+    public static final BlockEntry<Block> nether_drying_rack = REGISTRATE.block("nether_drying_rack", Block::new)
+            .lang("Drying Rack")
+            .blockstate((ctx, prov) -> {
+                ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(MODID, "block/fire_clay_bricks");
+                ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
+                prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
+            })
+            .properties(c -> c.sound(SoundType.WOOD))
+            .simpleItem()
+            .register();
+
+    public static final BlockEntry<Block> circuit_breaker = REGISTRATE.block("circuit_breaker", Block::new)
+            .lang("Circuit Breaker")
+            .blockstate((ctx, prov) -> {
+                ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(MODID, "block/structural_steel_block");
+                ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
+                prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
+            })
+            .properties(c -> c.sound(SoundType.METAL))
+            .tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE)
+            .simpleItem()
+            .register();
+
+    public static final BlockEntry<Block> large_switch = REGISTRATE.block("large_switch", Block::new)
+            .lang("Large Switch")
+            .blockstate((ctx, prov) -> {
+                ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(MODID, "block/structural_steel_block");
+                ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
+                prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
+            })
+            .properties(c -> c.sound(SoundType.METAL))
+            .tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE)
+            .simpleItem()
+            .register();
+
+    public static final BlockEntry<Block> logic_panel = REGISTRATE.block("logic_panel", Block::new)
+            .lang("Logic Circuit Panel")
+            .blockstate((ctx, prov) -> {
+                ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(MODID, "block/stainless_steel_block");
+                ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
+                prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
+            })
+            .properties(c -> c.sound(SoundType.METAL))
+            .tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE)
+            .simpleItem()
+            .register();
+
+    public static final BlockEntry<Block> hyper_blaze_burner = REGISTRATE.block("hyper_blaze_burner", Block::new)
+            .lang("Hyper Blaze Burner")
+            .blockstate((ctx, prov) -> {
+                ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(MODID, "block/carbon_steel_block");
+                ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
+                prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
+            })
+            .properties(c -> c.sound(SoundType.NETHERITE_BLOCK))
+            .tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE, net.minecraft.tags.BlockTags.NEEDS_DIAMOND_TOOL)
+            .simpleItem()
+            .register();
+
+    public static final BlockEntry<Block> URANIUM_BLOCK = REGISTRATE.block("uranium_block", Block::new)
+            .lang("Uranium Block")
+            .blockstate((ctx, prov) -> {
+                ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(MODID, "block/uranium_block");
+                ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
+                prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
+            })
+            .properties(c -> c.sound(SoundType.NETHERITE_BLOCK))
+            .tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE, net.minecraft.tags.BlockTags.NEEDS_IRON_TOOL, net.minecraft.tags.BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/uranium")))
+            .simpleItem()
+            .register();
+
+    public static final BlockEntry<Block> reactor_casing = REGISTRATE.block("reactor_casing", Block::new)
+            .lang("Reactor Casing")
+            .blockstate((ctx, prov) -> {
+                ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(MODID, "block/stainless_steel_block");
+                ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
+                prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
+            })
+            .properties(c -> c.sound(SoundType.NETHERITE_BLOCK))
+            .tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE, net.minecraft.tags.BlockTags.NEEDS_IRON_TOOL)
+            .simpleItem()
+            .register();
+
+    public static final BlockEntry<Block> reactor_glass = REGISTRATE.block("reactor_glass", Block::new)
+            .lang("Reactor Glass")
+            .blockstate((ctx, prov) -> {
+                ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath("minecraft", "block/glass");
+                ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
+                prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
+            })
+            .properties(c -> c.sound(SoundType.GLASS).noOcclusion())
+            .tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE, net.minecraft.tags.BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", "glass")))
             .simpleItem()
             .register();
 
     /* Resources and ores */
+    public static final BlockEntry<Block> URANIUM_ORE = REGISTRATE.block("uranium_ore", Block::new)
+            .lang("Uranium Ore")
+            .blockstate((ctx, prov) -> {
+                ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(MODID, "block/uranium_ore");
+                ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
+                prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
+            })
+            .properties(c -> c.sound(SoundType.STONE))
+            .tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE, net.minecraft.tags.BlockTags.NEEDS_IRON_TOOL, net.minecraft.tags.BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", "ores/uranium")), net.minecraft.tags.BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", "ores")))
+            .loot((lt, b) -> lt.add(b, lt.createOreDrop(b, com.remizerexe.further_on.registry.FOItems.RAW_URANIUM.get())))
+            .simpleItem()
+            .register();
+
+    public static final BlockEntry<Block> DEEPSLATE_URANIUM_ORE = REGISTRATE.block("deepslate_uranium_ore", Block::new)
+            .lang("Deepslate Uranium Ore")
+            .blockstate((ctx, prov) -> {
+                ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(MODID, "block/deepslate_uranium_ore");
+                ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
+                prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
+            })
+            .properties(c -> c.sound(SoundType.DEEPSLATE))
+            .tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE, net.minecraft.tags.BlockTags.NEEDS_IRON_TOOL, net.minecraft.tags.BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", "ores/uranium")), net.minecraft.tags.BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", "ores")))
+            .loot((lt, b) -> lt.add(b, lt.createOreDrop(b, com.remizerexe.further_on.registry.FOItems.RAW_URANIUM.get())))
+            .simpleItem()
+            .register();
+
     public static final BlockEntry<Block> BAUXITE = REGISTRATE.block("bauxite", Block::new)
             .lang("Bauxite")
             .blockstate((ctx, prov) -> {
@@ -267,6 +451,7 @@ public class FOBlocks {
                 prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
             })
             .properties(c -> c.sound(SoundType.DEEPSLATE))
+            .tag(net.minecraft.tags.BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", "ores/bauxite")), net.minecraft.tags.BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", "ores")))
             .simpleItem()
             .register();
 
@@ -289,25 +474,79 @@ public class FOBlocks {
             .blockstate((ctx, prov) -> {
                 ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(MODID, "block/graphite_ore");
                 ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
-
                 prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
             })
-            .properties(c -> c.sound(SoundType.GRAVEL))
+            .properties(c -> c.sound(SoundType.STONE))
+            .tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE, net.minecraft.tags.BlockTags.NEEDS_IRON_TOOL, net.minecraft.tags.BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", "ores/graphite")), net.minecraft.tags.BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", "ores")))
+            .loot((lt, b) -> lt.add(b, lt.createOreDrop(b, com.remizerexe.further_on.registry.FOItems.raw_graphite.get())))
             .simpleItem()
             .register();
+
     public static final BlockEntry<Block> DEEPSLATE_GRAPHITE_ORE = REGISTRATE.block("deepslate_graphite_ore", Block::new)
             .lang("Deepslate Graphite Ore")
             .blockstate((ctx, prov) -> {
                 ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(MODID, "block/deepslate_graphite_ore");
                 ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
-
                 prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
             })
             .properties(c -> c.sound(SoundType.GRAVEL))
+            .tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE, net.minecraft.tags.BlockTags.NEEDS_IRON_TOOL, net.minecraft.tags.BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", "ores/graphite")), net.minecraft.tags.BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", "ores")))
+            .loot((lt, b) -> lt.add(b, lt.createOreDrop(b, com.remizerexe.further_on.registry.FOItems.raw_graphite.get())))
             .simpleItem()
             .register();
 
+    // Fluid & Gas Storage
+    public static final BlockEntry<Block> airtight_gas_tank = REGISTRATE.block("airtight_gas_tank", Block::new)
+            .lang("Airtight Gas Tank")
+            .blockstate((ctx, prov) -> {
+                ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(MODID, "block/stainless_steel_block");
+                ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
+                prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
+            })
+            .properties(c -> c.sound(SoundType.METAL))
+            .tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE, net.minecraft.tags.BlockTags.NEEDS_IRON_TOOL)
+            .simpleItem()
+            .register();
 
+    public static final BlockEntry<Block> turbine_pump = REGISTRATE.block("turbine_pump", Block::new)
+            .lang("Heavy Turbine Pump")
+            .blockstate((ctx, prov) -> {
+                ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(MODID, "block/structural_steel_block");
+                ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
+                prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
+            })
+            .properties(c -> c.sound(SoundType.METAL))
+            .tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE, net.minecraft.tags.BlockTags.NEEDS_IRON_TOOL)
+            .simpleItem()
+            .register();
+
+    // Electrical Network Blocks
+    public static final BlockEntry<Block> transformer_casing = REGISTRATE.block("transformer_casing", Block::new)
+            .lang("Transformer Casing")
+            .blockstate((ctx, prov) -> {
+                ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(MODID, "block/stainless_steel_block");
+                ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
+                prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
+            })
+            .properties(c -> c.sound(SoundType.METAL))
+            .tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE, net.minecraft.tags.BlockTags.NEEDS_IRON_TOOL)
+            .simpleItem()
+            .register();
+
+    public static final BlockEntry<Block> large_electric_motor = REGISTRATE.block("large_electric_motor", Block::new)
+            .lang("Large Electric Motor")
+            .blockstate((ctx, prov) -> {
+                ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(MODID, "block/carbon_steel_block");
+                ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
+                prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
+            })
+            .properties(c -> c.sound(SoundType.METAL))
+            .tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE, net.minecraft.tags.BlockTags.NEEDS_IRON_TOOL)
+            .simpleItem()
+            .register();
+
+    public static void register() {
+    }
     /*----- BLOCKS REGISTERED HERE WILL NOT SHOW UP IN ANY TAB -----*/
     static {
         REGISTRATE.setCreativeTab(null);
