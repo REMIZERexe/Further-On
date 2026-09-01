@@ -64,8 +64,8 @@ public interface MultiblockPredicate {
     default MultiblockPredicate withFacing(Direction controllerFacing) { return this; }
 
     static Direction rotateFacing(Direction jsonFacing, Direction controllerFacing) {
-        // JSON is authored for SOUTH controller
-        // Rotate jsonFacing by the same rotation that maps SOUTH to controllerFacing
+        // JSON is authored for a NORTH-facing controller (Identity transformation).
+        // Rotate jsonFacing by the same rotation that maps NORTH to controllerFacing
         return switch (controllerFacing) {
             case SOUTH -> jsonFacing.getOpposite();
             case NORTH -> jsonFacing;
