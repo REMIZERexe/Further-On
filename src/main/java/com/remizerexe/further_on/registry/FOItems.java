@@ -76,9 +76,6 @@ public class FOItems {
             .register();
 
     // TODO: dumping these here bc idk where else to put them rn
-    public static final ItemEntry<Item> welding_goggles = REGISTRATE.item("welding_mask", Item::new)
-            .lang("Welding Mask") 
-            .register();
 
     public static final ItemEntry<Item> welding_torch_item = REGISTRATE.item("welding_torch", Item::new)
             .lang("Welding Torch")

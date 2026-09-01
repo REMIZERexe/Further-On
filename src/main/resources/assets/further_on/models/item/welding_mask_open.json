@@ -5,47 +5,12 @@
 		"parent": "further_on:item/welding_mask_3d_open"
 	},
 	"perspectives": {
-		"firstperson_righthand": {
-			"parent": "minecraft:item/generated",
-			"textures": {
-				"layer0": "further_on:item/welding_mask_item"
-			}
-		},
-		"firstperson_lefthand": {
-			"parent": "minecraft:item/generated",
-			"textures": {
-				"layer0": "further_on:item/welding_mask_item"
-			}
-		},
-		"thirdperson_righthand": {
-			"parent": "minecraft:item/generated",
-			"textures": {
-				"layer0": "further_on:item/welding_mask_item"
-			}
-		},
-		"thirdperson_lefthand": {
-			"parent": "minecraft:item/generated",
-			"textures": {
-				"layer0": "further_on:item/welding_mask_item"
-			}
-		},
-		"gui": {
-			"parent": "minecraft:item/generated",
-			"textures": {
-				"layer0": "further_on:item/welding_mask_item"
-			}
-		},
-		"ground": {
-			"parent": "minecraft:item/generated",
-			"textures": {
-				"layer0": "further_on:item/welding_mask_item"
-			}
-		},
-		"fixed": {
-			"parent": "minecraft:item/generated",
-			"textures": {
-				"layer0": "further_on:item/welding_mask_item"
-			}
-		}
+		"firstperson_righthand": { "parent": "further_on:item/welding_mask_2d" },
+		"firstperson_lefthand": { "parent": "further_on:item/welding_mask_2d" },
+		"thirdperson_righthand": { "parent": "further_on:item/welding_mask_2d" },
+		"thirdperson_lefthand": { "parent": "further_on:item/welding_mask_2d" },
+		"gui": { "parent": "further_on:item/welding_mask_2d" },
+		"ground": { "parent": "further_on:item/welding_mask_2d" },
+		"fixed": { "parent": "further_on:item/welding_mask_2d" }
 	}
 }

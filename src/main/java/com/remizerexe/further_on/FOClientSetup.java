@@ -51,8 +51,7 @@ public class FOClientSetup {
         event.enqueueWork(() -> ItemProperties.register(
                 FOItems.WELDING_MASK.get(),
                 FurtherOn.asResource("open"),
-                (stack, level, entity, seed) -> entity != null
-                        && (WeldingMaskItem.isVisorOpen(stack) || entity.isCrouching()) ? 1.0F : 0.0F));
+                (stack, level, entity, seed) -> WeldingMaskItem.isVisorOpen(stack) ? 1.0F : 0.0F));
     }
 
     @SubscribeEvent

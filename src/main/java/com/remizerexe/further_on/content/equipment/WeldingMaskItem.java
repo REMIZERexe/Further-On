@@ -36,17 +36,12 @@ public class WeldingMaskItem extends Item implements Equipable {
         return stack.getOrDefault(FODataComponents.VISOR_OPEN.get(), false);
     }
 
-    /** Visor physically up: toggled open, or a temporary crouch peek. */
-    public static boolean isVisorUp(LivingEntity entity) {
-        return isVisorOpen(entity.getItemBySlot(EquipmentSlot.HEAD)) || entity.isCrouching();
-    }
-
     /**
      * Single source of truth for gameplay checks: the mask is worn with the
-     * visor down. Works on both sides (the component and crouch state sync).
+     * visor down. Works on both sides (the component syncs).
      */
     public static boolean isProtecting(LivingEntity entity) {
-        return isWearing(entity) && !isVisorUp(entity);
+        return isWearing(entity) && !isVisorOpen(entity.getItemBySlot(EquipmentSlot.HEAD));
     }
 
     public static void toggleVisor(LivingEntity entity) {
