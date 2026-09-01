@@ -16,9 +16,10 @@ import java.util.Map;
  * Offsets are defined in a facing-relative coordinate system:
  *   +X = right of the controller (when looking from behind)
  *   +Y = up
- *   +Z = in front of the controller (the direction it faces)
+ *   +Z = behind the controller (opposite the direction it faces —
+ *        the structure extends away from the player who placed it)
  *
- * The pattern is always authored assuming the controller faces SOUTH.
+ * The pattern is authored for a NORTH-facing controller (the identity case).
  * toWorldPos() translates offsets to absolute world coordinates for any facing.
  *
  * Instances are built by JsonMultiblockDefinition.buildStructure().
@@ -68,11 +69,12 @@ public class MultiblockStructure {
     /**
      * Converts a facing-relative offset to an absolute world position.
      *
-     * Coordinate mapping per facing (pattern authored for SOUTH):
-     *   SOUTH: +X=east,  +Z=south  (identity)
-     *   NORTH: +X=west,  +Z=north  (180°)
-     *   EAST:  +X=south, +Z=east   (90° CW)
-     *   WEST:  +X=north, +Z=west   (90° CCW)
+     * Coordinate mapping per facing — +Z (forward) always extends BEHIND
+     * the controller, matching facing.getOpposite():
+     *   NORTH: +X=east,  +Z=south  (identity)
+     *   SOUTH: +X=west,  +Z=north  (180°)
+     *   EAST:  +X=south, +Z=west   (90° CW)
+     *   WEST:  +X=north, +Z=east   (90° CCW)
      */
     private BlockPos toWorldPos(BlockPos origin, BlockPos offset, Direction facing) {
         int right   = offset.getX();
@@ -80,11 +82,11 @@ public class MultiblockStructure {
         int forward = offset.getZ();
 
         return switch (facing) {
-            case NORTH -> origin.offset( right, up, -forward);
-            case SOUTH -> origin.offset(-right, up,  forward);
-            case EAST  -> origin.offset( forward, up,  right);
-            case WEST  -> origin.offset(-forward, up, -right);
-            default    -> origin.offset( right, up, -forward);
+            case NORTH -> origin.offset( right, up,  forward);
+            case SOUTH -> origin.offset(-right, up, -forward);
+            case EAST  -> origin.offset(-forward, up,  right);
+            case WEST  -> origin.offset( forward, up, -right);
+            default    -> origin.offset( right, up,  forward);
         };
     }
 
