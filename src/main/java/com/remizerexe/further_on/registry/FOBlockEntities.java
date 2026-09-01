@@ -18,7 +18,7 @@ public class FOBlockEntities {
                     .register();
 
     public static final BlockEntityEntry<BlastFurnaceHatchBlockEntity> BLAST_FURNACE_HATCH =
-            REGISTRATE.blockEntity("blast_furnace_hatch", BlastFurnaceHatchBlockEntity::new)
+            REGISTRATE.blockEntity("blast_furnace_base", BlastFurnaceHatchBlockEntity::new)
                     .validBlocks(FOBlocks.BLAST_FURNACE_HATCH)
                     .register();
 
@@ -38,17 +38,6 @@ public class FOBlockEntities {
             REGISTRATE.<PumpjackRotationJointBlockEntity>blockEntity("pumpjack_rotation_joint",
                             (type, pos, state) -> new PumpjackRotationJointBlockEntity(type, pos, state))
                     .validBlock(FOBlocks.PUMPJACK_ROTATION_JOINT)
-                    .register();
-    public static final BlockEntityEntry<com.remizerexe.further_on.content.blast_compressor.BlastCompressorBlockEntity> BLAST_COMPRESSOR_BE =
-            REGISTRATE.<com.remizerexe.further_on.content.blast_compressor.BlastCompressorBlockEntity>blockEntity("blast_compressor",
-                            (type, pos, state) -> new com.remizerexe.further_on.content.blast_compressor.BlastCompressorBlockEntity(type, pos, state))
-                    .validBlock(FOBlocks.BLAST_COMPRESSOR)
-                    .register();
-
-    public static final BlockEntityEntry<com.remizerexe.further_on.content.power.LiveWireBlockEntity> LIVE_WIRE =
-            REGISTRATE.<com.remizerexe.further_on.content.power.LiveWireBlockEntity>blockEntity("live_wire",
-                            (type, pos, state) -> new com.remizerexe.further_on.content.power.LiveWireBlockEntity(type, pos, state))
-                    .validBlock(FOBlocks.sketchy_live_wire)
                     .register();
 
     public static void register() { }

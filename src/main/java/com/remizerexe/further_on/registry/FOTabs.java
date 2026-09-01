@@ -35,11 +35,6 @@ public class FOTabs {
                         continue;
                     output.accept(entry.get(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
                 }
-                
-                // BUG FIX: Manually inject non-Registrate DeferredRegister items so they aren't hidden from creative mode
-                output.accept(FOFluids.OIL_BUCKET.get(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-                output.accept(FOFluids.MOLTEN_STEEL_BUCKET.get(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
-                
             }).build());
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> FURTHER_ON_BUILDING_TAB = CREATIVE_MODE_TABS.register("further_on_building_tab", () -> CreativeModeTab.builder()

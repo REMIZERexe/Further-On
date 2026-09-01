@@ -166,7 +166,6 @@ public abstract class MultiblockControllerBE extends BlockEntity {
 
     public boolean isFormed()        { return multiblockState.isFormed(); }
     public int getCapacityLayers()   { return capacityLayers; }
-    public List<BlockPos> getFormedPositions() { return formedPositions; }
 
     // -------------------------------------------------------------------------
     // Client sync
@@ -178,8 +177,16 @@ public abstract class MultiblockControllerBE extends BlockEntity {
      * on the client side.
      */
     protected void syncToClient() {
-        if (level != null && !level.isClientSide()) {
-            level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 2);
+        if (level instanceof net.minecraft.server.level.ServerLevel serverLevel) {
+            net.minecraft.network.protocol.Packet<?> packet = getUpdatePacket();
+            if (packet != null) {
+                serverLevel.players().forEach(player -> {
+                    if (player.distanceToSqr(worldPosition.getX(),
+                            worldPosition.getY(), worldPosition.getZ()) < 64 * 64) {
+                        player.connection.send(packet);
+                    }
+                });
+            }
         }
     }
 

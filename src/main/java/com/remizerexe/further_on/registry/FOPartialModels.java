@@ -8,5 +8,6 @@ public class FOPartialModels {
     public static final PartialModel PUMPJACK_CRANK =
             PartialModel.of(FurtherOn.asResource("block/pumpjackbase_crank"));
 
+    @net.neoforged.bus.api.SubscribeEvent
     public static void init() {}
 }

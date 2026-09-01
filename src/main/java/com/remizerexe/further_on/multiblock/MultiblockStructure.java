@@ -80,11 +80,11 @@ public class MultiblockStructure {
         int forward = offset.getZ();
 
         return switch (facing) {
-            case NORTH -> origin.offset( right, up, -forward);
-            case SOUTH -> origin.offset(-right, up,  forward);
-            case EAST  -> origin.offset( forward, up,  right);
-            case WEST  -> origin.offset(-forward, up, -right);
-            default    -> origin.offset( right, up, -forward);
+            case NORTH -> origin.offset( right, up,  forward);
+            case SOUTH -> origin.offset( right, up, -forward);
+            case EAST  -> origin.offset( -forward, up, right);
+            case WEST  -> origin.offset( forward, up,  right);
+            default    -> origin.offset( right, up,  forward);
         };
     }
 
