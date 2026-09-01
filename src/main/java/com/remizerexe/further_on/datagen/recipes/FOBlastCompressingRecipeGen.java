@@ -9,6 +9,7 @@ import com.remizerexe.further_on.registry.FORecipeTypes;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
 import com.simibubi.create.content.processing.recipe.StandardProcessingRecipe;
 import com.simibubi.create.content.processing.recipe.ProcessingRecipeParams;
+import com.remizerexe.further_on.content.blast_compressor.recipe.FOBlastCompressingRecipe;
 import java.util.concurrent.CompletableFuture;
 
 import static com.remizerexe.further_on.FurtherOn.MODID;
