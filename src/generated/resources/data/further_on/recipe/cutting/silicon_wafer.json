@@ -1,0 +1,15 @@
+{
+  "type": "create:cutting",
+  "ingredients": [
+    {
+      "item": "further_on:silicon_boule"
+    }
+  ],
+  "processing_time": 100,
+  "results": [
+    {
+      "count": 4,
+      "id": "further_on:silicon_wafer"
+    }
+  ]
+}

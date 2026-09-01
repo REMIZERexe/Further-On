@@ -1,0 +1,13 @@
+{
+  "type": "further_on:blast_compressing",
+  "ingredients": [
+    {
+      "item": "minecraft:coal_block"
+    }
+  ],
+  "results": [
+    {
+      "id": "minecraft:diamond"
+    }
+  ]
+}

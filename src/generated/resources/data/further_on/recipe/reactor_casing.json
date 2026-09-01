@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "further_on:copper_coil"
+    },
+    "S": {
+      "item": "further_on:structural_steel_block"
+    },
+    "Z": {
+      "item": "further_on:zirconium_block"
+    }
+  },
+  "pattern": [
+    "ZSZ",
+    "SCS",
+    "ZSZ"
+  ],
+  "result": {
+    "count": 4,
+    "id": "further_on:reactor_casing"
+  }
+}

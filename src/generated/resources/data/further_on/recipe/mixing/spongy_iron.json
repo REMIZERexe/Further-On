@@ -1,0 +1,17 @@
+{
+  "type": "create:mixing",
+  "heat_requirement": "heated",
+  "ingredients": [
+    {
+      "item": "minecraft:raw_iron"
+    },
+    {
+      "tag": "minecraft:coals"
+    }
+  ],
+  "results": [
+    {
+      "id": "further_on:spongy_iron"
+    }
+  ]
+}

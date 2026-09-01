@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "C": {
+      "item": "further_on:copper_coil"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "S": {
+      "item": "further_on:structural_steel"
+    }
+  },
+  "pattern": [
+    " S ",
+    "SCS",
+    " R "
+  ],
+  "result": {
+    "count": 1,
+    "id": "further_on:circuit_breaker"
+  }
+}

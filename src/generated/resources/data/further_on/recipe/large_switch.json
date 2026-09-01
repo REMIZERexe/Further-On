@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "L": {
+      "item": "minecraft:lever"
+    },
+    "S": {
+      "item": "further_on:structural_steel"
+    }
+  },
+  "pattern": [
+    " L ",
+    " S ",
+    "SSS"
+  ],
+  "result": {
+    "count": 1,
+    "id": "further_on:large_switch"
+  }
+}

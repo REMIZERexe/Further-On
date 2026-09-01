@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_magnet": {
+      "conditions": {
+        "items": [
+          {
+            "items": "further_on:permanent_magnet"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "further_on:stator_core"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_magnet"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "further_on:stator_core"
+    ]
+  }
+}

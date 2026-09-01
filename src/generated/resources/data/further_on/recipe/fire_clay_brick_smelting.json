@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 0.3,
+  "ingredient": {
+    "item": "further_on:fire_clay_ball"
+  },
+  "result": {
+    "count": 1,
+    "id": "further_on:fire_clay_brick"
+  }
+}

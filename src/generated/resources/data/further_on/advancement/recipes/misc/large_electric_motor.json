@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_rotor": {
+      "conditions": {
+        "items": [
+          {
+            "items": "further_on:rotor_core"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "further_on:large_electric_motor"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_rotor"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "further_on:large_electric_motor"
+    ]
+  }
+}

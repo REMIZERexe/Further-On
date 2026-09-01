@@ -1,0 +1,20 @@
+{
+  "type": "create:mixing",
+  "ingredients": [
+    {
+      "item": "further_on:spruce_resin"
+    },
+    {
+      "item": "minecraft:water_bucket"
+    }
+  ],
+  "results": [
+    {
+      "count": 2,
+      "id": "further_on:latex"
+    },
+    {
+      "id": "further_on:turpentine"
+    }
+  ]
+}

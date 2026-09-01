@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "P": {
+      "item": "create:mechanical_pump"
+    },
+    "S": {
+      "item": "further_on:structural_steel"
+    },
+    "T": {
+      "item": "further_on:tungsten"
+    }
+  },
+  "pattern": [
+    " S ",
+    "SPS",
+    " T "
+  ],
+  "result": {
+    "count": 1,
+    "id": "further_on:turbine_pump"
+  }
+}

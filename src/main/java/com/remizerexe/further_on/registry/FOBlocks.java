@@ -50,7 +50,8 @@ public class FOBlocks {
             REGISTRATE.block("pumpjack_rotation_link", PumpjackRotationLinkBlock::new)
                     .lang("Pumpjack Rotation Link")
                     .blockstate((ctx, prov) -> {
-                        prov.horizontalBlock(ctx.get(), prov.models()
+                        // Block has no facing property, so a single-variant blockstate
+                        prov.simpleBlock(ctx.get(), prov.models()
                                 .withExistingParent(ctx.getName(),
                                         ResourceLocation.fromNamespaceAndPath(MODID, "block/pumpjack_rotation_axle")));
                     })
@@ -63,7 +64,8 @@ public class FOBlocks {
                     .lang("Pumpjack Rotation Joint")
                     .blockstate((ctx, prov) -> {})
                     .properties(c -> c.sound(SoundType.METAL).strength(3.0f, 6.0f))
-                    .simpleItem()
+                    // hand-written item model in main resources; don't datagen a duplicate
+                    .item().model(com.tterrag.registrate.util.nullness.NonNullBiConsumer.noop()).build()
                     .register();
 
     public static final BlockEntry<PumpjackBaseBlock> PUMPJACK_BASE =
@@ -92,7 +94,8 @@ public class FOBlocks {
                                 });
                     })
                     .properties(c -> c.sound(SoundType.METAL).noOcclusion())
-                    .simpleItem()
+                    // hand-written item model in main resources; don't datagen a duplicate
+                    .item().model(com.tterrag.registrate.util.nullness.NonNullBiConsumer.noop()).build()
                     .register();
 
     public static final BlockEntry<BlastFurnaceHearthBlock> BLAST_FURNACE_HEARTH =
@@ -569,6 +572,7 @@ public class FOBlocks {
             .lang("Cast Beam")
             .blockstate(CastBeamBlock::blockstate)
             .properties(c -> c)
+            .simpleItem()
             .register();
 
     public static final BlockEntry<OilNodeBlock> OIL_NODE_POOR =

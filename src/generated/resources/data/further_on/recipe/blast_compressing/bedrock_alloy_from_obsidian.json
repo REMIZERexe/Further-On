@@ -1,0 +1,13 @@
+{
+  "type": "further_on:blast_compressing",
+  "ingredients": [
+    {
+      "item": "minecraft:obsidian"
+    }
+  ],
+  "results": [
+    {
+      "id": "further_on:bedrock_alloy"
+    }
+  ]
+}
