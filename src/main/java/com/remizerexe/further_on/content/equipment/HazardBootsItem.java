@@ -9,8 +9,8 @@ import net.minecraft.world.item.ItemStack;
 public class HazardBootsItem extends ArmorItem {
 
     public HazardBootsItem(Properties properties) {
-        // Using CHAINMAIL as a base holder for balanced mid-game armor stats
-        super(ArmorMaterials.CHAINMAIL, Type.BOOTS, properties);
+        // Using CHAIN as a base holder for balanced mid-game armor stats
+        super(ArmorMaterials.CHAIN, Type.BOOTS, properties);
     }
 
     /**

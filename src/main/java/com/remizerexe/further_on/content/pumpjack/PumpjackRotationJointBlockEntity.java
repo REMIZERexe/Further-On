@@ -41,9 +41,9 @@ public class PumpjackRotationJointBlockEntity extends GeneratingKineticBlockEnti
     }
 
     @Override
-    public void setRemoved() {
+    public void remove() {
         if (!level.isClientSide) disassemble();
-        super.setRemoved();
+        super.remove();
     }
 
     public void assemble() {

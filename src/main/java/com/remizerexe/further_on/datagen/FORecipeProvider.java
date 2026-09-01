@@ -124,8 +124,8 @@ public class FORecipeProvider extends RecipeProvider {
                 .pattern("CBC")
                 .pattern(" C ")
                 .define('C', com.remizerexe.further_on.registry.FOBlocks.CARBON_STEEL_BLOCK.get())
-                .define('B', com.simibubi.create.AllBlocks.EMPTY_BLAZE_BURNER.get())
-                .unlockedBy("has_burner", has(com.simibubi.create.AllBlocks.EMPTY_BLAZE_BURNER.get()))
+                .define('B', com.simibubi.create.AllItems.EMPTY_BLAZE_BURNER.get())
+                .unlockedBy("has_burner", has(com.simibubi.create.AllItems.EMPTY_BLAZE_BURNER.get()))
                 .save(recipeOutput, com.remizerexe.further_on.FurtherOn.MODID + ":hyper_blaze_burner");
 
         // Nuclear Crafting

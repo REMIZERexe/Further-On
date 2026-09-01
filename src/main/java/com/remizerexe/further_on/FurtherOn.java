@@ -58,7 +58,7 @@ public class FurtherOn {
         net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(this::onLivingDamage);
     }
 
-    private void onLivingDamage(net.neoforged.neoforge.event.entity.living.LivingDamageEvent.Pre event) {
+    private void onLivingDamage(net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent event) {
         if (event.getSource().is(net.minecraft.world.damagesource.DamageTypes.HOT_FLOOR)) {
             for (net.minecraft.world.item.ItemStack armor : event.getEntity().getArmorSlots()) {
                 if (armor.is(com.remizerexe.further_on.registry.FOItems.hazard_boots.get())) {
