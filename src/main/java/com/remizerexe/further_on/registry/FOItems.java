@@ -1,6 +1,8 @@
 package com.remizerexe.further_on.registry;
 
+import com.remizerexe.further_on.content.equipment.WeldingMaskItem;
 import com.tterrag.registrate.util.entry.ItemEntry;
+import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 
@@ -35,6 +37,13 @@ public class FOItems {
             .register();
     public static final ItemEntry<Item> ZIRCONIUM = REGISTRATE.item("zirconium", Item::new)
             .lang("Zirconium Ingot")
+            .register();
+
+    /* Equipment */
+    public static final ItemEntry<WeldingMaskItem> WELDING_MASK = REGISTRATE.item("welding_mask", WeldingMaskItem::new)
+            .lang("Welding Mask")
+            .properties((p) -> p.stacksTo(1))
+            .model(NonNullBiConsumer.noop())
             .register();
 
     public static final ItemEntry<Item> BAUXITE_DUST = REGISTRATE.item("bauxite_dust", Item::new)

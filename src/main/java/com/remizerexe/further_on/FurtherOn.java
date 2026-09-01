@@ -50,6 +50,10 @@ public class FurtherOn {
         FOPartialModels.init();
 
         FORegistries.register(modEventBus);
+        FODataComponents.register(modEventBus);
+
+        REGISTRATE.addRawLang("key.categories.further_on", "Further On");
+        REGISTRATE.addRawLang("key.further_on.toggle_welding_mask_visor", "Toggle Welding Mask Visor");
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, FurtherOnConfig.SPEC);

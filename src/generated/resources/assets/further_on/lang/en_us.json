@@ -27,9 +27,12 @@
   "item.further_on.fire_clay_ball": "Fire Clay Ball",
   "item.further_on.graphite": "Graphite",
   "item.further_on.magnesium": "Magnesium Ingot",
+  "item.further_on.welding_mask": "Welding Mask",
   "item.further_on.stainless_steel": "Stainless Steel Ingot",
   "item.further_on.structural_steel": "Structural Steel Ingot",
   "item.further_on.zirconium": "Zirconium Ingot",
+  "key.categories.further_on": "Further On",
+  "key.further_on.toggle_welding_mask_visor": "Toggle Welding Mask Visor",
   "itemGroup.further_on": "Further On!",
   "itemGroup.further_on_building": "Further On's Building Blocks"
 }

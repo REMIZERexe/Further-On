@@ -1,0 +1,51 @@
+{
+	"loader": "neoforge:separate_transforms",
+	"gui_light": "front",
+	"base": {
+		"parent": "further_on:item/welding_mask_3d_open"
+	},
+	"perspectives": {
+		"firstperson_righthand": {
+			"parent": "minecraft:item/generated",
+			"textures": {
+				"layer0": "further_on:item/welding_mask_item"
+			}
+		},
+		"firstperson_lefthand": {
+			"parent": "minecraft:item/generated",
+			"textures": {
+				"layer0": "further_on:item/welding_mask_item"
+			}
+		},
+		"thirdperson_righthand": {
+			"parent": "minecraft:item/generated",
+			"textures": {
+				"layer0": "further_on:item/welding_mask_item"
+			}
+		},
+		"thirdperson_lefthand": {
+			"parent": "minecraft:item/generated",
+			"textures": {
+				"layer0": "further_on:item/welding_mask_item"
+			}
+		},
+		"gui": {
+			"parent": "minecraft:item/generated",
+			"textures": {
+				"layer0": "further_on:item/welding_mask_item"
+			}
+		},
+		"ground": {
+			"parent": "minecraft:item/generated",
+			"textures": {
+				"layer0": "further_on:item/welding_mask_item"
+			}
+		},
+		"fixed": {
+			"parent": "minecraft:item/generated",
+			"textures": {
+				"layer0": "further_on:item/welding_mask_item"
+			}
+		}
+	}
+}
