@@ -1,13 +1,13 @@
 package com.remizerexe.further_on.content.blast_compressor.recipe;
 
-import com.simibubi.create.content.processing.recipe.ProcessingRecipe;
-import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder.ProcessingRecipeParams;
+import com.simibubi.create.content.processing.recipe.StandardProcessingRecipe;
+import com.simibubi.create.content.processing.recipe.ProcessingRecipeParams;
 import com.simibubi.create.foundation.recipe.IRecipeTypeInfo;
 import net.minecraft.world.level.Level;
 import net.neoforged.neoforge.items.wrapper.RecipeWrapper;
 import com.remizerexe.further_on.registry.FORecipeTypes;
 
-public class FOBlastCompressingRecipe extends ProcessingRecipe<RecipeWrapper> {
+public class FOBlastCompressingRecipe extends StandardProcessingRecipe<RecipeWrapper> {
 
     public FOBlastCompressingRecipe(ProcessingRecipeParams params) {
         super(FORecipeTypes.BLAST_COMPRESSING, params);
@@ -26,6 +26,6 @@ public class FOBlastCompressingRecipe extends ProcessingRecipe<RecipeWrapper> {
     @Override
     public boolean matches(RecipeWrapper inv, Level level) {
         if (inv.isEmpty()) return false;
-        return ingredients.get(0).test(inv.getItem(0));
+        return getIngredients().get(0).test(inv.getItem(0));
     }
 }

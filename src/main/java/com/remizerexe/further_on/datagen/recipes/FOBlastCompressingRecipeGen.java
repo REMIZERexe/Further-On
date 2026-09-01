@@ -1,15 +1,19 @@
 package com.remizerexe.further_on.datagen.recipes;
 
-import com.simibubi.create.foundation.data.recipe.ProcessingRecipeGen;
+import com.simibubi.create.api.data.recipe.ProcessingRecipeGen;
+import com.simibubi.create.api.data.recipe.BaseRecipeProvider.GeneratedRecipe;
 import com.simibubi.create.foundation.recipe.IRecipeTypeInfo;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import com.remizerexe.further_on.registry.FORecipeTypes;
+import com.simibubi.create.content.processing.recipe.ProcessingRecipeBuilder;
+import com.simibubi.create.content.processing.recipe.StandardProcessingRecipe;
+import com.simibubi.create.content.processing.recipe.ProcessingRecipeParams;
 import java.util.concurrent.CompletableFuture;
 
 import static com.remizerexe.further_on.FurtherOn.MODID;
 
-public class FOBlastCompressingRecipeGen extends ProcessingRecipeGen {
+public class FOBlastCompressingRecipeGen extends ProcessingRecipeGen<ProcessingRecipeParams, FOBlastCompressingRecipe, StandardProcessingRecipe.Builder<FOBlastCompressingRecipe>> {
     
     public GeneratedRecipe BEDROCK_ALLOY = create("bedrock_alloy_from_obsidian", b -> b
             .require(net.minecraft.world.item.Items.OBSIDIAN)
@@ -29,5 +33,10 @@ public class FOBlastCompressingRecipeGen extends ProcessingRecipeGen {
     @Override
     protected IRecipeTypeInfo getRecipeType() {
         return FORecipeTypes.BLAST_COMPRESSING;
+    }
+
+    @Override
+    protected StandardProcessingRecipe.Builder<FOBlastCompressingRecipe> getBuilder(net.minecraft.resources.ResourceLocation id) {
+        return new StandardProcessingRecipe.Builder<>(FOBlastCompressingRecipe::new, id);
     }
 }
