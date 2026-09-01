@@ -73,8 +73,9 @@ public class BlastCompressorBlockEntity extends SmartBlockEntity implements IHav
         net.neoforged.neoforge.items.wrapper.RecipeWrapper wrapper = new net.neoforged.neoforge.items.wrapper.RecipeWrapper(inventory);
 
         // Find matching blast compression recipe
-        var recipeType = com.remizerexe.further_on.registry.FORecipeTypes.BLAST_COMPRESSING.getType();
-        var recipe = level.getRecipeManager().getRecipeFor((net.minecraft.world.item.crafting.RecipeType<com.remizerexe.further_on.content.blast_compressor.recipe.FOBlastCompressingRecipe>) recipeType, wrapper, level);
+net.minecraft.world.item.crafting.RecipeType<com.remizerexe.further_on.content.blast_compressor.recipe.FOBlastCompressingRecipe> recipeType =
+                com.remizerexe.further_on.registry.FORecipeTypes.BLAST_COMPRESSING.getType();
+        var recipe = level.getRecipeManager().getRecipeFor(recipeType, wrapper, level);
 
         if (recipe.isPresent()) {
             // Apply the recipe to the entire stack!
@@ -84,7 +85,7 @@ public class BlastCompressorBlockEntity extends SmartBlockEntity implements IHav
             
             // Process each item individually to respect Create's percentage-based secondary outputs!
             for (int j = 0; j < amountToProcess; j++) {
-                List<ItemStack> rolledResults = recipe.get().value().rollResults(level.random);
+                List<ItemStack> rolledResults = ((com.remizerexe.further_on.content.blast_compressor.recipe.FOBlastCompressingRecipe) recipe.get().value()).rollResults(level.random);
                 for (ItemStack resultStack : rolledResults) {
                     if (resultStack.isEmpty()) continue;
                     
