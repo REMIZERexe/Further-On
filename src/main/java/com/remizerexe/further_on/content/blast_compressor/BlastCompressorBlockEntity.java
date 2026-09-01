@@ -73,7 +73,8 @@ public class BlastCompressorBlockEntity extends SmartBlockEntity implements IHav
         net.neoforged.neoforge.items.wrapper.RecipeWrapper wrapper = new net.neoforged.neoforge.items.wrapper.RecipeWrapper(inventory);
 
         // Find matching blast compression recipe
-        var recipeType = com.remizerexe.further_on.registry.FORecipeTypes.BLAST_COMPRESSING.getType();
+net.minecraft.world.item.crafting.RecipeType<com.remizerexe.further_on.content.blast_compressor.recipe.FOBlastCompressingRecipe> recipeType =
+                com.remizerexe.further_on.registry.FORecipeTypes.BLAST_COMPRESSING.getType();
         var recipe = level.getRecipeManager().getRecipeFor(recipeType, wrapper, level);
 
         if (recipe.isPresent()) {
