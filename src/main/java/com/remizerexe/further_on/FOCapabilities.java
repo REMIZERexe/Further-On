@@ -25,16 +25,6 @@ public class FOCapabilities {
                 }
         );
 
-        // Hearth — Fluid (Steel) output
-        event.registerBlockEntity(
-                net.neoforged.neoforge.capabilities.Capabilities.FluidHandler.BLOCK,
-                FOBlockEntities.BLAST_FURNACE_HEARTH.get(),
-                (be, face) -> {
-                    if (face == null) return null;
-                    return be.getFluidTankForFace(face);
-                }
-        );
-
         event.registerBlockEntity(
                 Capabilities.ItemHandler.BLOCK,
                 FOBlockEntities.BLAST_FURNACE_HATCH.get(),
@@ -43,20 +33,6 @@ public class FOCapabilities {
                     ItemStackHandler slag = be.getSlagInventory();
                     return slag;
                 }
-        );
-        
-        // Blast Compressor — Item interaction
-        event.registerBlockEntity(
-                Capabilities.ItemHandler.BLOCK,
-                FOBlockEntities.BLAST_COMPRESSOR_BE.get(),
-                (be, face) -> be.inventory
-        );
-        
-        // Industrial Pipe — Fluid transit
-        event.registerBlockEntity(
-                Capabilities.FluidHandler.BLOCK,
-                FOBlockEntities.INDUSTRIAL_PIPE.get(),
-                (be, face) -> be.tank
         );
     }
 }

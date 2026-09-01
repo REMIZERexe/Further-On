@@ -42,7 +42,7 @@ public class BlastFurnaceHearthBlockEntity extends MultiblockControllerBE
     private static final int STEEL_MB_PER_BATCH = 144;
     private static final int SLAG_PER_LAYER  = 1;
 
-    public final ItemStackHandler inputInventory = new ItemStackHandler(3) {
+    public final ItemStackHandler inputInventory = new ItemStackHandler(2) {
         @Override public int getSlotLimit(int slot) { return 64 * (maxCapacityLayers()+2); }
     };
 
@@ -68,13 +68,6 @@ public class BlastFurnaceHearthBlockEntity extends MultiblockControllerBE
         if (level == null || level.isClientSide()) return;
         if (!isFormed()) return;
 
-        // BUG FIX: Ensure the physical multiblock hasn't been broken by a player!
-        // Without this, players could form the furnace, break the bricks, and let it run in mid-air forever.
-        if (level.getGameTime() % 20 == 0) {
-            revalidate();
-            if (!isFormed()) return;
-        }
-
         int layersBefore = accumulatedLayers;
 
         scanForDroppedItems();
@@ -97,42 +90,26 @@ public class BlastFurnaceHearthBlockEntity extends MultiblockControllerBE
     }
 
     private boolean hasEnoughInputs() {
-        ItemStack coke = inputInventory.getStackInSlot(0);
+        ItemStack coal = inputInventory.getStackInSlot(0);
         ItemStack iron = inputInventory.getStackInSlot(1);
-        ItemStack calcite = inputInventory.getStackInSlot(2);
-        
-        int batches = 1 + capacityLayers;
-        
-        // BUG FIX: Ensure the output inventory isn't full, otherwise the furnace 
-        // will keep running and literally void all the items into the ether!
-        ItemStack currentSlag = slagInventory.getStackInSlot(0);
-        boolean canFitSlag = currentSlag.isEmpty() || 
-            (currentSlag.is(com.remizerexe.further_on.registry.FOItems.slag.get()) && currentSlag.getCount() + (SLAG_PER_LAYER * batches) <= slagInventory.getSlotLimit(0) && currentSlag.getCount() + (SLAG_PER_LAYER * batches) <= currentSlag.getMaxStackSize());
-            
-        boolean canFitFluid = steelTank.getSpace() >= (STEEL_MB_PER_BATCH * batches);
-        
-        // BUG FIX: Ensure we have enough inputs for the ENTIRE multiblock height, not just 1 batch!
-        // Otherwise this acts as a massive dupe machine if the inventory runs low!
-        return canFitSlag && canFitFluid
-                && coke.is(com.remizerexe.further_on.registry.FOItems.COKE.get()) && coke.getCount() >= (COAL_PER_LAYER * batches)
-                && iron.is(com.remizerexe.further_on.registry.FOItems.spongy_iron.get()) && iron.getCount() >= (IRON_PER_LAYER * batches)
-                && calcite.is(Items.CALCITE) && calcite.getCount() >= (1 * batches); 
+        return coal.is(Items.COAL)       && coal.getCount() >= COAL_PER_LAYER
+                && iron.is(Items.IRON_INGOT) && iron.getCount() >= IRON_PER_LAYER;
     }
 
     private void processOneBatch() {
-        // BUG FIX: Unsafely calling shrink() on the raw stack can cause ghost item desyncs.
-        // Use the native extractItem API to guarantee inventory synchronization across client/server.
-        inputInventory.extractItem(0, COAL_PER_LAYER, false);
-        inputInventory.extractItem(1, IRON_PER_LAYER, false);
-        inputInventory.extractItem(2, 1, false);
+        inputInventory.getStackInSlot(0).shrink(COAL_PER_LAYER);
+        inputInventory.getStackInSlot(1).shrink(IRON_PER_LAYER);
 
         FluidStack steelFluid = new FluidStack(
                 FOFluids.MOLTEN_STEEL_STILL.get(), STEEL_MB_PER_BATCH);
         steelTank.fill(steelFluid, IFluidHandler.FluidAction.EXECUTE);
 
-        // BUG FIX: Same stack overflow crash potential here for the byproduct.
-        ItemStack slagOutput = new ItemStack(com.remizerexe.further_on.registry.FOItems.slag.get(), SLAG_PER_LAYER);
-        slagInventory.insertItem(0, slagOutput, false);
+        ItemStack slag = slagInventory.getStackInSlot(0);
+        if (slag.isEmpty()) {
+            slagInventory.setStackInSlot(0, new ItemStack(Items.GRAVEL, SLAG_PER_LAYER));
+        } else {
+            slag.grow(SLAG_PER_LAYER);
+        }
 
         accumulatedLayers = Math.max(0, accumulatedLayers - 1);
         setChanged();
@@ -160,21 +137,14 @@ public class BlastFurnaceHearthBlockEntity extends MultiblockControllerBE
         if (items.isEmpty()) return;
 
         for (ItemEntity itemEntity : items) {
-            if (itemEntity.isRemoved()) continue; // Prevent dupe if two furnaces overlap!
-            
             ItemStack stack = itemEntity.getItem();
             if (stack.isEmpty()) continue;
 
-            int maxBuffer = 64 * 4; // Prevent infinite buffering / integer overflow lag machines
-
-            if (stack.is(com.remizerexe.further_on.registry.FOItems.COKE.get()) && bufferedCoal < maxBuffer) {
+            if (stack.is(Items.COAL)) {
                 bufferedCoal += stack.getCount();
                 itemEntity.discard();
-            } else if (stack.is(com.remizerexe.further_on.registry.FOItems.spongy_iron.get()) && bufferedIron < maxBuffer) {
+            } else if (stack.is(Items.IRON_INGOT)) {
                 bufferedIron += stack.getCount();
-                itemEntity.discard();
-            } else if (stack.is(Items.CALCITE) && bufferedCalcite < maxBuffer) {
-                bufferedCalcite += stack.getCount();
                 itemEntity.discard();
             } else {
                 ejectItem(stack);
@@ -187,27 +157,29 @@ public class BlastFurnaceHearthBlockEntity extends MultiblockControllerBE
     }
 
     private static final int BATCHES_PER_LAYER = 8;
-    int bufferedCalcite = 0; // Added buffer for Calcite
 
     private void flushBuffer() {
         while (bufferedCoal >= COAL_PER_LAYER
                 && bufferedIron >= IRON_PER_LAYER
-                && bufferedCalcite >= 1
                 && accumulatedLayers < (capacityLayers + 2) * BATCHES_PER_LAYER) {
 
             bufferedCoal -= COAL_PER_LAYER;
             bufferedIron -= IRON_PER_LAYER;
-            bufferedCalcite -= 1;
 
-            ItemStack cokeStack = new ItemStack(com.remizerexe.further_on.registry.FOItems.COKE.get(), COAL_PER_LAYER);
-            ItemStack ironStack = new ItemStack(com.remizerexe.further_on.registry.FOItems.spongy_iron.get(), IRON_PER_LAYER);
-            ItemStack calciteStack = new ItemStack(Items.CALCITE, 1);
+            ItemStack coalSlot = inputInventory.getStackInSlot(0);
+            ItemStack ironSlot = inputInventory.getStackInSlot(1);
 
-            // BUG FIX: using stack.grow() bypasses NeoForge's internal limits and can crash
-            // client-side rendering if a single ItemStack goes over 99. Using insertItem safely distributes it!
-            inputInventory.insertItem(0, cokeStack, false);
-            inputInventory.insertItem(1, ironStack, false);
-            inputInventory.insertItem(2, calciteStack, false);
+            if (coalSlot.isEmpty()) {
+                inputInventory.setStackInSlot(0, new ItemStack(Items.COAL, COAL_PER_LAYER));
+            } else {
+                coalSlot.grow(COAL_PER_LAYER);
+            }
+
+            if (ironSlot.isEmpty()) {
+                inputInventory.setStackInSlot(1, new ItemStack(Items.IRON_INGOT, IRON_PER_LAYER));
+            } else {
+                ironSlot.grow(IRON_PER_LAYER);
+            }
 
             accumulatedLayers++;
         }
@@ -230,7 +202,6 @@ public class BlastFurnaceHearthBlockEntity extends MultiblockControllerBE
 
     public ItemStackHandler getInventoryForFace(Direction face) {
         if (face == Direction.DOWN) return slagInventory;
-        if (face == Direction.UP) return inputInventory;
         return null;
     }
 
@@ -252,10 +223,10 @@ public class BlastFurnaceHearthBlockEntity extends MultiblockControllerBE
         BlockPos actualCenter = centerPos.relative(facing.getOpposite(), 1);
 
         return level.getBlockState(actualCenter).is(Blocks.AIR)
-                && level.getBlockState(actualCenter.north()).is(FOBlocks.FIRE_CLAY_BRICKS.get())
-                && level.getBlockState(actualCenter.south()).is(FOBlocks.FIRE_CLAY_BRICKS.get())
-                && level.getBlockState(actualCenter.east()).is(FOBlocks.FIRE_CLAY_BRICKS.get())
-                && level.getBlockState(actualCenter.west()).is(FOBlocks.FIRE_CLAY_BRICKS.get());
+                && level.getBlockState(actualCenter.north()).is(FOBlocks.FIRE_CLAY_BRICKS)
+                && level.getBlockState(actualCenter.south()).is(FOBlocks.FIRE_CLAY_BRICKS)
+                && level.getBlockState(actualCenter.east()).is(FOBlocks.FIRE_CLAY_BRICKS)
+                && level.getBlockState(actualCenter.west()).is(FOBlocks.FIRE_CLAY_BRICKS);
     }
 
     @Override protected int minCapacityLayers() { return DEFINITION.getMinCapacityLayers(); }
@@ -295,7 +266,6 @@ public class BlastFurnaceHearthBlockEntity extends MultiblockControllerBE
         tag.putFloat("ProcessingProgress", processingProgress);
         tag.putInt("BufferedCoal",         bufferedCoal);
         tag.putInt("BufferedIron",         bufferedIron);
-        tag.putInt("BufferedCalcite",      bufferedCalcite);
         tag.putInt("CurrentRPM",           currentRPM);
     }
 
@@ -312,7 +282,6 @@ public class BlastFurnaceHearthBlockEntity extends MultiblockControllerBE
         processingProgress = tag.getFloat("ProcessingProgress");
         bufferedCoal       = tag.getInt("BufferedCoal");
         bufferedIron       = tag.getInt("BufferedIron");
-        bufferedCalcite    = tag.getInt("BufferedCalcite");
         currentRPM         = tag.getInt("CurrentRPM");
     }
 
@@ -323,45 +292,17 @@ public class BlastFurnaceHearthBlockEntity extends MultiblockControllerBE
 
     public void dropContents() {
         if (level == null) return;
-        
-        // Drop buffered items that haven't been flushed to the main inventory yet, 
-        // ensuring we respect the max stack size limit to prevent client rendering crashes.
-        while (bufferedCoal > 0) {
-            int toDrop = Math.min(bufferedCoal, 64);
-            net.minecraft.world.Containers.dropItemStack(level, worldPosition.getX(), worldPosition.getY(), worldPosition.getZ(), new ItemStack(com.remizerexe.further_on.registry.FOItems.COKE.get(), toDrop));
-            bufferedCoal -= toDrop;
-        }
-        while (bufferedIron > 0) {
-            int toDrop = Math.min(bufferedIron, 64);
-            net.minecraft.world.Containers.dropItemStack(level, worldPosition.getX(), worldPosition.getY(), worldPosition.getZ(), new ItemStack(com.remizerexe.further_on.registry.FOItems.spongy_iron.get(), toDrop));
-            bufferedIron -= toDrop;
-        }
-        while (bufferedCalcite > 0) {
-            int toDrop = Math.min(bufferedCalcite, 64);
-            net.minecraft.world.Containers.dropItemStack(level, worldPosition.getX(), worldPosition.getY(), worldPosition.getZ(), new ItemStack(Items.CALCITE, toDrop));
-            bufferedCalcite -= toDrop;
-        }
-
         for (int i = 0; i < inputInventory.getSlots(); i++) {
-            ItemStack stack = inputInventory.getStackInSlot(i);
-            while (stack.getCount() > 0) {
-                int toDrop = Math.min(stack.getCount(), stack.getMaxStackSize());
-                net.minecraft.world.Containers.dropItemStack(level, worldPosition.getX(),
-                        worldPosition.getY(), worldPosition.getZ(), stack.split(toDrop));
-            }
+            net.minecraft.world.Containers.dropItemStack(level, worldPosition.getX(),
+                    worldPosition.getY(), worldPosition.getZ(), inputInventory.getStackInSlot(i));
         }
         for (int i = 0; i < slagInventory.getSlots(); i++) {
-            ItemStack stack = slagInventory.getStackInSlot(i);
-            while (stack.getCount() > 0) {
-                int toDrop = Math.min(stack.getCount(), stack.getMaxStackSize());
-                net.minecraft.world.Containers.dropItemStack(level, worldPosition.getX(),
-                        worldPosition.getY(), worldPosition.getZ(), stack.split(toDrop));
-            }
+            net.minecraft.world.Containers.dropItemStack(level, worldPosition.getX(),
+                    worldPosition.getY(), worldPosition.getZ(), slagInventory.getStackInSlot(i));
         }
         accumulatedLayers = 0;
         bufferedCoal = 0;
         bufferedIron = 0;
-        bufferedCalcite = 0; // BUG FIX: clear the calcite buffer on break!
         processingProgress = 0f;
     }
 

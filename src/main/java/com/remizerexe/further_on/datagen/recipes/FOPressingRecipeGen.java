@@ -9,11 +9,7 @@ import java.util.concurrent.CompletableFuture;
 import static com.remizerexe.further_on.FurtherOn.MODID;
 
 public class FOPressingRecipeGen extends PressingRecipeGen {
-    
-    public GeneratedRecipe SPONGY_IRON_PRESSING = create("spongy_iron_pressing", b -> b
-            .require(com.remizerexe.further_on.registry.FOItems.spongy_iron.get())
-            .output(com.remizerexe.further_on.registry.FOItems.CARBON_STEEL.get())
-    );
+    // Yet empty.
 
     public FOPressingRecipeGen(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries, MODID);
