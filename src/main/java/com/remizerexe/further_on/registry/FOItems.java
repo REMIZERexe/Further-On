@@ -1,6 +1,8 @@
 package com.remizerexe.further_on.registry;
 
+import com.remizerexe.further_on.content.equipment.WeldingMaskItem;
 import com.tterrag.registrate.util.entry.ItemEntry;
+import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 
@@ -48,6 +50,13 @@ public class FOItems {
             .tag(net.minecraft.tags.ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "ingots/zirconium")))
             .register();
 
+    /* Equipment */
+    public static final ItemEntry<WeldingMaskItem> WELDING_MASK = REGISTRATE.item("welding_mask", WeldingMaskItem::new)
+            .lang("Welding Mask")
+            .properties((p) -> p.stacksTo(1))
+            .model(NonNullBiConsumer.noop())
+            .register();
+
     public static final ItemEntry<Item> BAUXITE_DUST = REGISTRATE.item("bauxite_dust", Item::new)
             .lang("Bauxite Dust")
             .tag(net.minecraft.tags.ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "dusts/bauxite")))
@@ -67,9 +76,6 @@ public class FOItems {
             .register();
 
     // TODO: dumping these here bc idk where else to put them rn
-    public static final ItemEntry<Item> welding_goggles = REGISTRATE.item("welding_mask", Item::new)
-            .lang("Welding Mask") 
-            .register();
 
     public static final ItemEntry<Item> welding_torch_item = REGISTRATE.item("welding_torch", Item::new)
             .lang("Welding Torch")

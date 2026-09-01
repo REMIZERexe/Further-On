@@ -1,0 +1,22 @@
+{
+	"loader": "neoforge:separate_transforms",
+	"gui_light": "front",
+	"overrides": [
+		{
+			"predicate": { "further_on:open": 1 },
+			"model": "further_on:item/welding_mask_open"
+		}
+	],
+	"base": {
+		"parent": "further_on:item/welding_mask_3d"
+	},
+	"perspectives": {
+		"firstperson_righthand": { "parent": "further_on:item/welding_mask_2d" },
+		"firstperson_lefthand": { "parent": "further_on:item/welding_mask_2d" },
+		"thirdperson_righthand": { "parent": "further_on:item/welding_mask_2d" },
+		"thirdperson_lefthand": { "parent": "further_on:item/welding_mask_2d" },
+		"gui": { "parent": "further_on:item/welding_mask_2d" },
+		"ground": { "parent": "further_on:item/welding_mask_2d" },
+		"fixed": { "parent": "further_on:item/welding_mask_2d" }
+	}
+}
