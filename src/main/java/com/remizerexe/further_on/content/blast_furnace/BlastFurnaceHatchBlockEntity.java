@@ -20,6 +20,10 @@ public class BlastFurnaceHatchBlockEntity extends MultiblockComponentBE {
         BlastFurnaceHearthBlockEntity hearth =
                 getController(BlastFurnaceHearthBlockEntity.class);
         if (hearth == null || !hearth.isFormed()) return null;
+        
+        // BUG FIX: Prevent cross-structure theft! Ensure the controller actually claims THIS hatch!
+        if (!hearth.getFormedPositions().contains(this.worldPosition)) return null;
+        
         return hearth.slagInventory;
     }
 

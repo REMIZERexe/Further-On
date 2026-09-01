@@ -1,0 +1,24 @@
+massive stability overhaul, bug fixes, and capability wiring
+
+tbh the codebase was kind of a ticking time bomb lol. spent some time tearing apart the core engines and fixing some insane edge cases. automation actually works now. 
+
+changes:
+- completely rewrote the multiblock rotation matrix. i accidentaly made the math was literally backwards (projecting +Z onto the wrong global axes). it actually forms correctly now instead of checking for blocks in the 4th dimension.
+- fixed a massive dupe exploit in the open-hearth furnace. the input validator only checked for 1 layer's worth of items, but it outputted steel scaled by the entire 20-block height.
+- fixed massive survival balance bug where almost every single machine (furnace, pipes, compressor) had 0.0f hardness/resistance and could be broken instantly with bare hands. assigned proper pickaxe metal/stone hardness to all blocks.
+- fixed blast compressor ignoring secondary outputs on recipes. it now loops `rollResults()` to respect chance-based byproducts instead of just brute-forcing the first item in the list.
+- fixed missing creative tab entries. the oil bucket and molten steel bucket were registered via raw DeferredRegister instead of Registrate, making them completely invisible in the creative menu. injected them manually.
+- fixed registry ID mismatch on the blast furnace hatch. it was registered as `blast_furnace_base` instead of `blast_furnace_hatch`, which breaks datapacks and `/setblock`.
+- wired up all the missing neoforge capabilities. blast furnace, compressor, and pipes actually talk to hoppers/chutes/pumps now. also exposed the furnace input to the top face.
+- fixed blast compressor interaction ux. you can now insert whole stacks with one click instead of spam clicking 64 times, and it safely merges partial stacks.
+- fixed blast compressor voiding all its items into the shadow realm if you broke the block with a pickaxe.
+- fixed a nasty chunk-loading lag spike with the blast compressor. if tnt blew up on a chunk border, it was force-loading unloaded chunks synchronously.
+- fixed an obscure concurrent vacuum dupe if two blast furnaces overlapped their item pickup radii.
+- fixed multiblock phantom ghosting. furnaces now actually re-verify their physical blocks exist so you can't run them floating in mid-air.
+- fixed pumpjack memory leak. overriding remove() instead of setRemoved() meant contraptions never disassembled on chunk unload and just leaked memory forever.
+- fixed cross-structure hatch theft where an orphaned hatch could secretly siphon slag from a completely different furnace nearby.
+- swapped manual O(N) player distance checks in the multiblock sync loop for native level.sendBlockUpdated() to save server TPS.
+- added entityInside to live wires so you actually get shocked if you walk through them, not just if you stand directly on top.
+- fixed a startup crash risk in FOPartialModels.
+
+basically i messed up and fixed it
