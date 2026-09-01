@@ -42,17 +42,59 @@ public class FurtherOn {
         FOBlocks.register();
         FOItems.register();
         FOBlockEntities.register();
+        FORecipeTypes.register();
         FOTabs.register();
         FOFluids.register(modEventBus);
         FOWorldgen.register(modEventBus);
         FOMenuTypes.register(modEventBus);
-        modEventBus.addListener(FurtherOn::onRegister);
         FOPartialModels.init();
 
         FORegistries.register(modEventBus);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, FurtherOnConfig.SPEC);
+
+        net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(this::onExplosion);
+        net.neoforged.neoforge.common.NeoForge.EVENT_BUS.addListener(this::onLivingDamage);
+    }
+
+    private void onLivingDamage(net.neoforged.neoforge.event.entity.living.LivingDamageEvent.Pre event) {
+        if (event.getSource().is(net.minecraft.world.damagesource.DamageTypes.HOT_FLOOR)) {
+            for (net.minecraft.world.item.ItemStack armor : event.getEntity().getArmorSlots()) {
+                if (armor.is(com.remizerexe.further_on.registry.FOItems.hazard_boots.get())) {
+                    event.setCanceled(true); // Fully cancel the event so boots don't lose durability!
+                    break;
+                }
+            }
+        }
+    }
+
+    private void onExplosion(net.neoforged.neoforge.event.level.ExplosionEvent.Detonate event) {
+        if (event.getLevel().isClientSide()) return;
+
+        net.minecraft.world.phys.Vec3 center = event.getExplosion().center();
+        // BUG FIX: Cross-mod nukes with massive radii (e.g. 100+) would cause this scanner 
+        // to loop over millions of blocks in a single tick, lagging the server.
+        // The Blast Compressor only needs to be triggered by local TNT, so we cap the scan radius at 8.0 blocks!
+        float radius = Math.min(event.getExplosion().radius(), 8.0f);
+
+        // Optimized scan: minimal power intensive. We only query the BlockState first, 
+        // which is extremely fast, before doing heavy BlockEntity lookups.
+        net.minecraft.world.phys.AABB bounds = new net.minecraft.world.phys.AABB(center, center).inflate(radius);
+        net.minecraft.core.BlockPos.betweenClosedStream(bounds).forEach(pos -> {
+            if (center.distanceToSqr(pos.getCenter()) <= radius * radius) {
+                // BUG FIX: Ensure we don't accidentally force-load chunks if the explosion happens on a chunk border!
+                if (!event.getLevel().hasChunkAt(pos)) return;
+                
+                net.minecraft.world.level.block.state.BlockState state = event.getLevel().getBlockState(pos);
+                if (state.is(com.remizerexe.further_on.registry.FOBlocks.BLAST_COMPRESSOR.get())) {
+                    net.minecraft.world.level.block.entity.BlockEntity be = event.getLevel().getBlockEntity(pos);
+                    if (be instanceof com.remizerexe.further_on.content.blast_compressor.BlastCompressorBlockEntity compressor) {
+                        compressor.onExplosionHit();
+                    }
+                }
+            }
+        });
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {

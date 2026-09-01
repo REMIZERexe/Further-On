@@ -1,45 +1,24 @@
-massive progression update & hardcore tech pipelines i cooked
+massive stability overhaul, bug fixes, and capability wiring
 
-yo so i basically overhauled like half the tech tree and datagen tbh. i haven't slept in a minute but the progression is looking insane rn. here is literally everything we added and fixed:
+tbh the codebase was kind of a ticking time bomb lol. spent some time tearing apart the core engines and fixing some insane edge cases. automation actually works now. 
 
-fixes & small stuff:
-* fixed that vanilla iron blasting bug my b, almost broke base minecraft progression lol
-* fixed graphite and uranium loot tables so they actually drop raw items now instead of skipping steps
-* literally tagged EVERYTHING with neoforge c: tags. our steel, silicon, aluminum, and wires are 100% compatible with Immersive Engineering, Mekanism, AE2, and RS. they cant say we dont play nice with other mods.
-* added stonecutter support for fire clay bricks into walls and stairs so building isnt miserable
-* made sure all our custom smelting stuff uses vanilla formats under the hood, so Create's encased fans will auto-smelt and blast everything perfectly
+changes:
+- completely rewrote the multiblock rotation matrix. i accidentaly made the math was literally backwards (projecting +Z onto the wrong global axes). it actually forms correctly now instead of checking for blocks in the 4th dimension.
+- fixed a massive dupe exploit in the open-hearth furnace. the input validator only checked for 1 layer's worth of items, but it outputted steel scaled by the entire 20-block height.
+- fixed massive survival balance bug where almost every single machine (furnace, pipes, compressor) had 0.0f hardness/resistance and could be broken instantly with bare hands. assigned proper pickaxe metal/stone hardness to all blocks.
+- fixed blast compressor ignoring secondary outputs on recipes. it now loops `rollResults()` to respect chance-based byproducts instead of just brute-forcing the first item in the list.
+- fixed missing creative tab entries. the oil bucket and molten steel bucket were registered via raw DeferredRegister instead of Registrate, making them completely invisible in the creative menu. injected them manually.
+- fixed registry ID mismatch on the blast furnace hatch. it was registered as `blast_furnace_base` instead of `blast_furnace_hatch`, which breaks datapacks and `/setblock`.
+- wired up all the missing neoforge capabilities. blast furnace, compressor, and pipes actually talk to hoppers/chutes/pumps now. also exposed the furnace input to the top face.
+- fixed blast compressor interaction ux. you can now insert whole stacks with one click instead of spam clicking 64 times, and it safely merges partial stacks.
+- fixed blast compressor voiding all its items into the shadow realm if you broke the block with a pickaxe.
+- fixed a nasty chunk-loading lag spike with the blast compressor. if tnt blew up on a chunk border, it was force-loading unloaded chunks synchronously.
+- fixed an obscure concurrent vacuum dupe if two blast furnaces overlapped their item pickup radii.
+- fixed multiblock phantom ghosting. furnaces now actually re-verify their physical blocks exist so you can't run them floating in mid-air.
+- fixed pumpjack memory leak. overriding remove() instead of setRemoved() meant contraptions never disassembled on chunk unload and just leaked memory forever.
+- fixed cross-structure hatch theft where an orphaned hatch could secretly siphon slag from a completely different furnace nearby.
+- swapped manual O(N) player distance checks in the multiblock sync loop for native level.sendBlockUpdated() to save server TPS.
+- added entityInside to live wires so you actually get shocked if you walk through them, not just if you stand directly on top.
+- fixed a startup crash risk in FOPartialModels.
 
-machinery & power grid:
-* added the hyper blaze burner for endgame heat
-* added all the substation blocks: circuit breakers, large switches, logic panels
-* added all the power gen components: stator cores, rotor cores, permanent magnets, copper coils
-* added transformer casings and large electric motors
-* added airtight gas tanks and heavy turbine pumps have fun writing the pressure math for those lol
-
-materials & chemistry:
-* hooked up wire cutting recipes on the mechanical saw for copper, gold, and silver wires
-* spongy iron primitive steel now comes from mixing raw iron and coal in a heated basin 
-* added bedrock alloy u get it by superheating obsidian and chromatic compound
-* fully implemented niko pancakes and maple syrup, plus biofuel pellets for early game burning
-* duralumin alloying is fully working
-* added rubber and resin washing and mixing 
-* bauxite ore now crushes to dust, mixes to alumina bayer process, and then smelts into aluminum 
-* graphite is now raw graphite into crushes to dust into smelts into actual graphite
-
-the endgame pipelines good luck speedrunning this:
-* hardcore silicon and pcbs: quartz and coal into metallurgical silicon into purified with turpentine into purified silicon into pressed superheated into silicon boule into cut on saw into silicon wafers. PLUS u have to sandpaper polish the wafers before u can use them to craft capacitors, transistors, and printed circuit boards PCBs
-* hardcore nuclear: crush raw uranium into crush or wash into yellowcake into mix with fluorite to get uranium hexafluoride into spin it in crushing wheels acting like a gas centrifuge to extract enriched uranium pellets into blast into uranium ingots
-* pro tip: u can get fluorite by haunting quartz in front of a soul campfire
-
-ART BACKLOG FOR THE ARTIST:
-im too dead to make textures rn so here is a massive list of stuff that needs art i pointed the 3d blocks to steel temporarily so it doesnt look like pink and black missing texture vomit:
-
-block models and textures:
-* transformer_casing, large_electric_motor, airtight_gas_tank, turbine_pump, graphite_ore and deepslate variant
-
-item sprites:
-* wires: copper_wire, gold_wire, silver_wire
-* pcb stuff: silicon_boule, silicon_wafer, polished_silicon_wafer, capacitor, transistor, printed_circuit_board
-* silicon pipeline: raw_silicon, purified_silicon
-* nuclear pipeline: crushed_raw_uranium, yellowcake, fluorite, uranium_hexafluoride, enriched_uranium_pellet, uranium_rod, control_rod
-* dusts & alloys: bedrock_alloy_ingot, alumina_dust, raw_graphite, graphite_dust
+basically i messed up and fixed it

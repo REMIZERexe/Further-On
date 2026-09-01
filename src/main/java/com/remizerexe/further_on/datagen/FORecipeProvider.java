@@ -290,6 +290,7 @@ public class FORecipeProvider extends RecipeProvider {
         GENERATORS.add(new FOPolishingRecipeGen(output, registries));
         GENERATORS.add(new FOPressingRecipeGen(output, registries));
         GENERATORS.add(new FOWashingRecipeGen(output, registries));
+        GENERATORS.add(new com.remizerexe.further_on.datagen.recipes.FOBlastCompressingRecipeGen(output, registries));
 
         gen.addProvider(true, new DataProvider() {
             @Override

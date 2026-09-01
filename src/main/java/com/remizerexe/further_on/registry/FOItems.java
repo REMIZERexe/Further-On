@@ -62,6 +62,10 @@ public class FOItems {
             .burnTime(3200)
             .register();
 
+    public static final ItemEntry<Item> slag = REGISTRATE.item("slag", Item::new)
+            .lang("Slag")
+            .register();
+
     // TODO: dumping these here bc idk where else to put them rn
     public static final ItemEntry<Item> welding_goggles = REGISTRATE.item("welding_mask", Item::new)
             .lang("Welding Mask") 
@@ -70,6 +74,16 @@ public class FOItems {
     public static final ItemEntry<Item> welding_torch_item = REGISTRATE.item("welding_torch", Item::new)
             .lang("Welding Torch")
             // FIXME: bruh how do i add durability to this
+            .register();
+
+    public static final ItemEntry<com.remizerexe.further_on.content.build_gun.BuildGunItem> build_gun = REGISTRATE.item("build_gun", com.remizerexe.further_on.content.build_gun.BuildGunItem::new)
+            .lang("Architect's Build Gun")
+            .properties(p -> p.stacksTo(1)) // Handheld schematic cannon upgrade!
+            .register();
+
+    public static final ItemEntry<com.remizerexe.further_on.content.equipment.HazardBootsItem> hazard_boots = REGISTRATE.item("hazard_boots", com.remizerexe.further_on.content.equipment.HazardBootsItem::new)
+            .lang("Rubber Hazard Boots")
+            .properties(p -> p.stacksTo(1)) // insulated boots!
             .register();
 
     public static final ItemEntry<Item> niko_pancakes = REGISTRATE.item("pancakes", Item::new)

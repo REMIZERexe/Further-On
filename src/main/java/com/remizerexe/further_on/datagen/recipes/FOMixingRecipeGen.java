@@ -64,13 +64,6 @@ public class FOMixingRecipeGen extends MixingRecipeGen {
             .requiresHeat(com.simibubi.create.content.processing.recipe.HeatCondition.HEATED) // UF6 conversion process
     );
 
-    public GeneratedRecipe BEDROCK_ALLOY = create("bedrock_alloy", b -> b
-            .require(net.minecraft.world.item.Items.OBSIDIAN)
-            .require(com.simibubi.create.AllItems.CHROMATIC_COMPOUND.get())
-            .require(com.remizerexe.further_on.registry.FOItems.STRUCTURAL_STEEL.get())
-            .output(com.remizerexe.further_on.registry.FOItems.bedrock_alloy_ingot, 1)
-            .requiresHeat(com.simibubi.create.content.processing.recipe.HeatCondition.SUPERHEATED)
-    );
 
     public GeneratedRecipe ALUMINA_DUST = create("alumina_dust", b -> b
             .require(com.remizerexe.further_on.registry.FOItems.BAUXITE_DUST.get())

@@ -32,7 +32,7 @@ public class FOBlocks {
             REGISTRATE.block("pumpjack_rotation_axle", PumpjackRotationAxleBlock::new)
                     .lang("Pumpjack Rotation Axle")
                     .blockstate((ctx, prov) -> {})
-                    .properties(c -> c.sound(SoundType.METAL))
+                    .properties(c -> c.sound(SoundType.METAL).strength(3.0f, 6.0f))
                     .simpleItem()
                     .register();
 
@@ -42,7 +42,7 @@ public class FOBlocks {
                     .blockstate((ctx, prov) -> prov.simpleBlock(ctx.get(), prov.models()
                             .cubeAll(ctx.getName(),
                                     ResourceLocation.fromNamespaceAndPath(MODID, "block/pumpjack_base"))))
-                    .properties(c -> c.sound(SoundType.METAL))
+                    .properties(c -> c.sound(SoundType.METAL).strength(3.0f, 6.0f))
                     .simpleItem()
                     .register();
 
@@ -54,7 +54,7 @@ public class FOBlocks {
                                 .withExistingParent(ctx.getName(),
                                         ResourceLocation.fromNamespaceAndPath(MODID, "block/pumpjack_rotation_axle")));
                     })
-                    .properties(c -> c.sound(SoundType.METAL))
+                    .properties(c -> c.sound(SoundType.METAL).strength(3.0f, 6.0f))
                     .simpleItem()
                     .register();
 
@@ -62,7 +62,7 @@ public class FOBlocks {
             REGISTRATE.block("pumpjack_rotation_joint", PumpjackRotationJointBlock::new)
                     .lang("Pumpjack Rotation Joint")
                     .blockstate((ctx, prov) -> {})
-                    .properties(c -> c.sound(SoundType.METAL))
+                    .properties(c -> c.sound(SoundType.METAL).strength(3.0f, 6.0f))
                     .simpleItem()
                     .register();
 
@@ -105,6 +105,7 @@ public class FOBlocks {
                         prov.horizontalBlock(ctx.get(), prov.models()
                                 .orientable("blast_furnace_hearth", textureLoc, textureLocFront, textureLoc));
                     })
+                    .properties(c -> c.sound(SoundType.STONE).strength(3.0f, 6.0f).requiresCorrectToolForDrops())
                     .simpleItem()
                     .register();
 
@@ -119,6 +120,7 @@ public class FOBlocks {
                                 ResourceLocation.fromNamespaceAndPath(MODID, "block/blast_furnace_hatch")
                         ));
                     })
+                    .properties(c -> c.sound(SoundType.METAL).strength(4.0f, 6.0f).requiresCorrectToolForDrops())
                     .simpleItem()
                     .register();
 
@@ -126,11 +128,24 @@ public class FOBlocks {
             REGISTRATE.block("industrial_pipe", com.remizerexe.further_on.content.pipes.IndustrialPipeBlock::new)
                     .lang("Industrial Pipe")
                     .blockstate((ctx, prov) -> {})
-                    .properties(c -> c.sound(SoundType.METAL).noOcclusion())
+                    .properties(c -> c.sound(SoundType.METAL).noOcclusion().strength(2.0f, 6.0f).requiresCorrectToolForDrops())
                     .item()
                     .model((ctx, prov) -> prov.withExistingParent(ctx.getName(),
                             ResourceLocation.fromNamespaceAndPath(MODID, "block/industrialpipe_core")))
                     .build()
+                    .register();
+
+    public static final BlockEntry<com.remizerexe.further_on.content.blast_compressor.BlastCompressorBlock> BLAST_COMPRESSOR =
+            REGISTRATE.block("blast_compressor", com.remizerexe.further_on.content.blast_compressor.BlastCompressorBlock::new)
+                    .lang("Blast Compressor")
+                    .blockstate((ctx, prov) -> {
+                        ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(MODID, "block/carbon_steel_block");
+                        ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
+                        prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
+                    })
+                    // Extremely high explosion resistance so it survives the blast
+                    .properties(c -> c.sound(SoundType.NETHERITE_BLOCK).explosionResistance(3600000.0F))
+                    .simpleItem()
                     .register();
 
     /*----- BLOCKS REGISTERED HERE WILL SHOW UP IN THE BUILDING TAB -----*/
@@ -147,7 +162,7 @@ public class FOBlocks {
 
                 prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
             })
-            .properties(c -> c.sound(SoundType.STONE))
+            .properties(c -> c.sound(SoundType.STONE).strength(2.0f, 6.0f))
             .simpleItem()
             .register();
     public static final BlockEntry<WallBlock> FIRE_CLAY_BRICK_WALL = REGISTRATE.block("fire_clay_brick_wall", WallBlock::new)
@@ -159,7 +174,7 @@ public class FOBlocks {
                                           prov.models().wallSide("fire_clay_brick_wall_side", textureLoc),
                                           prov.models().wallSideTall("fire_clay_brick_wall_side_tall", textureLoc));
             })
-            .properties(c -> c.sound(SoundType.STONE))
+            .properties(c -> c.sound(SoundType.STONE).strength(2.0f, 6.0f))
             .tag(BlockTags.WALLS)
             .simpleItem()
             .register();
@@ -172,7 +187,7 @@ public class FOBlocks {
                                                          prov.models().stairsInner("fire_clay_brick_stairs_inner", textureLoc, textureLoc, textureLoc),
                                                          prov.models().stairsOuter("fire_clay_brick_stairs_outer", textureLoc, textureLoc, textureLoc));
             })
-            .properties(c -> c.sound(SoundType.STONE))
+            .properties(c -> c.sound(SoundType.STONE).strength(2.0f, 6.0f))
             .tag(BlockTags.STAIRS)
             .simpleItem()
             .register();
@@ -187,7 +202,7 @@ public class FOBlocks {
 
                 prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
             })
-            .properties(c -> c.sound(SoundType.NETHERITE_BLOCK))
+            .properties(c -> c.sound(SoundType.NETHERITE_BLOCK).strength(5.0f, 1200.0f))
             .tag(net.minecraft.tags.BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/carbon_steel")), net.minecraft.tags.BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/steel")))
             .simpleItem()
             .register();
@@ -199,7 +214,7 @@ public class FOBlocks {
 
                 prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
             })
-            .properties(c -> c.sound(SoundType.NETHERITE_BLOCK))
+            .properties(c -> c.sound(SoundType.NETHERITE_BLOCK).strength(5.0f, 1200.0f))
             .tag(net.minecraft.tags.BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/structural_steel")), net.minecraft.tags.BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/steel")))
             .simpleItem()
             .register();
@@ -211,7 +226,7 @@ public class FOBlocks {
 
                 prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
             })
-            .properties(c -> c.sound(SoundType.NETHERITE_BLOCK))
+            .properties(c -> c.sound(SoundType.NETHERITE_BLOCK).strength(5.0f, 1200.0f))
             .tag(net.minecraft.tags.BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/stainless_steel")), net.minecraft.tags.BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/steel")))
             .simpleItem()
             .register();
@@ -223,7 +238,7 @@ public class FOBlocks {
 
                 prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
             })
-            .properties(c -> c.sound(SoundType.METAL))
+            .properties(c -> c.sound(SoundType.METAL).strength(3.0f, 6.0f))
             .tag(net.minecraft.tags.BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/magnesium")))
             .simpleItem()
             .register();
@@ -235,7 +250,7 @@ public class FOBlocks {
 
                 prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
             })
-            .properties(c -> c.sound(SoundType.METAL))
+            .properties(c -> c.sound(SoundType.METAL).strength(3.0f, 6.0f))
             .tag(net.minecraft.tags.BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/aluminum")))
             .simpleItem()
             .register();
@@ -247,7 +262,7 @@ public class FOBlocks {
 
                 prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
             })
-            .properties(c -> c.sound(SoundType.DEEPSLATE))
+            .properties(c -> c.sound(SoundType.DEEPSLATE).strength(3.0f, 6.0f))
             .tag(net.minecraft.tags.BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/coal_coke")))
             .simpleItem()
             .register();
@@ -259,7 +274,7 @@ public class FOBlocks {
 
                 prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
             })
-            .properties(c -> c.sound(SoundType.NETHERITE_BLOCK))
+            .properties(c -> c.sound(SoundType.NETHERITE_BLOCK).strength(5.0f, 1200.0f))
             .tag(net.minecraft.tags.BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/zirconium")))
             .simpleItem()
             .register();
@@ -275,7 +290,7 @@ public class FOBlocks {
             .simpleItem()
             .register();
 
-    public static final BlockEntry<Block> sketchy_live_wire = REGISTRATE.block("live_wire", Block::new)
+    public static final BlockEntry<com.remizerexe.further_on.content.power.LiveWireBlock> sketchy_live_wire = REGISTRATE.block("live_wire", p -> new com.remizerexe.further_on.content.power.LiveWireBlock(p, com.remizerexe.further_on.api.power.VoltageTier.HV))
             .lang("Live Wire")
             .blockstate((ctx, prov) -> {
                 ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(MODID, "block/structural_steel_block");
@@ -283,7 +298,7 @@ public class FOBlocks {
                 prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
             })
             .properties(c -> c.sound(SoundType.WOOL))
-            // FIXME: how do i make this actually damage you if u step on it? 
+            // Caution: stepping on this uninsulated HV wire will deal 6 damage per tick and cause weakness
             .simpleItem()
             .register();
 
@@ -294,7 +309,7 @@ public class FOBlocks {
                 ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
                 prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
             })
-            .properties(c -> c.sound(SoundType.METAL))
+            .properties(c -> c.sound(SoundType.METAL).strength(3.0f, 6.0f))
             .simpleItem()
             .register();
 
@@ -305,7 +320,7 @@ public class FOBlocks {
                 ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
                 prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
             })
-            .properties(c -> c.sound(SoundType.METAL))
+            .properties(c -> c.sound(SoundType.METAL).strength(3.0f, 6.0f))
             .simpleItem()
             .register();
 
@@ -316,7 +331,7 @@ public class FOBlocks {
                 ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
                 prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
             })
-            .properties(c -> c.sound(SoundType.METAL))
+            .properties(c -> c.sound(SoundType.METAL).strength(3.0f, 6.0f))
             .simpleItem()
             .register();
 
@@ -338,7 +353,7 @@ public class FOBlocks {
                 ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
                 prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
             })
-            .properties(c -> c.sound(SoundType.METAL))
+            .properties(c -> c.sound(SoundType.METAL).strength(3.0f, 6.0f))
             .tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE)
             .simpleItem()
             .register();
@@ -350,7 +365,7 @@ public class FOBlocks {
                 ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
                 prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
             })
-            .properties(c -> c.sound(SoundType.METAL))
+            .properties(c -> c.sound(SoundType.METAL).strength(3.0f, 6.0f))
             .tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE)
             .simpleItem()
             .register();
@@ -362,7 +377,7 @@ public class FOBlocks {
                 ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
                 prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
             })
-            .properties(c -> c.sound(SoundType.METAL))
+            .properties(c -> c.sound(SoundType.METAL).strength(3.0f, 6.0f))
             .tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE)
             .simpleItem()
             .register();
@@ -374,7 +389,7 @@ public class FOBlocks {
                 ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
                 prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
             })
-            .properties(c -> c.sound(SoundType.NETHERITE_BLOCK))
+            .properties(c -> c.sound(SoundType.NETHERITE_BLOCK).strength(5.0f, 1200.0f))
             .tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE, net.minecraft.tags.BlockTags.NEEDS_DIAMOND_TOOL)
             .simpleItem()
             .register();
@@ -386,7 +401,7 @@ public class FOBlocks {
                 ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
                 prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
             })
-            .properties(c -> c.sound(SoundType.NETHERITE_BLOCK))
+            .properties(c -> c.sound(SoundType.NETHERITE_BLOCK).strength(5.0f, 1200.0f))
             .tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE, net.minecraft.tags.BlockTags.NEEDS_IRON_TOOL, net.minecraft.tags.BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", "storage_blocks/uranium")))
             .simpleItem()
             .register();
@@ -398,7 +413,7 @@ public class FOBlocks {
                 ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
                 prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
             })
-            .properties(c -> c.sound(SoundType.NETHERITE_BLOCK))
+            .properties(c -> c.sound(SoundType.NETHERITE_BLOCK).strength(5.0f, 1200.0f))
             .tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE, net.minecraft.tags.BlockTags.NEEDS_IRON_TOOL)
             .simpleItem()
             .register();
@@ -423,7 +438,7 @@ public class FOBlocks {
                 ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
                 prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
             })
-            .properties(c -> c.sound(SoundType.STONE))
+            .properties(c -> c.sound(SoundType.STONE).strength(2.0f, 6.0f))
             .tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE, net.minecraft.tags.BlockTags.NEEDS_IRON_TOOL, net.minecraft.tags.BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", "ores/uranium")), net.minecraft.tags.BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", "ores")))
             .loot((lt, b) -> lt.add(b, lt.createOreDrop(b, com.remizerexe.further_on.registry.FOItems.RAW_URANIUM.get())))
             .simpleItem()
@@ -436,7 +451,7 @@ public class FOBlocks {
                 ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
                 prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
             })
-            .properties(c -> c.sound(SoundType.DEEPSLATE))
+            .properties(c -> c.sound(SoundType.DEEPSLATE).strength(3.0f, 6.0f))
             .tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE, net.minecraft.tags.BlockTags.NEEDS_IRON_TOOL, net.minecraft.tags.BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", "ores/uranium")), net.minecraft.tags.BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", "ores")))
             .loot((lt, b) -> lt.add(b, lt.createOreDrop(b, com.remizerexe.further_on.registry.FOItems.RAW_URANIUM.get())))
             .simpleItem()
@@ -450,7 +465,7 @@ public class FOBlocks {
 
                 prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
             })
-            .properties(c -> c.sound(SoundType.DEEPSLATE))
+            .properties(c -> c.sound(SoundType.DEEPSLATE).strength(3.0f, 6.0f))
             .tag(net.minecraft.tags.BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", "ores/bauxite")), net.minecraft.tags.BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", "ores")))
             .simpleItem()
             .register();
@@ -476,7 +491,7 @@ public class FOBlocks {
                 ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
                 prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
             })
-            .properties(c -> c.sound(SoundType.STONE))
+            .properties(c -> c.sound(SoundType.STONE).strength(2.0f, 6.0f))
             .tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE, net.minecraft.tags.BlockTags.NEEDS_IRON_TOOL, net.minecraft.tags.BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", "ores/graphite")), net.minecraft.tags.BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", "ores")))
             .loot((lt, b) -> lt.add(b, lt.createOreDrop(b, com.remizerexe.further_on.registry.FOItems.raw_graphite.get())))
             .simpleItem()
@@ -503,7 +518,7 @@ public class FOBlocks {
                 ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
                 prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
             })
-            .properties(c -> c.sound(SoundType.METAL))
+            .properties(c -> c.sound(SoundType.METAL).strength(3.0f, 6.0f))
             .tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE, net.minecraft.tags.BlockTags.NEEDS_IRON_TOOL)
             .simpleItem()
             .register();
@@ -515,7 +530,7 @@ public class FOBlocks {
                 ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
                 prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
             })
-            .properties(c -> c.sound(SoundType.METAL))
+            .properties(c -> c.sound(SoundType.METAL).strength(3.0f, 6.0f))
             .tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE, net.minecraft.tags.BlockTags.NEEDS_IRON_TOOL)
             .simpleItem()
             .register();
@@ -528,7 +543,7 @@ public class FOBlocks {
                 ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
                 prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
             })
-            .properties(c -> c.sound(SoundType.METAL))
+            .properties(c -> c.sound(SoundType.METAL).strength(3.0f, 6.0f))
             .tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE, net.minecraft.tags.BlockTags.NEEDS_IRON_TOOL)
             .simpleItem()
             .register();
@@ -540,13 +555,11 @@ public class FOBlocks {
                 ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
                 prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
             })
-            .properties(c -> c.sound(SoundType.METAL))
+            .properties(c -> c.sound(SoundType.METAL).strength(3.0f, 6.0f))
             .tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE, net.minecraft.tags.BlockTags.NEEDS_IRON_TOOL)
             .simpleItem()
             .register();
 
-    public static void register() {
-    }
     /*----- BLOCKS REGISTERED HERE WILL NOT SHOW UP IN ANY TAB -----*/
     static {
         REGISTRATE.setCreativeTab(null);
