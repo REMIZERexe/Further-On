@@ -77,6 +77,8 @@ public class BlastFurnaceHearthBlockEntity extends MultiblockControllerBE
 
         int layersBefore = accumulatedLayers;
 
+        currentRPM = readFanRPM();
+
         scanForDroppedItems();
 
         if (currentRPM > 0 && accumulatedLayers > 0 && hasEnoughInputs()) {
@@ -85,7 +87,7 @@ public class BlastFurnaceHearthBlockEntity extends MultiblockControllerBE
 
             if (processingProgress >= 1.0f) {
                 processingProgress = 0f;
-                processOneBatch();
+                processCycle();
             }
         }
 
@@ -119,22 +121,26 @@ public class BlastFurnaceHearthBlockEntity extends MultiblockControllerBE
                 && calcite.is(Items.CALCITE) && calcite.getCount() >= (1 * batches); 
     }
 
-    private void processOneBatch() {
-        // BUG FIX: Unsafely calling shrink() on the raw stack can cause ghost item desyncs.
-        // Use the native extractItem API to guarantee inventory synchronization across client/server.
-        inputInventory.extractItem(0, COAL_PER_LAYER, false);
-        inputInventory.extractItem(1, IRON_PER_LAYER, false);
-        inputInventory.extractItem(2, 1, false);
+    /**
+     * Processes one full cycle. A taller furnace (more capacity layers) smelts
+     * more batches per cycle — hasEnoughInputs() guarantees the same batch
+     * count of inputs and output space before this runs.
+     */
+    private void processCycle() {
+        int batches = 1 + capacityLayers;
+
+        inputInventory.extractItem(0, COAL_PER_LAYER * batches, false);
+        inputInventory.extractItem(1, IRON_PER_LAYER * batches, false);
+        inputInventory.extractItem(2, batches, false);
 
         FluidStack steelFluid = new FluidStack(
-                FOFluids.MOLTEN_STEEL_STILL.get(), STEEL_MB_PER_BATCH);
+                FOFluids.MOLTEN_STEEL_STILL.get(), STEEL_MB_PER_BATCH * batches);
         steelTank.fill(steelFluid, IFluidHandler.FluidAction.EXECUTE);
 
-        // BUG FIX: Same stack overflow crash potential here for the byproduct.
-        ItemStack slagOutput = new ItemStack(com.remizerexe.further_on.registry.FOItems.slag.get(), SLAG_PER_LAYER);
+        ItemStack slagOutput = new ItemStack(com.remizerexe.further_on.registry.FOItems.slag.get(), SLAG_PER_LAYER * batches);
         slagInventory.insertItem(0, slagOutput, false);
 
-        accumulatedLayers = Math.max(0, accumulatedLayers - 1);
+        accumulatedLayers = Math.max(0, accumulatedLayers - batches);
         setChanged();
     }
 
