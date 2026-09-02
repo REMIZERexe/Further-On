@@ -1,22 +1,112 @@
 {
-	"loader": "neoforge:separate_transforms",
-	"gui_light": "front",
-	"overrides": [
+	"format_version": "1.21.11",
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "further_on:item/welding_mask",
+		"particle": "further_on:item/welding_mask"
+	},
+	"elements": [
 		{
-			"predicate": { "further_on:open": 1 },
-			"model": "further_on:item/welding_mask_open"
+			"name": "shield",
+			"from": [1, 1, -1],
+			"to": [15, 15, 1],
+			"faces": {
+				"north": {"uv": [0, 0, 7, 7], "texture": "#0"},
+				"east": {"uv": [0, 0, 0.5, 7], "texture": "#0"},
+				"south": {"uv": [0, 7, 7, 14], "texture": "#0"},
+				"west": {"uv": [6.5, 0, 7, 7], "texture": "#0"},
+				"up": {"uv": [0, 0, 7, 0.5], "texture": "#0"},
+				"down": {"uv": [0, 6.5, 7, 7], "texture": "#0"}
+			}
+		},
+		{
+			"name": "visor",
+			"from": [3, 5, -1],
+			"to": [13, 10, 1],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, -1, 1]},
+			"faces": {
+				"north": {"uv": [8, 0, 15, 3], "texture": "#0"},
+				"east": {"uv": [8, 0, 8.5, 3], "texture": "#0"},
+				"south": {"uv": [8, 0, 15, 3], "texture": "#0"},
+				"west": {"uv": [14.5, 0, 15, 3], "texture": "#0"},
+				"up": {"uv": [8, 0, 15, 0.5], "texture": "#0"},
+				"down": {"uv": [8, 2.5, 15, 3], "texture": "#0"}
+			}
+		},
+		{
+			"name": "strap_left",
+			"from": [14, 10, 1],
+			"to": [15, 12, 15],
+			"faces": {
+				"north": {"uv": [8, 4, 9, 5], "texture": "#0"},
+				"east": {"uv": [8, 4, 13, 5], "texture": "#0"},
+				"south": {"uv": [8, 4, 9, 5], "texture": "#0"},
+				"west": {"uv": [8, 4, 13, 5], "texture": "#0"},
+				"up": {"uv": [8, 4, 13, 5], "texture": "#0"},
+				"down": {"uv": [8, 4, 13, 5], "texture": "#0"}
+			}
+		},
+		{
+			"name": "strap_right",
+			"from": [1, 10, 1],
+			"to": [2, 12, 15],
+			"faces": {
+				"north": {"uv": [8, 4, 9, 5], "texture": "#0"},
+				"east": {"uv": [8, 4, 13, 5], "texture": "#0"},
+				"south": {"uv": [8, 4, 9, 5], "texture": "#0"},
+				"west": {"uv": [8, 4, 13, 5], "texture": "#0"},
+				"up": {"uv": [8, 4, 13, 5], "texture": "#0"},
+				"down": {"uv": [8, 4, 13, 5], "texture": "#0"}
+			}
+		},
+		{
+			"name": "strap_back",
+			"from": [2, 10, 14],
+			"to": [14, 12, 15],
+			"faces": {
+				"north": {"uv": [8, 4, 13, 5], "texture": "#0"},
+				"east": {"uv": [8, 4, 9, 5], "texture": "#0"},
+				"south": {"uv": [8, 4, 13, 5], "texture": "#0"},
+				"west": {"uv": [8, 4, 9, 5], "texture": "#0"},
+				"up": {"uv": [8, 4, 13, 5], "texture": "#0"},
+				"down": {"uv": [8, 4, 13, 5], "texture": "#0"}
+			}
 		}
 	],
-	"base": {
-		"parent": "further_on:item/welding_mask_3d"
-	},
-	"perspectives": {
-		"firstperson_righthand": { "parent": "further_on:item/welding_mask_2d" },
-		"firstperson_lefthand": { "parent": "further_on:item/welding_mask_2d" },
-		"thirdperson_righthand": { "parent": "further_on:item/welding_mask_2d" },
-		"thirdperson_lefthand": { "parent": "further_on:item/welding_mask_2d" },
-		"gui": { "parent": "further_on:item/welding_mask_2d" },
-		"ground": { "parent": "further_on:item/welding_mask_2d" },
-		"fixed": { "parent": "further_on:item/welding_mask_2d" }
+	"overrides": [
+		{"predicate": {"further_on:open": 1}, "model": "further_on:item/welding_mask_open"}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [65, -177, 6],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [75, -135, 0],
+			"translation": [0, 2.5, 0],
+			"scale": [0.375, 0.375, 0.375]
+		},
+		"firstperson_righthand": {
+			"rotation": [0, -18, 0],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"firstperson_lefthand": {
+			"rotation": [0, -1, 0],
+			"translation": [0, 0, 1.25],
+			"scale": [0.4, 0.4, 0.4]
+		},
+		"ground": {
+			"translation": [0, 3, 0],
+			"scale": [0.25, 0.25, 0.25]
+		},
+		"gui": {
+			"rotation": [30, -135, 0],
+			"scale": [0.625, 0.625, 0.625]
+		},
+		"fixed": {
+			"rotation": [0, -180, 0],
+			"scale": [0.5, 0.5, 0.5]
+		}
 	}
 }
