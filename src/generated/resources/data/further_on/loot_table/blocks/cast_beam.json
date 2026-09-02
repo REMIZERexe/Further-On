@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:air"
+          "name": "further_on:cast_beam"
         }
       ],
       "rolls": 1.0

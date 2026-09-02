@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "S": {
+      "item": "further_on:structural_steel"
+    },
+    "U": {
+      "item": "further_on:uranium"
+    }
+  },
+  "pattern": [
+    " U ",
+    " S ",
+    " U "
+  ],
+  "result": {
+    "count": 1,
+    "id": "further_on:uranium_rod"
+  }
+}

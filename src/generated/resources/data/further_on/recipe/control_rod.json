@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "S": {
+      "item": "further_on:structural_steel"
+    },
+    "Z": {
+      "item": "further_on:zirconium"
+    }
+  },
+  "pattern": [
+    " Z ",
+    " S ",
+    " Z "
+  ],
+  "result": {
+    "count": 1,
+    "id": "further_on:control_rod"
+  }
+}

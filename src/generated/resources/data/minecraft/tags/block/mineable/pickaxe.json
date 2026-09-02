@@ -1,0 +1,19 @@
+{
+  "values": [
+    "further_on:circuit_breaker",
+    "further_on:large_switch",
+    "further_on:logic_panel",
+    "further_on:hyper_blaze_burner",
+    "further_on:uranium_block",
+    "further_on:reactor_casing",
+    "further_on:reactor_glass",
+    "further_on:uranium_ore",
+    "further_on:deepslate_uranium_ore",
+    "further_on:graphite_ore",
+    "further_on:deepslate_graphite_ore",
+    "further_on:airtight_gas_tank",
+    "further_on:turbine_pump",
+    "further_on:transformer_casing",
+    "further_on:large_electric_motor"
+  ]
+}

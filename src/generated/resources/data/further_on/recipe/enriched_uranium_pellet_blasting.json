@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 1.0,
+  "ingredient": {
+    "item": "further_on:enriched_uranium_pellet"
+  },
+  "result": {
+    "count": 1,
+    "id": "further_on:uranium"
+  }
+}

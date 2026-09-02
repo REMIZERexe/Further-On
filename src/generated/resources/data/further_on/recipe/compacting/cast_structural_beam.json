@@ -1,0 +1,18 @@
+{
+  "type": "create:compacting",
+  "ingredients": [
+    {
+      "item": "further_on:fire_clay_ball"
+    },
+    {
+      "type": "neoforge:single",
+      "amount": 810,
+      "fluid": "further_on:molten_steel"
+    }
+  ],
+  "results": [
+    {
+      "id": "further_on:cast_beam"
+    }
+  ]
+}

@@ -1,5 +1,8 @@
 {
   "values": {
+    "further_on:biofuel_pellet": {
+      "burn_time": 1600
+    },
     "further_on:coke": {
       "burn_time": 3200
     }

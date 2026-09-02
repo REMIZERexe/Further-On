@@ -1,0 +1,14 @@
+{
+  "type": "create:compacting",
+  "heat_requirement": "superheated",
+  "ingredients": [
+    {
+      "item": "further_on:purified_silicon"
+    }
+  ],
+  "results": [
+    {
+      "id": "further_on:silicon_boule"
+    }
+  ]
+}

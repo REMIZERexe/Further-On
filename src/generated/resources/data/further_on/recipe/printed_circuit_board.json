@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "further_on:capacitor"
+    },
+    "G": {
+      "item": "further_on:gold_wire"
+    },
+    "S": {
+      "item": "further_on:polished_silicon_wafer"
+    },
+    "T": {
+      "item": "further_on:transistor"
+    },
+    "W": {
+      "item": "further_on:copper_wire"
+    }
+  },
+  "pattern": [
+    "GCG",
+    "SWS",
+    "WTW"
+  ],
+  "result": {
+    "count": 1,
+    "id": "further_on:printed_circuit_board"
+  }
+}

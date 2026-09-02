@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "item": "minecraft:iron_block"
+    },
+    "M": {
+      "item": "further_on:permanent_magnet"
+    }
+  },
+  "pattern": [
+    " M ",
+    "MIM",
+    " M "
+  ],
+  "result": {
+    "count": 1,
+    "id": "further_on:stator_core"
+  }
+}
