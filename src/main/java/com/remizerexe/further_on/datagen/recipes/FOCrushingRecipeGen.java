@@ -23,12 +23,6 @@ public class FOCrushingRecipeGen extends CrushingRecipeGen {
             .output(0.25f, net.minecraft.world.item.Items.SAND, 1)
     );
 
-    public GeneratedRecipe BAUXITE_ORE = create(() -> com.remizerexe.further_on.registry.FOBlocks.BAUXITE.get(), b -> b
-            .duration(300)
-            .output(com.remizerexe.further_on.registry.FOItems.BAUXITE_DUST.get(), 1)
-            .output(0.5f, com.remizerexe.further_on.registry.FOItems.BAUXITE_DUST.get(), 1)
-    );
-
     public GeneratedRecipe COAL = create(() -> net.minecraft.world.item.Items.COAL, b -> b
             .duration(250)
             .output(com.remizerexe.further_on.registry.FOItems.COKE.get(), 1)

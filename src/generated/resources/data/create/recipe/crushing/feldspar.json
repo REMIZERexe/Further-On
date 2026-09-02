@@ -1,0 +1,22 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "further_on:feldspar"
+    }
+  ],
+  "processing_time": 250,
+  "results": [
+    {
+      "id": "further_on:bauxite_dust"
+    },
+    {
+      "chance": 0.5,
+      "id": "further_on:bauxite_dust"
+    },
+    {
+      "chance": 0.25,
+      "id": "minecraft:sand"
+    }
+  ]
+}

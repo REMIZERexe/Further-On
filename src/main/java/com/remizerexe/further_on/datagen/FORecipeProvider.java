@@ -61,7 +61,7 @@ public class FORecipeProvider extends RecipeProvider {
                 .define('W', com.remizerexe.further_on.registry.FOItems.copper_wire.get())
                 .define('I', net.minecraft.world.item.Items.IRON_INGOT)
                 .unlockedBy("has_copper_wire", has(com.remizerexe.further_on.registry.FOItems.copper_wire.get()))
-                .save(recipeOutput, com.remizerexe.further_on.FurtherOn.MODID + ":copper_coil");
+                .save(recipeOutput);
 
         net.minecraft.data.recipes.ShapedRecipeBuilder.shaped(net.minecraft.data.recipes.RecipeCategory.MISC, com.remizerexe.further_on.registry.FOItems.permanent_magnet.get())
                 .pattern(" R ")
@@ -70,7 +70,7 @@ public class FORecipeProvider extends RecipeProvider {
                 .define('R', net.minecraft.world.item.Items.REDSTONE)
                 .define('I', net.minecraft.world.item.Items.IRON_INGOT)
                 .unlockedBy("has_redstone", has(net.minecraft.world.item.Items.REDSTONE))
-                .save(recipeOutput, com.remizerexe.further_on.FurtherOn.MODID + ":permanent_magnet");
+                .save(recipeOutput);
 
         net.minecraft.data.recipes.ShapedRecipeBuilder.shaped(net.minecraft.data.recipes.RecipeCategory.MISC, com.remizerexe.further_on.registry.FOItems.stator_core.get())
                 .pattern(" M ")
@@ -79,7 +79,7 @@ public class FORecipeProvider extends RecipeProvider {
                 .define('M', com.remizerexe.further_on.registry.FOItems.permanent_magnet.get())
                 .define('I', net.minecraft.world.item.Items.IRON_BLOCK)
                 .unlockedBy("has_magnet", has(com.remizerexe.further_on.registry.FOItems.permanent_magnet.get()))
-                .save(recipeOutput, com.remizerexe.further_on.FurtherOn.MODID + ":stator_core");
+                .save(recipeOutput);
 
         net.minecraft.data.recipes.ShapedRecipeBuilder.shaped(net.minecraft.data.recipes.RecipeCategory.MISC, com.remizerexe.further_on.registry.FOItems.rotor_core.get())
                 .pattern(" C ")
@@ -88,7 +88,7 @@ public class FORecipeProvider extends RecipeProvider {
                 .define('C', com.remizerexe.further_on.registry.FOItems.copper_coil.get())
                 .define('I', net.minecraft.world.item.Items.IRON_BLOCK)
                 .unlockedBy("has_coil", has(com.remizerexe.further_on.registry.FOItems.copper_coil.get()))
-                .save(recipeOutput, com.remizerexe.further_on.FurtherOn.MODID + ":rotor_core");
+                .save(recipeOutput);
 
         // Substation & Logic Blocks
         net.minecraft.data.recipes.ShapedRecipeBuilder.shaped(net.minecraft.data.recipes.RecipeCategory.REDSTONE, com.remizerexe.further_on.registry.FOBlocks.circuit_breaker.get())
@@ -99,7 +99,7 @@ public class FORecipeProvider extends RecipeProvider {
                 .define('C', com.remizerexe.further_on.registry.FOItems.copper_coil.get())
                 .define('R', net.minecraft.world.item.Items.REDSTONE)
                 .unlockedBy("has_steel", has(com.remizerexe.further_on.registry.FOItems.STRUCTURAL_STEEL.get()))
-                .save(recipeOutput, com.remizerexe.further_on.FurtherOn.MODID + ":circuit_breaker");
+                .save(recipeOutput);
 
         net.minecraft.data.recipes.ShapedRecipeBuilder.shaped(net.minecraft.data.recipes.RecipeCategory.REDSTONE, com.remizerexe.further_on.registry.FOBlocks.large_switch.get())
                 .pattern(" L ")
@@ -108,7 +108,7 @@ public class FORecipeProvider extends RecipeProvider {
                 .define('L', net.minecraft.world.item.Items.LEVER)
                 .define('S', com.remizerexe.further_on.registry.FOItems.STRUCTURAL_STEEL.get())
                 .unlockedBy("has_steel", has(com.remizerexe.further_on.registry.FOItems.STRUCTURAL_STEEL.get()))
-                .save(recipeOutput, com.remizerexe.further_on.FurtherOn.MODID + ":large_switch");
+                .save(recipeOutput);
 
         net.minecraft.data.recipes.ShapedRecipeBuilder.shaped(net.minecraft.data.recipes.RecipeCategory.REDSTONE, com.remizerexe.further_on.registry.FOBlocks.logic_panel.get())
                 .pattern("SSS")
@@ -117,7 +117,7 @@ public class FORecipeProvider extends RecipeProvider {
                 .define('S', com.remizerexe.further_on.registry.FOItems.STAINLESS_STEEL.get())
                 .define('R', net.minecraft.world.item.Items.REDSTONE)
                 .unlockedBy("has_steel", has(com.remizerexe.further_on.registry.FOItems.STAINLESS_STEEL.get()))
-                .save(recipeOutput, com.remizerexe.further_on.FurtherOn.MODID + ":logic_panel");
+                .save(recipeOutput);
 
         net.minecraft.data.recipes.ShapedRecipeBuilder.shaped(net.minecraft.data.recipes.RecipeCategory.MISC, com.remizerexe.further_on.registry.FOBlocks.hyper_blaze_burner.get())
                 .pattern(" C ")
@@ -126,7 +126,7 @@ public class FORecipeProvider extends RecipeProvider {
                 .define('C', com.remizerexe.further_on.registry.FOBlocks.CARBON_STEEL_BLOCK.get())
                 .define('B', com.simibubi.create.AllItems.EMPTY_BLAZE_BURNER.get())
                 .unlockedBy("has_burner", has(com.simibubi.create.AllItems.EMPTY_BLAZE_BURNER.get()))
-                .save(recipeOutput, com.remizerexe.further_on.FurtherOn.MODID + ":hyper_blaze_burner");
+                .save(recipeOutput);
 
         // Nuclear Crafting
         net.minecraft.data.recipes.ShapedRecipeBuilder.shaped(net.minecraft.data.recipes.RecipeCategory.MISC, com.remizerexe.further_on.registry.FOItems.uranium_rod.get())
@@ -136,7 +136,7 @@ public class FORecipeProvider extends RecipeProvider {
                 .define('U', com.remizerexe.further_on.registry.FOItems.URANIUM.get())
                 .define('S', com.remizerexe.further_on.registry.FOItems.STRUCTURAL_STEEL.get())
                 .unlockedBy("has_uranium", has(com.remizerexe.further_on.registry.FOItems.URANIUM.get()))
-                .save(recipeOutput, com.remizerexe.further_on.FurtherOn.MODID + ":uranium_rod");
+                .save(recipeOutput);
 
         net.minecraft.data.recipes.ShapedRecipeBuilder.shaped(net.minecraft.data.recipes.RecipeCategory.MISC, com.remizerexe.further_on.registry.FOItems.control_rod.get())
                 .pattern(" Z ")
@@ -145,7 +145,7 @@ public class FORecipeProvider extends RecipeProvider {
                 .define('Z', com.remizerexe.further_on.registry.FOItems.ZIRCONIUM.get())
                 .define('S', com.remizerexe.further_on.registry.FOItems.STRUCTURAL_STEEL.get())
                 .unlockedBy("has_zirconium", has(com.remizerexe.further_on.registry.FOItems.ZIRCONIUM.get()))
-                .save(recipeOutput, com.remizerexe.further_on.FurtherOn.MODID + ":control_rod");
+                .save(recipeOutput);
 
         net.minecraft.data.recipes.ShapedRecipeBuilder.shaped(net.minecraft.data.recipes.RecipeCategory.MISC, com.remizerexe.further_on.registry.FOBlocks.reactor_casing.get(), 4)
                 .pattern("ZSZ")
@@ -155,7 +155,7 @@ public class FORecipeProvider extends RecipeProvider {
                 .define('S', com.remizerexe.further_on.registry.FOBlocks.STRUCTURAL_STEEL_BLOCK.get())
                 .define('C', com.remizerexe.further_on.registry.FOItems.copper_coil.get())
                 .unlockedBy("has_zirconium", has(com.remizerexe.further_on.registry.FOBlocks.ZIRCONIUM_BLOCK.get()))
-                .save(recipeOutput, com.remizerexe.further_on.FurtherOn.MODID + ":reactor_casing");
+                .save(recipeOutput);
 
         net.minecraft.data.recipes.ShapedRecipeBuilder.shaped(net.minecraft.data.recipes.RecipeCategory.MISC, com.remizerexe.further_on.registry.FOBlocks.reactor_glass.get(), 2)
                 .pattern(" G ")
@@ -164,7 +164,7 @@ public class FORecipeProvider extends RecipeProvider {
                 .define('G', net.minecraft.world.item.Items.GLASS)
                 .define('C', com.remizerexe.further_on.registry.FOBlocks.reactor_casing.get())
                 .unlockedBy("has_casing", has(com.remizerexe.further_on.registry.FOBlocks.reactor_casing.get()))
-                .save(recipeOutput, com.remizerexe.further_on.FurtherOn.MODID + ":reactor_glass");
+                .save(recipeOutput);
 
         // Gas Storage & Logistics
         net.minecraft.data.recipes.ShapedRecipeBuilder.shaped(net.minecraft.data.recipes.RecipeCategory.MISC, com.remizerexe.further_on.registry.FOBlocks.airtight_gas_tank.get())
@@ -174,7 +174,7 @@ public class FORecipeProvider extends RecipeProvider {
                 .define('S', com.remizerexe.further_on.registry.FOItems.STAINLESS_STEEL.get())
                 .define('G', net.minecraft.world.item.Items.GLASS)
                 .unlockedBy("has_steel", has(com.remizerexe.further_on.registry.FOItems.STAINLESS_STEEL.get()))
-                .save(recipeOutput, com.remizerexe.further_on.FurtherOn.MODID + ":airtight_gas_tank");
+                .save(recipeOutput);
 
         net.minecraft.data.recipes.ShapedRecipeBuilder.shaped(net.minecraft.data.recipes.RecipeCategory.MISC, com.remizerexe.further_on.registry.FOBlocks.turbine_pump.get())
                 .pattern(" S ")
@@ -184,7 +184,7 @@ public class FORecipeProvider extends RecipeProvider {
                 .define('P', com.simibubi.create.AllBlocks.MECHANICAL_PUMP.get())
                 .define('T', com.remizerexe.further_on.registry.FOItems.tungsten_ingot.get())
                 .unlockedBy("has_pump", has(com.simibubi.create.AllBlocks.MECHANICAL_PUMP.get()))
-                .save(recipeOutput, com.remizerexe.further_on.FurtherOn.MODID + ":turbine_pump");
+                .save(recipeOutput);
 
         // Electrical Network
         net.minecraft.data.recipes.ShapedRecipeBuilder.shaped(net.minecraft.data.recipes.RecipeCategory.MISC, com.remizerexe.further_on.registry.FOBlocks.transformer_casing.get())
@@ -194,7 +194,7 @@ public class FORecipeProvider extends RecipeProvider {
                 .define('S', com.remizerexe.further_on.registry.FOItems.STAINLESS_STEEL.get())
                 .define('C', com.remizerexe.further_on.registry.FOItems.copper_coil.get())
                 .unlockedBy("has_coil", has(com.remizerexe.further_on.registry.FOItems.copper_coil.get()))
-                .save(recipeOutput, com.remizerexe.further_on.FurtherOn.MODID + ":transformer_casing");
+                .save(recipeOutput);
 
         net.minecraft.data.recipes.ShapedRecipeBuilder.shaped(net.minecraft.data.recipes.RecipeCategory.MISC, com.remizerexe.further_on.registry.FOBlocks.large_electric_motor.get())
                 .pattern(" R ")
@@ -205,7 +205,7 @@ public class FORecipeProvider extends RecipeProvider {
                 .define('C', com.remizerexe.further_on.registry.FOItems.copper_coil.get())
                 .define('M', com.remizerexe.further_on.registry.FOItems.STRUCTURAL_STEEL.get())
                 .unlockedBy("has_rotor", has(com.remizerexe.further_on.registry.FOItems.rotor_core.get()))
-                .save(recipeOutput, com.remizerexe.further_on.FurtherOn.MODID + ":large_electric_motor");
+                .save(recipeOutput);
 
         net.minecraft.data.recipes.SingleItemRecipeBuilder.stonecutting(net.minecraft.world.item.crafting.Ingredient.of(com.remizerexe.further_on.registry.FOBlocks.FIRE_CLAY_BRICKS.get()), net.minecraft.data.recipes.RecipeCategory.BUILDING_BLOCKS, com.remizerexe.further_on.registry.FOBlocks.FIRE_CLAY_BRICK_STAIRS.get(), 1)
                 .unlockedBy("has_item", has(com.remizerexe.further_on.registry.FOBlocks.FIRE_CLAY_BRICKS.get()))
@@ -224,7 +224,7 @@ public class FORecipeProvider extends RecipeProvider {
                 .define('S', com.remizerexe.further_on.registry.FOItems.polished_silicon_wafer.get())
                 .define('R', net.minecraft.world.item.Items.REDSTONE)
                 .unlockedBy("has_wafer", has(com.remizerexe.further_on.registry.FOItems.polished_silicon_wafer.get()))
-                .save(recipeOutput, com.remizerexe.further_on.FurtherOn.MODID + ":capacitor");
+                .save(recipeOutput);
 
         net.minecraft.data.recipes.ShapedRecipeBuilder.shaped(net.minecraft.data.recipes.RecipeCategory.MISC, com.remizerexe.further_on.registry.FOItems.transistor.get(), 2)
                 .pattern(" G ")
@@ -234,7 +234,7 @@ public class FORecipeProvider extends RecipeProvider {
                 .define('S', com.remizerexe.further_on.registry.FOItems.polished_silicon_wafer.get())
                 .define('R', net.minecraft.world.item.Items.REDSTONE)
                 .unlockedBy("has_wafer", has(com.remizerexe.further_on.registry.FOItems.polished_silicon_wafer.get()))
-                .save(recipeOutput, com.remizerexe.further_on.FurtherOn.MODID + ":transistor");
+                .save(recipeOutput);
 
         net.minecraft.data.recipes.ShapedRecipeBuilder.shaped(net.minecraft.data.recipes.RecipeCategory.MISC, com.remizerexe.further_on.registry.FOItems.printed_circuit_board.get())
                 .pattern("GCG")
@@ -246,7 +246,7 @@ public class FORecipeProvider extends RecipeProvider {
                 .define('W', com.remizerexe.further_on.registry.FOItems.copper_wire.get())
                 .define('T', com.remizerexe.further_on.registry.FOItems.transistor.get())
                 .unlockedBy("has_transistor", has(com.remizerexe.further_on.registry.FOItems.transistor.get()))
-                .save(recipeOutput, com.remizerexe.further_on.FurtherOn.MODID + ":printed_circuit_board");
+                .save(recipeOutput);
     }
 
     private void oreSmeltingAndBlasting(RecipeOutput output, java.util.List<net.minecraft.world.level.ItemLike> inputs, net.minecraft.world.level.ItemLike result, float experience, int cookingTime, String group) {
@@ -273,7 +273,7 @@ public class FORecipeProvider extends RecipeProvider {
                 .pattern("###")
                 .define('#', item)
                 .unlockedBy("has_item", has(item))
-                .save(output, com.remizerexe.further_on.FurtherOn.MODID + ":" + name + "_block");
+                .save(output, com.remizerexe.further_on.FurtherOn.MODID + ":" + name + "_block_from_ingots");
     }
 
     public static void registerAllProcessing(DataGenerator gen, PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {

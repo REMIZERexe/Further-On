@@ -1,0 +1,22 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "further_on:bauxite"
+    }
+  ],
+  "processing_time": 250,
+  "results": [
+    {
+      "count": 2,
+      "id": "further_on:bauxite_dust"
+    },
+    {
+      "id": "further_on:bauxite_dust"
+    },
+    {
+      "chance": 0.5,
+      "id": "minecraft:clay_ball"
+    }
+  ]
+}

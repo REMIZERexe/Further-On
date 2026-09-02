@@ -1,0 +1,13 @@
+{
+  "type": "create:sandpaper_polishing",
+  "ingredients": [
+    {
+      "item": "further_on:silicon_wafer"
+    }
+  ],
+  "results": [
+    {
+      "id": "further_on:polished_silicon_wafer"
+    }
+  ]
+}

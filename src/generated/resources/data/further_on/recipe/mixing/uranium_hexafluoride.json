@@ -1,0 +1,17 @@
+{
+  "type": "create:mixing",
+  "heat_requirement": "heated",
+  "ingredients": [
+    {
+      "item": "further_on:yellowcake"
+    },
+    {
+      "item": "further_on:fluorite"
+    }
+  ],
+  "results": [
+    {
+      "id": "further_on:uranium_hexafluoride"
+    }
+  ]
+}

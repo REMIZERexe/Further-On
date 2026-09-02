@@ -1,6 +1,7 @@
 package com.remizerexe.further_on;
 
 import com.mojang.logging.LogUtils;
+import com.remizerexe.further_on.content.equipment.WeldingMaskItem;
 import com.remizerexe.further_on.registry.*;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.item.ItemDescription;
@@ -18,6 +19,8 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.registries.RegisterEvent;
 import org.slf4j.Logger;
+
+import static com.simibubi.create.content.equipment.goggles.GogglesItem.addIsWearingPredicate;
 
 @Mod(FurtherOn.MODID)
 public class FurtherOn {
@@ -102,7 +105,8 @@ public class FurtherOn {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        // Yet empty.
+        addIsWearingPredicate(
+                WeldingMaskItem::isProtecting);
     }
 
     public static ResourceLocation asResource(String path) {

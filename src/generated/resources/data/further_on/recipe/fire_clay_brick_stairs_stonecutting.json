@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "further_on:fire_clay_bricks"
+  },
+  "result": {
+    "count": 1,
+    "id": "further_on:fire_clay_brick_stairs"
+  }
+}

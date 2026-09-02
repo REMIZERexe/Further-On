@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "S": {
+      "item": "further_on:stainless_steel"
+    }
+  },
+  "pattern": [
+    "SSS",
+    "RRR",
+    "SSS"
+  ],
+  "result": {
+    "count": 1,
+    "id": "further_on:logic_panel"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "type": "create:compacting",
+  "ingredients": [
+    {
+      "type": "neoforge:single",
+      "amount": 810,
+      "fluid": "further_on:molten_steel"
+    }
+  ],
+  "results": [
+    {
+      "id": "further_on:carbon_steel_block"
+    }
+  ]
+}

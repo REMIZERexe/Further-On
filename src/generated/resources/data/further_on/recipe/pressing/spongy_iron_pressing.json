@@ -1,0 +1,13 @@
+{
+  "type": "create:pressing",
+  "ingredients": [
+    {
+      "item": "further_on:spongy_iron"
+    }
+  ],
+  "results": [
+    {
+      "id": "further_on:carbon_steel"
+    }
+  ]
+}

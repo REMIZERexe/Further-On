@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "create:empty_blaze_burner"
+    },
+    "C": {
+      "item": "further_on:carbon_steel_block"
+    }
+  },
+  "pattern": [
+    " C ",
+    "CBC",
+    " C "
+  ],
+  "result": {
+    "count": 1,
+    "id": "further_on:hyper_blaze_burner"
+  }
+}

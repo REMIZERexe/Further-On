@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "further_on:copper_coil"
+    },
+    "M": {
+      "item": "further_on:structural_steel"
+    },
+    "R": {
+      "item": "further_on:rotor_core"
+    },
+    "S": {
+      "item": "further_on:stator_core"
+    }
+  },
+  "pattern": [
+    " R ",
+    "SCS",
+    " M "
+  ],
+  "result": {
+    "count": 1,
+    "id": "further_on:large_electric_motor"
+  }
+}

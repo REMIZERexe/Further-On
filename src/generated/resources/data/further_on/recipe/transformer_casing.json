@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "further_on:copper_coil"
+    },
+    "S": {
+      "item": "further_on:stainless_steel"
+    }
+  },
+  "pattern": [
+    " S ",
+    " C ",
+    " S "
+  ],
+  "result": {
+    "count": 1,
+    "id": "further_on:transformer_casing"
+  }
+}

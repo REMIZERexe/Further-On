@@ -1,0 +1,18 @@
+{
+  "type": "create:crushing",
+  "ingredients": [
+    {
+      "item": "further_on:crushed_raw_uranium"
+    }
+  ],
+  "processing_time": 300,
+  "results": [
+    {
+      "id": "further_on:yellowcake"
+    },
+    {
+      "chance": 0.2,
+      "id": "further_on:yellowcake"
+    }
+  ]
+}

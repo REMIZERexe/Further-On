@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "further_on:transistor"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_wafer": {
+      "conditions": {
+        "items": [
+          {
+            "items": "further_on:polished_silicon_wafer"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_wafer"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "further_on:transistor"
+    ]
+  }
+}
