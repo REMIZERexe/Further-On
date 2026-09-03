@@ -1,14 +1,23 @@
 package com.remizerexe.further_on.datagen.recipes;
 
+import com.remizerexe.further_on.FurtherOn;
 import com.simibubi.create.api.data.recipe.MixingRecipeGen;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
-
+import com.remizerexe.further_on.registry.FOItems;
+import net.minecraft.world.level.material.Fluids;
 import java.util.concurrent.CompletableFuture;
 
 import static com.remizerexe.further_on.FurtherOn.MODID;
 
 public class FOMixingRecipeGen extends MixingRecipeGen {
+    public final GeneratedRecipe QUICKLIME_MIXING = create(FurtherOn.asResource("mixing/quicklime"),
+            b -> b.duration(80)
+                    .require(FOItems.LIMESTONE_DUST.get())
+                    .require(Fluids.LAVA, 250)
+                    .output(FOItems.QUICKLIME.get(), 1)
+    );
+
     public GeneratedRecipe PANCAKES = create("pancakes", b -> b
             .require(net.minecraft.world.item.Items.WHEAT)
             .require(net.minecraft.world.item.Items.EGG)
@@ -31,7 +40,7 @@ public class FOMixingRecipeGen extends MixingRecipeGen {
 
     public GeneratedRecipe RESIN_PROCESSING = create("resin_processing", b -> b
             .require(com.remizerexe.further_on.registry.FOItems.spruce_resin_item)
-            .require(net.minecraft.world.item.Items.WATER_BUCKET) // cheap substitute for fluid ingredient to keep datagen simple
+            .require(net.minecraft.world.item.Items.WATER_BUCKET)
             .output(com.remizerexe.further_on.registry.FOItems.latex, 2)
             .output(com.remizerexe.further_on.registry.FOItems.turpentine, 1)
     );
@@ -47,23 +56,22 @@ public class FOMixingRecipeGen extends MixingRecipeGen {
             .require(net.minecraft.world.item.Items.QUARTZ)
             .require(net.minecraft.tags.ItemTags.COALS)
             .output(com.remizerexe.further_on.registry.FOItems.raw_silicon, 1)
-            .requiresHeat(com.simibubi.create.content.processing.recipe.HeatCondition.SUPERHEATED) // Carbothermic reduction of silica
+            .requiresHeat(com.simibubi.create.content.processing.recipe.HeatCondition.SUPERHEATED)
     );
 
     public GeneratedRecipe PURIFIED_SILICON = create("purified_silicon", b -> b
             .require(com.remizerexe.further_on.registry.FOItems.raw_silicon.get())
             .require(com.remizerexe.further_on.registry.FOItems.turpentine.get())
             .output(com.remizerexe.further_on.registry.FOItems.purified_silicon, 1)
-            .requiresHeat(com.simibubi.create.content.processing.recipe.HeatCondition.HEATED) // Siemens process purification
+            .requiresHeat(com.simibubi.create.content.processing.recipe.HeatCondition.HEATED)
     );
 
     public GeneratedRecipe URANIUM_HEXAFLUORIDE = create("uranium_hexafluoride", b -> b
             .require(com.remizerexe.further_on.registry.FOItems.yellowcake.get())
             .require(com.remizerexe.further_on.registry.FOItems.fluorite.get())
             .output(com.remizerexe.further_on.registry.FOItems.uranium_hexafluoride, 1)
-            .requiresHeat(com.simibubi.create.content.processing.recipe.HeatCondition.HEATED) // UF6 conversion process
+            .requiresHeat(com.simibubi.create.content.processing.recipe.HeatCondition.HEATED)
     );
-
 
     public GeneratedRecipe ALUMINA_DUST = create("alumina_dust", b -> b
             .require(com.remizerexe.further_on.registry.FOItems.BAUXITE_DUST.get())

@@ -5,6 +5,7 @@ import com.tterrag.registrate.util.entry.ItemEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.neoforged.neoforge.registries.DeferredItem;
 
 import static com.remizerexe.further_on.FurtherOn.REGISTRATE;
 
@@ -13,6 +14,14 @@ public class FOItems {
     static {
         REGISTRATE.setCreativeTab(FOTabs.FURTHER_ON_TAB);
     }
+
+    public static final com.tterrag.registrate.util.entry.ItemEntry<Item> LIMESTONE_DUST = REGISTRATE.item("limestone_dust", Item::new)
+            .lang("Limestone Dust")
+            .register();
+
+    public static final com.tterrag.registrate.util.entry.ItemEntry<Item> QUICKLIME = REGISTRATE.item("quicklime", Item::new)
+            .lang("Quicklime")
+            .register();
 
     public static final ItemEntry<Item> FIRE_CLAY_BALL = REGISTRATE.item("fire_clay_ball", Item::new)
             .lang("Fire Clay Ball")
