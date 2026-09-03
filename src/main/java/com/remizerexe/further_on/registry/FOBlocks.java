@@ -14,10 +14,12 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.WallBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.Half;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.registries.DeferredBlock;
 
 import static com.remizerexe.further_on.FurtherOn.MODID;
 import static com.remizerexe.further_on.FurtherOn.REGISTRATE;
@@ -27,6 +29,17 @@ public class FOBlocks {
     static {
         REGISTRATE.setCreativeTab(FOTabs.FURTHER_ON_TAB);
     }
+
+    public static final BlockEntry<Block> QUICKLIME_BLOCK = REGISTRATE.block("quicklime_block", Block::new)
+            .lang("Quicklime Block")
+            .blockstate((ctx, prov) -> {
+                ResourceLocation textureLoc = ResourceLocation.fromNamespaceAndPath(MODID, "block/white_concrete");
+                ResourceLocation cubeAll = ResourceLocation.withDefaultNamespace("block/cube_all");
+                prov.simpleBlock(ctx.get(), prov.models().singleTexture(ctx.getName(), cubeAll, "all", textureLoc));
+            })
+            .properties(c -> c.sound(SoundType.STONE).strength(1.5F))
+            .simpleItem()
+            .register();
 
     public static final BlockEntry<PumpjackRotationAxleBlock> PUMPJACK_ROTATION_AXLE =
             REGISTRATE.block("pumpjack_rotation_axle", PumpjackRotationAxleBlock::new)
