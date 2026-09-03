@@ -59,7 +59,7 @@ public class FOFluids {
                         @Override public ResourceLocation getStillTexture()   { return STILL; }
                         @Override public ResourceLocation getFlowingTexture() { return FLOWING; }
                         @Override public ResourceLocation getOverlayTexture() { return OVERLAY; }
-                        @Override public int getTintColor() { return 0xFF1A1A1A; }
+                        @Override public int getTintColor() { return 0xFFFFFFFF; }
                     });
                 }
             });
