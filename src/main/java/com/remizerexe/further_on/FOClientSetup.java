@@ -1,13 +1,11 @@
 package com.remizerexe.further_on;
 
-import com.mojang.blaze3d.platform.InputConstants;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.remizerexe.further_on.content.equipment.WeldingMaskItem;
 import com.remizerexe.further_on.content.pumpjack.PumpjackBaseRenderer;
 import com.remizerexe.further_on.registry.FOBlockEntities;
 import com.remizerexe.further_on.registry.FOItems;
 import com.remizerexe.further_on.registry.FOMenuTypes;
-import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
@@ -17,11 +15,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.RegisterGuiLayersEvent;
-import net.neoforged.neoforge.client.event.RegisterKeyMappingsEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
-import net.neoforged.neoforge.client.settings.KeyConflictContext;
-import net.neoforged.neoforge.common.util.Lazy;
-import org.lwjgl.glfw.GLFW;
 
 @EventBusSubscriber(modid = FurtherOn.MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class FOClientSetup {
@@ -37,21 +31,12 @@ public class FOClientSetup {
     private static final ResourceLocation WELDING_MASK_OVERLAY = FurtherOn
             .asResource("textures/misc/welding_mask_overlay.png");
 
-    public static final Lazy<KeyMapping> TOGGLE_WELDING_MASK_VISOR = Lazy.of(() -> new KeyMapping(
-            "key.further_on.toggle_welding_mask_visor", KeyConflictContext.IN_GAME,
-            InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_V, "key.categories.further_on"));
-
-    @SubscribeEvent
-    public static void registerKeyMappings(RegisterKeyMappingsEvent event) {
-        event.register(TOGGLE_WELDING_MASK_VISOR.get());
-    }
-
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
         event.enqueueWork(() -> ItemProperties.register(
                 FOItems.WELDING_MASK.get(),
                 FurtherOn.asResource("open"),
-                (stack, level, entity, seed) -> WeldingMaskItem.isVisorOpen(stack) ? 1.0F : 0.0F));
+                (stack, level, entity, seed) -> entity == null || WeldingMaskItem.isVisorOpen(entity) ? 1.0F : 0.0F));
     }
 
     @SubscribeEvent
