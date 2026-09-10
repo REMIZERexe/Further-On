@@ -3,6 +3,7 @@ package com.remizerexe.further_on.registry;
 import com.remizerexe.further_on.content.blast_furnace.BlastFurnaceHatchBlock;
 import com.remizerexe.further_on.content.cast_beam.CastBeamBlock;
 import com.remizerexe.further_on.content.blast_furnace.BlastFurnaceHearthBlock;
+import com.remizerexe.further_on.content.cementation.CementationOvenBlock;
 import com.remizerexe.further_on.content.oil.OilNodeBlock;
 import com.remizerexe.further_on.content.pumpjack.*;
 import com.tterrag.registrate.util.entry.BlockEntry;
@@ -125,6 +126,16 @@ public class FOBlocks {
                     .simpleItem()
                     .register();
 
+    public static final BlockEntry<CementationOvenBlock> CEMENTATION_OVEN =
+            REGISTRATE.block("cementation_oven", CementationOvenBlock::new)
+                    .lang("Cementation Oven")
+                    .blockstate((ctx, prov) -> prov.horizontalBlock(ctx.get(), prov.models()
+                            .getExistingFile(ResourceLocation.fromNamespaceAndPath(MODID, "block/cementation_oven"))))
+                    .properties(c -> c.sound(SoundType.STONE).strength(3.0f, 6.0f).requiresCorrectToolForDrops().noOcclusion())
+                    .tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE)
+                    .simpleItem()
+                    .register();
+
     public static final BlockEntry<BlastFurnaceHatchBlock> BLAST_FURNACE_HATCH =
             REGISTRATE.block("blast_furnace_hatch", BlastFurnaceHatchBlock::new)
                     .lang("Blast Furnace Hatch")
@@ -169,6 +180,16 @@ public class FOBlocks {
         REGISTRATE.setCreativeTab(FOTabs.FURTHER_ON_BUILDING_TAB);
     }
 
+
+    /** Packing block for the cementation furnace. PLACEHOLDER texture: vanilla coal block. */
+    public static final BlockEntry<Block> CHARCOAL_BLOCK = REGISTRATE.block("charcoal_block", Block::new)
+            .lang("Block of Charcoal")
+            .blockstate((ctx, prov) -> prov.simpleBlock(ctx.get(), prov.models().cubeAll(ctx.getName(),
+                    ResourceLocation.withDefaultNamespace("block/coal_block"))))
+            .properties(c -> c.sound(SoundType.STONE).strength(5.0f, 6.0f).requiresCorrectToolForDrops())
+            .tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_PICKAXE)
+            .simpleItem()
+            .register();
 
     public static final BlockEntry<Block> FIRE_CLAY_BRICKS = REGISTRATE.block("fire_clay_bricks", Block::new)
             .lang("Fire Clay Bricks")

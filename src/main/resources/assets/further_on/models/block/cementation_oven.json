@@ -1,0 +1,58 @@
+{
+  "credit": "Cementation oven frame with a see-through opening on the front (north) face",
+  "parent": "minecraft:block/block",
+  "textures": {
+    "all": "further_on:block/fire_clay_bricks",
+    "particle": "further_on:block/fire_clay_bricks"
+  },
+  "elements": [
+    {
+      "name": "sill",
+      "from": [0, 0, 0],
+      "to": [16, 2, 16],
+      "faces": {
+        "north": {"uv": [0, 14, 16, 16], "texture": "#all", "cullface": "north"},
+        "south": {"uv": [0, 14, 16, 16], "texture": "#all", "cullface": "south"},
+        "east":  {"uv": [0, 14, 16, 16], "texture": "#all", "cullface": "east"},
+        "west":  {"uv": [0, 14, 16, 16], "texture": "#all", "cullface": "west"},
+        "up":    {"uv": [0, 0, 16, 16], "texture": "#all"},
+        "down":  {"uv": [0, 0, 16, 16], "texture": "#all", "cullface": "down"}
+      }
+    },
+    {
+      "name": "lintel",
+      "from": [0, 12, 0],
+      "to": [16, 16, 16],
+      "faces": {
+        "north": {"uv": [0, 0, 16, 4], "texture": "#all", "cullface": "north"},
+        "south": {"uv": [0, 0, 16, 4], "texture": "#all", "cullface": "south"},
+        "east":  {"uv": [0, 0, 16, 4], "texture": "#all", "cullface": "east"},
+        "west":  {"uv": [0, 0, 16, 4], "texture": "#all", "cullface": "west"},
+        "up":    {"uv": [0, 0, 16, 16], "texture": "#all", "cullface": "up"},
+        "down":  {"uv": [0, 0, 16, 16], "texture": "#all"}
+      }
+    },
+    {
+      "name": "jamb_west",
+      "from": [0, 2, 0],
+      "to": [3, 12, 16],
+      "faces": {
+        "north": {"uv": [0, 4, 3, 14], "texture": "#all", "cullface": "north"},
+        "south": {"uv": [13, 4, 16, 14], "texture": "#all", "cullface": "south"},
+        "east":  {"uv": [0, 4, 16, 14], "texture": "#all"},
+        "west":  {"uv": [0, 4, 16, 14], "texture": "#all", "cullface": "west"}
+      }
+    },
+    {
+      "name": "jamb_east",
+      "from": [13, 2, 0],
+      "to": [16, 12, 16],
+      "faces": {
+        "north": {"uv": [13, 4, 16, 14], "texture": "#all", "cullface": "north"},
+        "south": {"uv": [0, 4, 3, 14], "texture": "#all", "cullface": "south"},
+        "east":  {"uv": [0, 4, 16, 14], "texture": "#all", "cullface": "east"},
+        "west":  {"uv": [0, 4, 16, 14], "texture": "#all"}
+      }
+    }
+  ]
+}

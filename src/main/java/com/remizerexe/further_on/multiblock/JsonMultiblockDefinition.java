@@ -14,7 +14,7 @@ public class JsonMultiblockDefinition {
     private final int minCapacityLayers;
     private final int maxCapacityLayers;
     private final Map<Character, MultiblockPredicate> legend;
-    private final String[] baseLayer;
+    private final String[][] baseLayers;
     private final String[] controllerLayer;
     private final String[] collarLayer;
     private final String[] capacityLayer;
@@ -23,14 +23,14 @@ public class JsonMultiblockDefinition {
     public JsonMultiblockDefinition(
             int minCapacityLayers, int maxCapacityLayers,
             Map<Character, MultiblockPredicate> legend,
-            String[] baseLayer, String[] controllerLayer,
+            String[][] baseLayers, String[] controllerLayer,
             String[] collarLayer, String[] capacityLayer,
             String[] topLayer
     ) {
         this.minCapacityLayers = minCapacityLayers;
         this.maxCapacityLayers = maxCapacityLayers;
         this.legend = legend;
-        this.baseLayer = baseLayer;
+        this.baseLayers = baseLayers;
         this.controllerLayer = controllerLayer;
         this.collarLayer = collarLayer;
         this.capacityLayer = capacityLayer;
@@ -60,10 +60,11 @@ public class JsonMultiblockDefinition {
                 }
             }
         }
-        // Layer -1: base
-        MultiblockJsonLoader.addLayerToPattern(
-                baseLayer, -1, legend, pattern, originRow, originCol
-        );
+        // Base layers: listed bottom-up, the last one sits at y=-1.
+        for (int i = 0; i < baseLayers.length; i++) {
+            MultiblockJsonLoader.addLayerToPattern(
+                    baseLayers[i], -(baseLayers.length - i), legend, pattern, originRow, originCol);
+        }
 
         // Layer 0: controller layer (y=0 is the controller itself)
         MultiblockJsonLoader.addLayerToPattern(

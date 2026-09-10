@@ -91,6 +91,28 @@ public class FOItems {
             // FIXME: bruh how do i add durability to this
             .register();
 
+    public static final ItemEntry<Item> BLISTER_STEEL = REGISTRATE.item("blister_steel", Item::new)
+            .lang("Blister Steel")
+            .model((ctx, prov) -> prov.generated(ctx,
+                    net.minecraft.resources.ResourceLocation.withDefaultNamespace("item/netherite_scrap")))
+            .register();
+
+    public static final ItemEntry<Item> ASH = REGISTRATE.item("ash", Item::new)
+            .lang("Ash")
+            .tag(net.minecraft.tags.ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", "dusts/ash")))
+            .model((ctx, prov) -> prov.generated(ctx,
+                    net.minecraft.resources.ResourceLocation.withDefaultNamespace("item/gunpowder")))
+            .register();
+
+   public static final ItemEntry<com.remizerexe.further_on.content.cementation.UnfinishedSteelItem> UNFINISHED_STEEL =
+            REGISTRATE.item("unfinished_steel", com.remizerexe.further_on.content.cementation.UnfinishedSteelItem::new)
+            .lang("Unfinished Steel")
+            .model((ctx, prov) -> prov.generated(ctx,
+                    net.minecraft.resources.ResourceLocation.withDefaultNamespace("item/netherite_scrap")))
+            .register();
+
+
+
     public static final ItemEntry<com.remizerexe.further_on.content.build_gun.BuildGunItem> build_gun = REGISTRATE.item("build_gun", com.remizerexe.further_on.content.build_gun.BuildGunItem::new)
             .lang("Architect's Build Gun")
             .properties(p -> p.stacksTo(1)) // Handheld schematic cannon upgrade!

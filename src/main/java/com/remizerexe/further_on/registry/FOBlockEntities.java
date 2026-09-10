@@ -22,6 +22,11 @@ public class FOBlockEntities {
                     .validBlocks(FOBlocks.BLAST_FURNACE_HATCH)
                     .register();
 
+    public static final BlockEntityEntry<com.remizerexe.further_on.content.cementation.CementationOvenBlockEntity> CEMENTATION_OVEN =
+            REGISTRATE.blockEntity("cementation_oven", com.remizerexe.further_on.content.cementation.CementationOvenBlockEntity::new)
+                    .validBlocks(FOBlocks.CEMENTATION_OVEN)
+                    .register();
+
     public static final BlockEntityEntry<IndustrialPipeBlockEntity> INDUSTRIAL_PIPE =
             REGISTRATE.<IndustrialPipeBlockEntity>blockEntity("industrial_pipe",
                             (type, pos, state) -> new IndustrialPipeBlockEntity(type, pos, state))

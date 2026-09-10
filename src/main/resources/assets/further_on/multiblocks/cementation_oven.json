@@ -1,0 +1,51 @@
+{
+  "min_capacity_layers": 0,
+  "max_capacity_layers": 0,
+  "layers": {
+    "base": [
+      [ ".....",
+        ".BBB.",
+        ".BBB.",
+        ".BBB.",
+        "....." ],
+      [ ".111.",
+        "3___4",
+        "3___4",
+        "3___4",
+        ".222." ]
+    ],
+    "controller": [
+      ".....",
+      ".BCB.",
+      ".B_B.",
+      ".BBB.",
+      "....."
+    ],
+    "collar": [
+      ".....",
+      ".WBW.",
+      ".B_B.",
+      ".WBW.",
+      "....."
+    ],
+    "capacity": [],
+    "top": [
+      ".....",
+      "..1..",
+      ".3_4.",
+      "..2..",
+      "....."
+    ]
+  },
+  "legend": {
+    "C": { "block": "further_on:cementation_oven" },
+    "B": { "block": "further_on:fire_clay_bricks" },
+    "W": { "block": "further_on:fire_clay_brick_wall" },
+    "1": { "block": "further_on:fire_clay_brick_stairs", "state": { "facing": "south", "half": "bottom" } },
+    "2": { "block": "further_on:fire_clay_brick_stairs", "state": { "facing": "north", "half": "bottom" } },
+    "3": { "block": "further_on:fire_clay_brick_stairs", "state": { "facing": "east",  "half": "bottom" } },
+    "4": { "block": "further_on:fire_clay_brick_stairs", "state": { "facing": "west",  "half": "bottom" } },
+    "_": { "block": "minecraft:air" },
+    ".": { "block": "*" }
+  }
+}

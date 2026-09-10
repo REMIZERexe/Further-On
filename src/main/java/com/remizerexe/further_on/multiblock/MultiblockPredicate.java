@@ -15,6 +15,14 @@ public interface MultiblockPredicate {
 
     default String describe() { return "unknown"; }
 
+    /** Matches any block, including air. Legend entry: {@code { "block": "*" }}. */
+    static MultiblockPredicate any() {
+        return new MultiblockPredicate() {
+            @Override public boolean test(BlockGetter level, BlockPos pos, BlockState state) { return true; }
+            @Override public String describe() { return "*"; }
+        };
+    }
+
     static MultiblockPredicate of(Block block) {
         return new MultiblockPredicate() {
             @Override public boolean test(BlockGetter level, BlockPos pos, BlockState state) {

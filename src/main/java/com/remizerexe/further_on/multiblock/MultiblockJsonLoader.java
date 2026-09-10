@@ -1,6 +1,7 @@
 package com.remizerexe.further_on.multiblock;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import net.minecraft.core.BlockPos;
@@ -47,7 +48,7 @@ public class MultiblockJsonLoader {
     // Parsing
     // -------------------------------------------------------------------------
 
-    private static JsonMultiblockDefinition parse(JsonObject root) {
+    public static JsonMultiblockDefinition parse(JsonObject root) {
         int minLayers = root.has("min_capacity_layers")
                 ? root.get("min_capacity_layers").getAsInt() : 1;
         int maxLayers = root.has("max_capacity_layers")
@@ -60,7 +61,7 @@ public class MultiblockJsonLoader {
 
         // Parse named layers
         JsonObject layersJson = root.getAsJsonObject("layers");
-        String[] baseLayer       = parseLayer(layersJson, "base");
+        String[][] baseLayers    = parseBaseLayers(layersJson);
         String[] controllerLayer = parseLayer(layersJson, "controller");
         String[] collarLayer = parseLayer(layersJson, "collar");
         String[] capacityLayer   = parseLayer(layersJson, "capacity");
@@ -69,7 +70,7 @@ public class MultiblockJsonLoader {
         return new JsonMultiblockDefinition(
                 minLayers, maxLayers,
                 legend,
-                baseLayer, controllerLayer,
+                baseLayers, controllerLayer,
                 collarLayer,
                 capacityLayer, topLayer
         );
@@ -82,6 +83,10 @@ public class MultiblockJsonLoader {
             JsonObject blockDef = entry.getValue().getAsJsonObject();
 
             String blockId = blockDef.get("block").getAsString();
+            if (blockId.equals("*")) {
+                legend.put(key, MultiblockPredicate.any());
+                continue;
+            }
             Block block = BuiltInRegistries.BLOCK.get(ResourceLocation.parse(blockId));
             if (block == null || block == Blocks.AIR && !blockId.equals("minecraft:air")) {
                 throw new IllegalStateException("Unknown block in multiblock legend: " + blockId);
@@ -98,6 +103,19 @@ public class MultiblockJsonLoader {
             legend.put(key, MultiblockPredicate.ofWithState(block, stateProps));
         }
         return legend;
+    }
+
+    /**
+     * "base" is either one layer ({@code ["...", "..."]}) or several listed
+     * bottom-up ({@code [["..."], ["..."]]}), like the rest of the file; the
+     * last listed sits directly under the controller.
+     */
+    private static String[][] parseBaseLayers(JsonObject layersJson) {
+        if (!layersJson.has("base")) return new String[0][];
+        JsonArray base = layersJson.getAsJsonArray("base");
+        if (base.isEmpty()) return new String[0][];
+        if (base.get(0).isJsonArray()) return GSON.fromJson(base, String[][].class);
+        return new String[][] { GSON.fromJson(base, String[].class) };
     }
 
     private static String[] parseLayer(JsonObject layersJson, String key) {
