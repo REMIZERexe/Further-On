@@ -1,6 +1,5 @@
 package com.remizerexe.further_on.content.equipment;
 
-import com.remizerexe.further_on.registry.FODataComponents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -31,22 +30,19 @@ public class WeldingMaskItem extends Item implements Equipable {
         return entity.getItemBySlot(EquipmentSlot.HEAD).getItem() instanceof WeldingMaskItem;
     }
 
-    /** Whether the visor has been deliberately toggled open on this mask. */
-    public static boolean isVisorOpen(ItemStack stack) {
-        return stack.getOrDefault(FODataComponents.VISOR_OPEN.get(), false);
+    /**
+     * The visor rests open by default and is only lowered while the wearer
+     * holds crouch. The sneak flag syncs both ways, so this works on either side.
+     */
+    public static boolean isVisorOpen(LivingEntity entity) {
+        return !entity.isShiftKeyDown();
     }
 
     /**
      * Single source of truth for gameplay checks: the mask is worn with the
-     * visor down. Works on both sides (the component syncs).
+     * visor down, i.e. the wearer is crouching.
      */
     public static boolean isProtecting(LivingEntity entity) {
-        return isWearing(entity) && !isVisorOpen(entity.getItemBySlot(EquipmentSlot.HEAD));
-    }
-
-    public static void toggleVisor(LivingEntity entity) {
-        ItemStack head = entity.getItemBySlot(EquipmentSlot.HEAD);
-        if (head.getItem() instanceof WeldingMaskItem)
-            head.set(FODataComponents.VISOR_OPEN.get(), !isVisorOpen(head));
+        return isWearing(entity) && !isVisorOpen(entity);
     }
 }

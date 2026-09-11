@@ -86,6 +86,9 @@
 			}
 		}
 	],
+	"overrides": [
+		{"predicate": {"further_on:open": 1}, "model": "further_on:item/welding_mask_open"}
+	],
 	"display": {
 		"thirdperson_righthand": {
 			"rotation": [30, 148, 11],
