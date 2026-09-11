@@ -222,15 +222,16 @@ public class BlastFurnaceHearthBlockEntity extends MultiblockControllerBE
     private void ejectItem(ItemStack stack) {
         if (level == null) return;
         Direction facing = getFacing();
-        BlockPos ejectPos = worldPosition.below(1).relative(facing.getOpposite(), 1);
+        BlockPos ejectPos = worldPosition.relative(facing);
         ItemEntity ejected = new ItemEntity(
                 level,
                 ejectPos.getX() + 0.5,
-                ejectPos.getY() + 0.5,
+                ejectPos.getY() + 0.25,
                 ejectPos.getZ() + 0.5,
                 stack.copy()
         );
-        ejected.setDeltaMovement(0, -0.1, 0);
+        ejected.setDeltaMovement(facing.getStepX() * 0.1, 0.05, facing.getStepZ() * 0.1);
+        ejected.setDefaultPickUpDelay();
         level.addFreshEntity(ejected);
     }
 
@@ -288,6 +289,9 @@ public class BlastFurnaceHearthBlockEntity extends MultiblockControllerBE
     }
 
     public int   getAccumulatedLayers()  { return accumulatedLayers; }
+    public int   getBufferedCoal()       { return bufferedCoal; }
+    public int   getBufferedIron()       { return bufferedIron; }
+    public int   getBufferedCalcite()    { return bufferedCalcite; }
     public int   getCurrentRPM()         { return currentRPM; }
     public float getProcessingProgress() { return processingProgress; }
 
@@ -408,6 +412,12 @@ public class BlastFurnaceHearthBlockEntity extends MultiblockControllerBE
         tooltip.add(Component.literal(" Queued Crafts: ")
                 .withStyle(ChatFormatting.GRAY)
                 .append(Component.literal(accumulatedLayers + " / " + ((capacityLayers + 2) * 8))
+                        .withStyle(ChatFormatting.AQUA)));
+
+        // Swallowed inputs waiting for a full set (2 coke, 1 iron, 1 calcite) before they count as a craft.
+        tooltip.add(Component.literal(" Buffered: ")
+                .withStyle(ChatFormatting.GRAY)
+                .append(Component.literal(bufferedCoal + " coke, " + bufferedIron + " iron, " + bufferedCalcite + " calcite")
                         .withStyle(ChatFormatting.AQUA)));
 
         tooltip.add(Component.literal(" Fan RPM: ")

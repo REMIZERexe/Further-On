@@ -32,6 +32,11 @@ public class MultiblockStructure {
         this.pattern = pattern;
     }
 
+    /** Read-only view of the facing-relative pattern. */
+    public Map<BlockPos, MultiblockPredicate> getPattern() {
+        return java.util.Collections.unmodifiableMap(pattern);
+    }
+
     // -------------------------------------------------------------------------
     // Validation
     // -------------------------------------------------------------------------
@@ -49,7 +54,7 @@ public class MultiblockStructure {
             MultiblockPredicate predicate = entry.getValue().withFacing(facing);
             boolean pass = predicate.test(level, worldPos, state);
 
-            com.remizerexe.further_on.FurtherOn.LOGGER.warn(
+            com.remizerexe.further_on.FurtherOn.LOGGER.debug(
                     "SCAN | offset={} worldPos={} expected={} got={} pass={}",
                     entry.getKey(), worldPos,
                     predicate.describe(),

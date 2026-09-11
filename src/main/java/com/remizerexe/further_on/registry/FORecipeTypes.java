@@ -16,7 +16,8 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import java.util.function.Supplier;
 
 public enum FORecipeTypes implements IRecipeTypeInfo {
-    BLAST_COMPRESSING(FOBlastCompressingRecipe::new);
+    BLAST_COMPRESSING(FOBlastCompressingRecipe::new),
+    CEMENTATION(com.remizerexe.further_on.content.cementation.recipe.CementationRecipe::new);
 
     private final ResourceLocation id;
     private final Supplier<RecipeSerializer<?>> serializerObject;

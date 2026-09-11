@@ -98,33 +98,17 @@ public abstract class MultiblockControllerBE extends BlockEntity {
         if (level == null || level.isClientSide()) return;
 
         boolean wasFormed = multiblockState.isFormed();
-        int count = countCapacityLayers();
-
-        // Reject if layer count is out of bounds
-        if (count < minCapacityLayers() || count > maxCapacityLayers()) {
-            multiblockState.setFormed(false);
-            formedPositions = new ArrayList<>();
-            if (wasFormed) onUnformed();
-            setChanged();
-            syncToClient();
-            return;
-        }
-
-        Direction facing = getFacing();
-        MultiblockStructure structure = buildStructure(count);
-        boolean nowFormed = structure.validate(level, worldPosition, facing);
+        FormationAttempt attempt = attemptFormation();
+        boolean nowFormed = attempt.formed();
 
         // Store world positions for client-side use (e.g. effects)
-        formedPositions = nowFormed
-                ? structure.getWorldPositions(worldPosition, facing)
-                : new ArrayList<>();
-
+        formedPositions = nowFormed ? attempt.positions() : new ArrayList<>();
         multiblockState.setFormed(nowFormed);
         multiblockState.setControllerPos(worldPosition);
 
         if (!wasFormed && nowFormed) {
-            capacityLayers = count;
-            onFormed(count);
+            capacityLayers = attempt.capacityLayers();
+            onFormed(capacityLayers);
         } else if (wasFormed && !nowFormed) {
             capacityLayers = 0;
             onUnformed();
@@ -132,6 +116,38 @@ public abstract class MultiblockControllerBE extends BlockEntity {
 
         setChanged();
         syncToClient();
+    }
+
+    /** Result of one structure check. */
+    protected record FormationAttempt(boolean formed, int capacityLayers, List<BlockPos> positions) {
+        public static final FormationAttempt FAILED = new FormationAttempt(false, 0, List.of());
+    }
+
+    /**
+     * Counts capacity layers, builds the pattern and validates it. Subclasses
+     * that can match more than one structure override this and try each.
+     */
+    protected FormationAttempt attemptFormation() {
+        int count = countCapacityLayers();
+        if (count < minCapacityLayers() || count > maxCapacityLayers()) return FormationAttempt.FAILED;
+        Direction facing = getFacing();
+        MultiblockStructure structure = buildStructure(count);
+        if (!structure.validate(level, worldPosition, facing)) return FormationAttempt.FAILED;
+        return new FormationAttempt(true, count, structure.getWorldPositions(worldPosition, facing));
+    }
+
+    /**
+     * Converts a controller-relative offset (right, up, forward) to a world
+     * position using the same mapping as {@link MultiblockStructure}.
+     * "Forward" runs away from the controller's face, into the structure.
+     */
+    public BlockPos toWorld(int right, int up, int forward) {
+        return switch (getFacing()) {
+            case SOUTH -> worldPosition.offset(-right, up, -forward);
+            case EAST  -> worldPosition.offset(-forward, up, right);
+            case WEST  -> worldPosition.offset(forward, up, -right);
+            default    -> worldPosition.offset(right, up, forward);
+        };
     }
 
     /**
@@ -177,7 +193,7 @@ public abstract class MultiblockControllerBE extends BlockEntity {
      * Uses ServerLevel.blockChanged() which triggers getUpdatePacket()
      * on the client side.
      */
-    protected void syncToClient() {
+    public void syncToClient() {
         if (level != null && !level.isClientSide()) {
             level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), 2);
         }

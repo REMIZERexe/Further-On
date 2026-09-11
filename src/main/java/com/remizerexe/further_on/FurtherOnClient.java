@@ -34,5 +34,9 @@ public class FurtherOnClient {
                 FOBlockEntities.BLAST_FURNACE_HEARTH.get(),
                 BlastFurnaceHearthRenderer::new
         );
+        event.registerBlockEntityRenderer(
+                FOBlockEntities.CEMENTATION_OVEN.get(),
+                com.remizerexe.further_on.content.cementation.CementationOvenRenderer::new
+        );
     }
 }

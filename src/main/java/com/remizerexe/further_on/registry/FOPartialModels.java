@@ -8,5 +8,9 @@ public class FOPartialModels {
     public static final PartialModel PUMPJACK_CRANK =
             PartialModel.of(FurtherOn.asResource("block/pumpjackbase_crank"));
 
+    /** Hinged door over the cementation oven's front opening, animated by its renderer. */
+    public static final PartialModel CEMENTATION_OVEN_DOOR =
+            PartialModel.of(FurtherOn.asResource("block/cementation_oven_door"));
+
     public static void init() {}
 }
